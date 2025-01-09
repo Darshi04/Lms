@@ -30,10 +30,10 @@ export class RoadmapComponent implements OnInit{
   events = [
     { 
       timestamp: new Date('2025-01-01 12:30'), 
-      title: 'OOPS', 
-      description: 'Learn the fundamentals of Java programming, including OOP concepts, Collections, and more.', 
+      title: 'Core Java', 
+      description: 'Learn the fundamentals of Core Java, including basic syntax, object-oriented concepts, and core libraries.', 
       topics: [
-        { topic: 'Object-Oriented Programming (OOP)', completed: false }, 
+        { topic: 'OOPS', completed: false }, 
         { topic: 'Collections Framework', completed: false }, 
         { topic: 'Exception Handling', completed: false }
       ]
@@ -53,7 +53,7 @@ export class RoadmapComponent implements OnInit{
     { 
       timestamp: new Date('2025-02-3 10:00'), 
       title: 'Spring Boot', 
-      description: 'Master Spring Boot for building microservices and web applications with powerful dependency injection and auto-configuration.', 
+      description: 'Master Spring Boot for building microservices and web applications.', 
       topics: [
         { topic: 'Microservices', completed: false }, 
         { topic: 'REST APIs', completed: false }, 

@@ -12,18 +12,12 @@
 <ng-template #innerEventCustomTemplate let-event="event">
   <div class="event" (click)="handleClick(event)">
     <span>{{ event.eventInfo.timestamp | date: 'MMMM dd, yyyy' }}</span>
-    <h4>{{ event.eventInfo.title }}</h4>
-    <p>{{ event.eventInfo.description }}</p>
+    <h4 id="title">{{ event.eventInfo.title }}</h4>
+    <p id="describe">{{ event.eventInfo.description }}</p>
     <div class="topics-container">
       <ng-container *ngFor="let topic of event.eventInfo.topics">
         <div class="topic">
-          <!-- Change icon color for individual topics -->
-          <!-- <i [ngClass]="{
-            'fa-solid fa-circle': !topic.completed, 
-            'fa-regular fa-circle-check': topic.completed
-          }"
-          [style.color]="getTopicIconColor(topic)">
-        </i>   -->
+
           <i class="fa-regular fa-circle-check" [style.color]="getTopicIconColor(topic)"></i>
           <span> {{ topic.topic }}</span>
         </div>

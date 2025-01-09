@@ -2,9 +2,17 @@
   --ngx-timeline-period-inner-container: rgb(95, 84, 218);
 }
 .main-container .event-outer-container {
-    width: 50% !important;
+    width: 60% !important;
 }
 .event-wrapper-container{
-  width: 95%;
+  width: 100%;
 }
 
+#title{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#describe{
+  margin-bottom: 20px;
+}
