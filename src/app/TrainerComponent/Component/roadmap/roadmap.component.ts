@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxTimelineModule } from '@frxjs/ngx-timeline';
-import { SharedService } from '../../shared.service';
+import { SharedService } from '../../../shared.service';
 
 
 
