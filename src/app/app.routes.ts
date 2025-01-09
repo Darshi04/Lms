@@ -15,6 +15,6 @@ export const routes: Routes = [
     {path:"course",component:CourseComponent},
     {path:"check",component:ChecklistComponent},
     {path:"login",component:LoginComponentComponent},
-    {path:"road",component:RoadmapComponent}
+    {path:"timeline",component:RoadmapComponent}
 
 ];
