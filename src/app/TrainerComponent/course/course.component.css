@@ -1,0 +1,130 @@
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+
+  /* General style for sidebar icons */
+.sidebar-nav .nav-item .icon i {
+    font-size: 18px;  /* Adjust this value to match the size of the text */
+    vertical-align: middle;  /* Align icons vertically to middle */
+}
+
+
+
+/* Ensure consistent alignment */
+.sidebar-nav .nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+/* Styling for hover effect */
+.sidebar-nav .nav-item a:hover {
+    background-color: #f4f4f4;
+    border-radius: 4px;
+    transition: 0.3s ease;
+}
+
+.sidebar-nav .nav-item a:hover .icon i {
+    color: #007bff;  /* Change icon color on hover */
+}
+
+.navbar-logo p i{
+    font-size: 20px;
+    animation-iteration-count: 2;
+
+}
+
+
+
+  
+  .sidebar-nav .nav-item a:hover .icon {
+    transform: scale(1.1);
+  }
+  
+  .sidebar-nav-wrapper {
+    overflow: hidden;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform: translateX(-250px); /* Initially hidden */
+    transition: transform 0.3s ease-in-out;
+  }
+
+  
+  /* Optional: Add some space between the icon and the text */
+  .sidebar-nav .nav-item .icon {
+    margin-right: 10px;
+    transition: 0.3s ease;
+    
+  }
+  
+  /* Ensure consistent alignment */
+  .sidebar-nav .nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+
+  
+
+ 
+  
+ 
+  
+
+  /* Sidebar is closed, content takes up full width */
+  .main-wrapper.sidebar-closed {
+    margin-left: 0;  /* Remove space for sidebar */
+    transition: margin 0.3s ease-in-out;
+  }
+  
+  /* Sidebar is open, content has space for sidebar */
+  .main-wrapper {
+    margin-left: 250px;  /* Sidebar width */
+    transition: margin 0.3s ease-in-out;
+    transition: margin-left 0.3s ease-in-out;
+  }
+
+  
+  .sidebar-nav-wrapper.active {
+    transform: translateX(0); /* Sidebar shown */
+  }
+  
+
+  
+  

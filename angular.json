@@ -27,9 +27,24 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "public/css/lineicons.css", 
+              "public/css/materialdesignicons.min.css",
+              "public/css/fullcalendar.css",
+              "public/css/loading-bar.min.css" ,
+              "public/css/main.css" 
+              
             ],
-            "scripts": []
+            "scripts": [
+            "public/js/Chart.min.js",
+            "public/js/dynamic-pie-chart.js",
+            "public/js/moment.min.js",
+            "public/js/fullcalendar.js",
+            "public/js/jvectormap.min.js",
+            "public/js/world-merc.js",
+            "public/js/polyfill.js",
+            "public/js/main.js",
+            "public/js/loading-bar.min.js"]
           },
           "configurations": {
             "production": {
@@ -85,12 +100,30 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+           
+              "src/styles.css",              
+              "public/css/lineicons.css", 
+              "public/css/materialdesignicons.min.css",
+              "public/css/fullcalendar.css",
+              "public/css/loading-bar.min.css" ,
+              "public/css/main.css" 
             ],
-            "scripts": []
+            "scripts": [
+            "public/js/Chart.min.js",
+            "public/js/dynamic-pie-chart.js",
+            "public/js/moment.min.js",
+            "public/js/fullcalendar.js",
+            "public/js/jvectormap.min.js",
+            "public/js/world-merc.js",
+            "public/js/polyfill.js",
+            "public/js/main.js",
+            "public/js/loading-bar.min.js"]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
