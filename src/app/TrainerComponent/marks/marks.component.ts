@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-marks',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule, FooterComponent],
   templateUrl: './marks.component.html',
   styleUrl: './marks.component.css'
 })
@@ -17,13 +18,14 @@ export class MarksComponent {
   }
 
    // List of available subjects
-  subjects = ['Math', 'Science', 'English'];
+  subjects = ['Core Java', 'Data Structures', 'Cloud Computing', 'Linux'];
 
   // Hardcoded student data (could be fetched from an API or service)
   students = [
-    { id: 'Rn1', name: 'John' },
-    { id: 'Rn2', name: 'Henry' },
-    { id: 'Rn3', name: 'Alice' }
+    { id: 'Rn1245', name: 'John' },
+    { id: 'Rn2345', name: 'Henry' },
+    { id: 'Rn3456', name: 'Alice' },
+    {id:'Rn6789', name: 'Riti'}
   ];
 
   // Model for form data

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedService } from '../../shared.service';
+import { FooterComponent } from '../footer/footer.component';
 
 
 
@@ -22,7 +23,7 @@ interface Course {
 @Component({
   selector: 'app-checklist',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, FooterComponent],
   templateUrl: './checklist.component.html',
   styleUrls: ['./checklist.component.css']
 })
