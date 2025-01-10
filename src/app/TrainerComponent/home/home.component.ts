@@ -5,13 +5,14 @@ import { CommonModule } from '@angular/common';
 import { AsideComponent } from '../aside/aside.component';
 import { EventService } from '../../event.service';
 import { Observable } from 'rxjs';
+import { FooterComponent } from '../footer/footer.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [PlotlyModule, CommonModule, AsideComponent],
+  imports: [PlotlyModule, CommonModule, AsideComponent, FooterComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
