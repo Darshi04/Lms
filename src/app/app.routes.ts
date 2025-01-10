@@ -4,8 +4,13 @@ import { AsideComponent } from './TrainerComponent/aside/aside.component';
 import { MarksComponent } from './TrainerComponent/marks/marks.component';
 import { CourseComponent } from './TrainerComponent/course/course.component';
 import { ChecklistComponent } from './TrainerComponent/checklist/checklist.component';
+<<<<<<< HEAD
 import { LoginComponentComponent } from './Login/login-component/login-component.component';
 import { RoadmapComponent } from './Login/roadmap/roadmap.component';
+=======
+import { LoginComponentComponent } from './login-component/login-component.component';
+import { RoadmapComponent } from './Manager/roadmap/roadmap.component';
+>>>>>>> 20304f496dbb37aa6c21afa3307ce53dec599f6c
 
 
 export const routes: Routes = [
