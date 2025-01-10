@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { SharedService } from '../../../shared.service';
+import { SharedService } from '../../shared.service';
+
 
 interface Topic {
   topic: string;
@@ -23,6 +24,12 @@ interface Course {
   styleUrls: ['./checklist.component.css']
 })
 export class ChecklistComponent implements OnInit{
+  isSidebarOpen: boolean = true // Initial state: sidebar is closed
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen; // Toggle the sidebar state
+  }
+
 
   public courses: Course[] = [
     {
