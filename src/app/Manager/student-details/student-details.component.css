@@ -1,0 +1,68 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  .row {
+    display: flex;
+    height: 100%;
+    margin: 0;
+  }
+  
+  .col-lg-12 {
+    flex: 1;
+    padding: 0;
+  }
+  
+  .card-style {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .table {
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  th, td {
+    padding: 10px;
+  }
+  
+  th {
+    background-color: #f8f9fa;
+  }
+  .col-lg-6 {
+    margin-bottom: 20px;
+    margin-top: 20px; /* Adjust the value as needed */
+  }
+.mb-3{
+  margin-top: 20px;
+}
+
+.container{
+  margin-top:20px;
+}
+
+.btn:hover{
+  color:#fff;
+}
+
+.input-text:focus{
+     
+
+  box-shadow: 0px 0px 0px;
+  border-color:#365CF5;
+  outline: 0px;
+}
+
+.form-control {
+  border: 1px solid #365CF5;
+}
+
+

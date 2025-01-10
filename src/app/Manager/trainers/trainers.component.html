@@ -1,0 +1,80 @@
+<div class="container mt-5 mb-5">
+    <div class="row g-2">
+      <!-- Displaying Trainers -->
+      <div class="col-md-3" *ngFor="let trainer of trainers; let i = index">
+        <div class="card p-2 py-3 text-center">
+          <div class="img mb-2">
+            <!-- Profile image with rounded shape -->
+            <img [src]="trainer.photo" width="70" height="70" class="rounded-circle">
+          </div>
+          <h5 class="mb-0">{{trainer.name}}</h5>
+          <small>{{trainer.designation}}</small>
+          <div class="mb-1">
+            <strong>Email:</strong> <span>{{trainer.email}}</span>
+          </div>
+          <div class="mb-1">
+            <strong>Phone:</strong> <span>{{trainer.phone}}</span>
+          </div>
+          <div class="mb-1">
+            <strong>Address:</strong> <span>{{trainer.address}}</span>
+          </div>
+  
+          <!-- Edit and Remove Buttons -->
+          <div class="mt-3">
+            <button class="btn btn-warning btn-sm" (click)="editTrainer(i)" style="margin-right: 10px;">Edit</button>
+            <button class="btn btn-danger btn-sm" (click)="removeTrainer(i)">Remove</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Modal Form to Add or Edit Trainer -->
+      <div class="col-md-3" *ngIf="showForm">
+        <div class="card p-2 py-3 text-center">
+          <h1>{{editMode ? 'Edit Trainer' : 'Add Trainer'}}</h1>
+          <form (ngSubmit)="submitTrainer()">
+            <div class="mb-2">
+              <label for="name">Name:</label>
+              <input id="name" [(ngModel)]="newTrainer.name" name="name" class="form-control" required>
+            </div>
+            <div class="mb-2">
+              <label for="designation">Designation:</label>
+              <input id="designation" [(ngModel)]="newTrainer.designation" name="designation" class="form-control" required>
+            </div>
+            <!-- Profile Photo URL or Upload -->
+            <div class="img mb-2">
+              <label for="photo">Profile Photo:</label>
+              <div class="input-group">
+                <input type="file" id="photo" (change)="onFileChange($event)" class="form-control" accept="image/*">
+              </div>
+              <!-- Profile image preview -->
+              <div class="mt-2">
+                <img [src]="newTrainer.photo" *ngIf="newTrainer.photo" width="70" height="70" class="rounded-circle">
+              </div>
+            </div>
+            <div class="mb-2">
+              <label for="email">Email:</label>
+              <input id="email" [(ngModel)]="newTrainer.email" name="email" class="form-control" required>
+            </div>
+            <div class="mb-2">
+              <label for="phone">Phone:</label>
+              <input id="phone" [(ngModel)]="newTrainer.phone" name="phone" class="form-control" required>
+            </div>
+            <div class="mb-2">
+              <label for="address">Address:</label>
+              <input id="address" [(ngModel)]="newTrainer.address" name="address" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-right: 10px;">{{editMode ? 'Update' : 'Submit'}} </button>
+            <button type="button" class="btn btn-danger mt-2" (click)="closeForm()">Close</button>
+          </form>
+        </div>
+      </div>
+  
+      <!-- "+" Card to Open Form (will disappear once clicked) -->
+      <div class="col-md-3" *ngIf="!showForm" (click)="openForm()">
+        <div class="card p-2 py-3 text-center">
+          <h1>+</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  

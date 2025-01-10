@@ -1,0 +1,22 @@
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.card {
+  margin-bottom: 20px;
+  width: 100%; /* Make card width responsive */
+  max-width: 600px; /* Limit max width */
+  transition: border 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Hover effect on card */
+.card:hover {
+  border: 1px solid blue; /* Adds a blue border on hover */
+}
+.disabled-card {
+  opacity: 0.5;  /* Make the card appear faded */
+  pointer-events: none; /* Disable interactions (like hover, click) on the card */
+}

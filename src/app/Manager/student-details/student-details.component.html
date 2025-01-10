@@ -1,0 +1,138 @@
+<div class="container">
+    <div class="row mb-4">
+      <div class="col-lg-12 text-center">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <div class="input-group mb-3">
+              <!-- Search Mode Dropdown -->
+              <select class="form-select custom-dropdown" 
+                      [(ngModel)]="isRNSearch" 
+                      (ngModelChange)="toggleSearchMode()"
+                      style="width: 5%; border-color: #365CF5;">
+                <option [ngValue]="true">RN No</option>
+                <option [ngValue]="false">Skills</option>
+              </select>
+              
+              <!-- RN Number or Skill Search Input -->
+              <input *ngIf="isRNSearch" 
+                     type="text" 
+                     class="form-control input-text" 
+                     placeholder="Enter RN Number..." 
+                     aria-label="RN Number" 
+                     style="width: 80%; border-color: #365CF5;" 
+                     [(ngModel)]="empid" 
+                     (input)="filterStudents()">
+                               
+              <input *ngIf="!isRNSearch" 
+                     type="text" 
+                     class="form-control input-text" 
+                     placeholder="Enter Skill..." 
+                     aria-label="Skill" 
+                     style="width: 80%; border-color: #365CF5;" 
+                     [(ngModel)]="skill" 
+                     (input)="skillfilters()">
+            </div>
+          </div>        
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card-style mb-30">
+          <h6 class="mb-10">Student Info</h6>
+         
+          <div class="table-wrapper table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th><h6>Profile</h6></th>
+                  <th><h6>Name</h6></th>
+                  <th><h6>RN Number</h6></th>
+                  <th><h6>Role</h6></th>
+                  <th><h6>Skills</h6></th>
+                  <th><h6>Action</h6></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let student of filteredStudents">
+                  <td>
+                    <div class="employee-image">
+                      <img [src]="student.avatar" alt="Profile Image" style="width: 50px; height: 50px;" />
+                    </div>
+                  </td>
+                  <td class="min-width">
+                    <p>{{student.name}}</p>
+                  </td>
+                  <td class="min-width">
+                    <p>{{student.rnNumber}}</p>
+                  </td>
+                  <td class="min-width">
+                    <p>{{student.role}}</p>
+                  </td>
+                  <td class="min-width">
+                    <p>{{student.skills}}</p>
+                  </td>
+                  <td>
+                    <div class="action">
+                      <!-- Edit Button -->
+                      <button class="text-warning" (click)="editStudent(student)">
+                        <i class="lni lni-pencil"></i>
+                      </button>
+                      <!-- Delete Button -->
+                      <button class="text-danger" (click)="deleteStudent(student.id)">
+                        <i class="lni lni-trash-can"></i>
+                      </button>
+                    </div>
+                  </td>
+                  
+                  
+                </tr>
+                
+                <!-- Add a new row when adding a new student -->
+                <tr *ngIf="addingNewStudent">
+                  <td>
+                    <!-- Profile Image Upload Input -->
+                    <input type="file" (change)="onImageUpload($event)" />
+                  </td>
+                  <td><input [(ngModel)]="newStudent.name" placeholder="Name"></td>
+                  <td><input [(ngModel)]="newStudent.rnNumber" placeholder="RN Number"></td>
+                  <td><input [(ngModel)]="newStudent.role" placeholder="Role"></td>
+                  <td><input [(ngModel)]="newStudent.skills" placeholder="Skills"></td>
+                  <td>
+                    <button class="btn btn-primary" style="margin-right: 10px;"  (click)="saveNewStudent()">Save</button>
+                    <button class="btn btn-primary" (click)="cancelAddingNewStudent()">Cancel</button>
+                  </td>
+                </tr>
+                
+                <!-- Edit row when editing a student -->
+                <tr *ngIf="editingStudent">
+                  <td>
+                    <input type="file" (change)="onImageUpload($event)" />
+                  </td>
+                  <td><input [(ngModel)]="newStudent.name" placeholder="Name"></td>
+                  <td><input [(ngModel)]="newStudent.rnNumber" placeholder="RN Number"></td>
+                  <td><input [(ngModel)]="newStudent.role" placeholder="Role"></td>
+                  <td><input [(ngModel)]="newStudent.skills" placeholder="Skills"></td>
+                  <td>
+                    <button class="btn btn-primary" (click)="saveEditedStudent()">Save</button>
+                    <button class="btn btn-primary" (click)="cancelEditingStudent()">Cancel</button>
+                  </td>
+                  
+                 
+                </tr>
+              </tbody>
+            </table>
+          </div>
+  
+        </div>
+        <!-- + Button to add a new row -->
+        <div class="d-flex justify-content-end mt-3">
+                    
+          <button class="btn btn-primary" (click)="startAddingNewStudent()"> + </button>
+      </div>
+        
+      </div>
+    </div>
+  </div>
+  
