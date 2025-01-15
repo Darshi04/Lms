@@ -31,7 +31,7 @@ export const routes: Routes = [
     {path:"Trainers",component:TrainersComponent},
     {path:"PublishMarks",component:PublishMarksComponent},
     {path:"Insights",component:InsightsComponent},
-    {path:"dashboard",component:DashboardComponent}
+    {path:"dashboard",component:DashboardComponent},
     {path:"forgetpassword",component:ForgetPasswordComponent}
 
 ];
