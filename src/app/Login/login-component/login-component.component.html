@@ -16,7 +16,7 @@
             <label>Password</label>
             <input type="password" placeholder="Enter your password">
             <a href="#" class="forgot-pass-link">Forgot password?</a>
-            <button type="submit">Login</button>
+            <button type="submit" [routerLink]="['/dashboard']">Login</button>
           </form>
         </div>
         <div *ngIf="currentLogin !== 'student'" class="login-image">
