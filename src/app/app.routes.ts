@@ -18,12 +18,14 @@ import { ForgetPasswordComponent } from './Login/forget-password/forget-password
 
 export const routes: Routes = [
     {path:"",component:LoginComponentComponent},
+    {path:"login",component:LoginComponentComponent},
+    
     {path:"home",component:HomeComponent},
     {path:"aside",component:AsideComponent},
     {path:"marks",component:MarksComponent},
     {path:"course",component:CourseComponent},
     {path:"check",component:ChecklistComponent},
-    {path:"login",component:LoginComponentComponent},
+
     {path:"timeline",component:RoadmapComponent},
     {path:"manager",component:ManagerDashboardComponent},
     {path:"student-details",component:StudentDetailsComponent},
