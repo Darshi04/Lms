@@ -12,6 +12,7 @@ import { CourseDetailsComponent } from './Manager/course-details/course-details.
 import { TrainersComponent } from './Manager/trainers/trainers.component';
 import { PublishMarksComponent } from './Manager/publish-marks/publish-marks.component';
 import { InsightsComponent } from './Manager/insights/insights.component';
+import { DashboardComponent } from './trainee/dashboard/dashboard.component';
 import { ForgetPasswordComponent } from './Login/forget-password/forget-password.component';
 
 
@@ -30,6 +31,7 @@ export const routes: Routes = [
     {path:"Trainers",component:TrainersComponent},
     {path:"PublishMarks",component:PublishMarksComponent},
     {path:"Insights",component:InsightsComponent},
+    {path:"dashboard",component:DashboardComponent}
     {path:"forgetpassword",component:ForgetPasswordComponent}
 
 ];
