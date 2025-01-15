@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './TrainerComponent/home/home.component';
-import { AsideComponent } from './TrainerComponent/aside/aside.component';
+import { AsideComponent } from './TrainerComponent/Calendar/aside.component';
 import { MarksComponent } from './TrainerComponent/marks/marks.component';
 import { CourseComponent } from './TrainerComponent/course/course.component';
 import { ChecklistComponent } from './TrainerComponent/checklist/checklist.component';

@@ -2,39 +2,34 @@ import { Component, OnInit } from '@angular/core';
 import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
 import { CommonModule } from '@angular/common';
-import { AsideComponent } from '../aside/aside.component';
+import { AsideComponent } from '../Calendar/aside.component';
 import { EventService } from '../../event.service';
 import { Observable } from 'rxjs';
 import { FooterComponent } from '../footer/footer.component';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [PlotlyModule, CommonModule, AsideComponent, FooterComponent],
+  imports: [PlotlyModule, CommonModule, AsideComponent, FooterComponent,FormsModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent {
-// Observable counts
-scheduledCount$: Observable<number>;
-completedCount$: Observable<number>;
+export class HomeComponent implements OnInit {
+  // Variables to hold counts
+  scheduledCount: number = 0;
+  completedCount: number = 0;
 
-constructor(private eventService: EventService) {
-  // Bind the observables for scheduled and completed counts
-  this.scheduledCount$ = this.eventService.scheduledCount$;
-  this.completedCount$ = this.eventService.completedCount$;
-    // Bind the observables for scheduled and completed counts
-  this.scheduledCount$.subscribe(count => console.log('Scheduled Count:', count));
-  this.completedCount$.subscribe(count => console.log('Completed Count:', count));
-}
+  // Placeholder for the response from the server
+  sch: any = "";
 
+  constructor(private eventService: EventService, private obj: HttpClient) {}
 
   isSidebarOpen: boolean = true; // Initial state: sidebar is closed
-
-
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen; // Toggle the sidebar state
@@ -58,10 +53,7 @@ constructor(private eventService: EventService) {
     ],
     layout: {
       title: 'Test Performance', // Title of the chart
-      xaxis: {
-    
-        
-      },
+      xaxis: {},
       yaxis: {
         rangemode: 'tozero', // Ensure the Y-axis starts from zero
       },
@@ -72,11 +64,23 @@ constructor(private eventService: EventService) {
       },
       hovermode: 'closest', // Show the data on hover
       displayModeBar: false, // This disables the mode bar (toolbar) completely
-
     }
   };
 
-
-  
-  
+  ngOnInit(): void {
+    // Fetch the user count data for scheduled and completed events
+    this.obj.get("http://localhost:8080/Count").subscribe({
+      next: (response) => {
+        this.sch = response;
+        console.log(response);
+        
+        // Assign the counts to local variables
+        this.scheduledCount = this.sch.scheduled || 0;
+        this.completedCount = this.sch.completed || 0;
+      },
+      error: (err) => {
+        console.error('Error fetching user count:', err);
+      }
+    });
+  }
 }
