@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -12,7 +12,9 @@ import { HttpClient } from '@angular/common/http';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './aside.component.html',
-  styleUrls: ['./aside.component.css']
+  styleUrls: ['./aside.component.css'],
+  encapsulation: ViewEncapsulation.None  // Disable encapsulation
+
 })
 export class AsideComponent implements AfterViewInit {
   isSidebarOpen: boolean = true;
@@ -62,6 +64,19 @@ export class AsideComponent implements AfterViewInit {
       plugins: [dayGridPlugin, interactionPlugin],
       dateClick: (info) => this.handleDateClick(info),
       eventClick: (info) => this.handleEventClick(info),
+      eventClassNames: (info) => {
+        const eventDateStr = info.event.startStr.split('T')[0]; // Get the date part in YYYY-MM-DD format
+        const currentDateStr = new Date().toISOString().split('T')[0]; // Current date in YYYY-MM-DD format
+  
+        // Compare event date string with current date string
+        if (eventDateStr < currentDateStr) {
+          // Event is in the past
+          return ['event-completed'];
+        } else {
+          // Event is today or in the future
+          return ['event-scheduled'];
+        }
+      },
     });
     this.calendarMini.render();
   }

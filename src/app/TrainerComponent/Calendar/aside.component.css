@@ -25,8 +25,7 @@
 }
 
 .test-event {
-    background-color: #ff7f7f; /* Light red for test events */
-    color: white;
+ 
     border-radius: 5px;
     padding: 5px;
   }
@@ -39,23 +38,29 @@
     text-align: center;
   }
   
-  /* Styling for completed events */
-  .completed-test {
-    background-color: #d3d3d3;   /* Light grey for completed events */
-    color: #808080;              /* Dark grey text */
-    text-decoration: line-through; /* Strikethrough to indicate completion */
-    opacity: 0.7;                /* Slight opacity for a faded look */
-  }
-  
-  /* Styling for scheduled events */
-  .scheduled-test {
-    background-color: #4CAF50;    /* Green background for scheduled events */
-    color: white;                 /* White text for readability */
-    font-weight: bold;            /* Make scheduled events stand out */
-  }
-  
-  /* Hover effect for scheduled tests */
-  .scheduled-test:hover {
-    background-color: #45a049;    /* Darker green on hover */
-  }
-  
+ 
+
+
+  /* Style for scheduled events */
+.event-completed {
+  background-color: #65ae7e;  /* Green for scheduled */
+  color: white;
+  font-weight: 600;
+  border: 2px solid #65ae7e
+
+  ;
+}
+
+/* Style for completed events */
+.event-scheduled{
+  background-color: #f7c800;  
+  color: white;
+  font-weight: 600;
+  border: 2px solid #f7c800;
+}
+
+/* Optional: Customize hover effects */
+.event-scheduled:hover,
+.event-completed:hover {
+  opacity: 0.9;
+}

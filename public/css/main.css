@@ -1604,6 +1604,11 @@ h6,
   background: rgba(242, 153, 74, 0.1);
   color: #f2994a;
 }
+
+.icon-card .icon.yellow {
+  background: rgba(242, 153, 74, 0.1);
+  color: #f7c800;
+}
 .icon-card .icon.blue-light {
   background: rgba(73, 190, 255, 0.08);
   color: #49BEFF;
@@ -3596,7 +3601,7 @@ h6,
   background: #fff;
 }
 .calendar-card .fc .fc-day.fc-day-today .fc-daygrid-day-frame {
-  background: #365cf5;
+  background: #8ba1f8;
 }
 .calendar-card .fc .fc-day.fc-day-today .fc-daygrid-day-frame a {
   color: #fff;
