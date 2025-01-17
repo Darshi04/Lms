@@ -1,5 +1,6 @@
 
  
+ 
 <!-- ======== sidebar-nav start =========== -->
 <aside class="sidebar-nav-wrapper" [ngClass]="{'active': isSidebarOpen}">
     <div class="navbar-logo">
@@ -30,9 +31,6 @@
             <span class="text">Student Details</span>
           </a>
         </li>
-
-        
-        
   
         <!-- Publish Marks -->
         <li class="nav-item">
@@ -64,7 +62,7 @@
             <span class="text">Progress Tracker</span>
           </a>
         </li>
- 
+  
         <!-- Student Communication
         <li class="nav-item">
           <a href="#studentCommunicationSection">
@@ -258,52 +256,58 @@
       </div>
     </header>
     <!-- ========== header end ========== -->
-  
-          <!-- ========== header end ========== -->
-          <!-- ========== section start ========== -->
-    <section class="section">
-      <div class="container-fluid">
-        <!-- ========== title-wrapper start ========== -->
-        <div class="title-wrapper pt-30">
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <div class="title">
-                <h2>Manager Dashboard</h2>
+    <ng-template #centerIconCustomTemplate let-index="index" let-event="event">
+        <div class="icon-container">
+          <!-- Dynamically change the center icon color -->
+          <i 
+            class="fa-regular fa-circle-check" 
+            [style.color]="getCenterIconColor(event)">
+          </i>
+        </div>
+      </ng-template>
+      
+      
+      <ng-template #innerEventCustomTemplate let-event="event">
+        <div class="event" (click)="handleClick(event)">
+          <span>{{ event.eventInfo.timestamp | date: 'MMMM dd, yyyy' }}</span>
+          <h4 id="title">{{ event.eventInfo.title }}</h4>
+          <p id="describe">{{ event.eventInfo.description }}</p>
+          <div class="topics-container">
+            <ng-container *ngFor="let topic of event.eventInfo.topics">
+              <div class="topic">
+      
+                <i class="fa-regular fa-circle-check" [style.color]="getTopicIconColor(topic)"></i>
+                <span> {{ topic.topic }}</span>
               </div>
-            </div>
-            <!-- end col -->
+            </ng-container>
           </div>
-          <!-- end row -->
         </div>
-        <!-- ========== title-wrapper end ========== -->
-    
-        <div class="row">
-          <div class="col-xl-3 col-lg-4 col-sm-6">
-              
-                <div class="icon-card mb-30">
-                  <div class="icon purple">
-                    <i class="lni lni-users"></i> <!-- Updated icon for Student Details -->
-                  </div>
-                  <div class="content">
-                    <h6 class="mb-10">Student Details</h6>
-                    <h3 class="text-bold mb-10">3</h3>
-                  </div>
-                </div>
-           
-            </div>
-            
-          <!-- End Col -->
+      </ng-template>
       
+      <ng-template #dateInstantCustomTemplate let-item="item">
+        <span>
+          <!-- Use Angular's DatePipe to format the timestamp dynamically -->
+          {{ item.timestamp | date: 'h:mm a' }}
+        </span>
+      </ng-template>
       
-        
-    
-        
-          
-    
-        </div>
+      <div class="custom-theme">
+        <ngx-timeline 
+          [events]="events"
+          [langCode]="'en'"
+          [enableAnimation]="true"
+          [reverseOrder]="false"
+          [changeSide]="changeSide"
+          [innerEventCustomTemplate]="innerEventCustomTemplate"
+          [centerIconCustomTemplate]="centerIconCustomTemplate"
+          [dateInstantCustomTemplate]="dateInstantCustomTemplate">
+        </ngx-timeline>
       </div>
-    </section>
-  
+      
+    
+    
+    section end ========== -->
+          
     <!-- ========== section end ========== -->
     
         </main>
@@ -311,5 +315,27 @@
   
   
   
-       
+        <footer class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6 order-last order-md-first">
+                <div class="copyright text-center text-md-start">
+                  <p class="text-sm">
+                    Designed and Developed by
+                    <a href="#copyrights" rel="nofollow" target="_blank"> WebApp </a>
+                  </p>
+                </div>
+              </div>
+              <!-- end col-->
+              <div class="col-md-6">
+                <div
+                  class="terms d-flex justify-content-center justify-content-md-end"
+                >
+                  <a href="#0" class="text-sm">Term & Conditions</a>
+                  <a href="#0" class="text-sm ml-15">Privacy & Policy</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer> 
        

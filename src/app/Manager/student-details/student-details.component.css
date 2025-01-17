@@ -1,63 +1,63 @@
 body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
-  
-  .row {
-    display: flex;
-    height: 100%;
-    margin: 0;
-  }
-  
-  .col-lg-12 {
-    flex: 1;
-    padding: 0;
-  }
-  
-  .card-style {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .table-responsive {
-    width: 100%;
-    overflow-x: auto;
-  }
-  
-  .table {
-    width: 100%;
-    table-layout: fixed;
-  }
-  
-  th, td {
-    padding: 10px;
-  }
-  
-  th {
-    background-color: #f8f9fa;
-  }
-  .col-lg-6 {
-    margin-bottom: 20px;
-    margin-top: 20px; /* Adjust the value as needed */
-  }
-.mb-3{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.row {
+  display: flex;
+  height: 100%;
+  margin: 0;
+}
+
+.col-lg-12 {
+  flex: 1;
+  padding: 0;
+}
+
+.card-style {
+  width: 100%;
+  height: 100%;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+th, td {
+  padding: 10px;
+}
+
+th {
+  background-color: #f8f9fa;
+}
+
+.col-lg-6 {
+  margin-bottom: 20px;
   margin-top: 20px;
 }
 
-.container{
-  margin-top:20px;
+.mb-3 {
+  margin-top: 20px;
 }
 
-.btn:hover{
-  color:#fff;
+.container {
+  margin-top: 20px;
 }
 
-.input-text:focus{
-     
+.btn:hover {
+  color: #fff;
+}
 
+.input-text:focus {
   box-shadow: 0px 0px 0px;
-  border-color:#365CF5;
+  border-color: #365CF5;
   outline: 0px;
 }
 
@@ -65,4 +65,73 @@ body, html {
   border: 1px solid #365CF5;
 }
 
+.table {
+  border-collapse: collapse;
+}
 
+table th, table td {
+  text-align: center;
+}
+
+table td button {
+  margin: 5px;
+}
+/* Centering the form and background opacity */
+.form-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.form-popup {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: -1;
+}
+
+/* Styling form inputs */
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Styling buttons */
+.btn {
+  padding: 10px 15px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}

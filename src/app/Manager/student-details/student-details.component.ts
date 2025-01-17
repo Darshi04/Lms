@@ -1,39 +1,124 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';  // Import FormsModule
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-student-details',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule,HttpClientModule],  // Add FormsModule here
   templateUrl: './student-details.component.html',
-  styleUrl: './student-details.component.css'
+  styleUrls: ['./student-details.component.css']
 })
-export class StudentDetailsComponent {
-  students = [
-    { id: 1, rnNumber: 'RN21326', name: 'Arun', role: 'Developer', email: 'john.doe@example.com', skills: 'front-end', avatar: 'https://bootdey.com/img/Content/avatar/avatar6.png', status: 'Active' },
-    { id: 2, rnNumber: 'RN21327', name: 'Dhanalakshmi', role: 'Developer', email: 'jane.smith@example.com', skills: 'java', avatar: 'https://bootdey.com/img/Content/avatar/avatar3.png', status: 'Pending' },
-    { id: 3, rnNumber: 'RN21328', name: 'Dharshini', role: 'Developer', email: 'mark.wilson@example.com', skills: 'cloud', avatar: 'https://bootdey.com/img/Content/avatar/avatar7.png', status: 'Done' },
-    { id: 4, rnNumber: 'RN21329', name: 'Wincy', role: 'Developer', email: 'mark.wilson@example.com', skills: 'cloud', avatar: 'https://bootdey.com/img/Content/avatar/avatar3.png', status: 'Close' }
-  ];
+export class StudentDetailsComponent  {
+addingNewStudent = false; // To show or hide the form
+  newStudent = {
+    name: '',
+    rnNumber: '',
+    role: '',
+    skills: ''
+  };
+  filteredStudents: any[] = []; // The list of students
 
-  filteredStudents = [...this.students];
-  empid: string = '';
-  skill: string = '';
-  isRNSearch: boolean = true;
-  addingNewStudent: boolean = false;
-  editingStudent: boolean = false;
-  newStudent = { id: 0, rnNumber: '', name: '', role: '', email: '', skills: '', avatar: '', status: '' };
-
-  toggleSearchMode() {
-    this.empid = '';
-    this.skill = '';
-    this.filteredStudents = [...this.students];
+  constructor(private Http: HttpClient) {
+    this.loadStudents(); // Load students on initialization
   }
 
-  filterStudents() {
+  // Fetch students from the backend
+  loadStudents() {
+    this.Http.get('http://localhost:8081/students').subscribe(
+      (response: any) => {
+        this.filteredStudents = response;
+        console.log('Students loaded:', this.filteredStudents);
+      },
+      (error) => {
+        console.error('Error loading students:', error);
+      }
+    );
+  }
+
+  // Show the form to add a new student
+  start() {
+    this.addingNewStudent = true;
+    this.newStudent = { name: '', rnNumber: '', role: '', skills: '' }; // Reset form
+  }
+
+  saveNewStudent() {
+    // Check if all required fields are filled
+    if (this.newStudent.name && this.newStudent.rnNumber && this.newStudent.role && this.newStudent.skills) {
+      // Prepare the data to send to the server
+      const data = this.newStudent;
+      console.log('Saving new student:', data);
+  
+      // Set headers for the HTTP request
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json'
+      });
+  
+      // Make the POST request to the backend with the headers
+      this.Http.post('http://localhost:8081/students', data, { headers: headers }).subscribe(
+        (response: any) => {
+          console.log('Student saved:', response);
+          this.filteredStudents.push(response); // Add the new student to the list
+          this.addingNewStudent = false; // Hide the form after saving
+        },
+        (error) => {
+          console.error('Error saving student:', error);
+          if (error.status === 400) {
+            console.error('Bad Request: ', error.error); // More details about the error from the server
+          }
+        }
+      );
+    } else {
+      console.error('All fields are required'); // If any field is missing
+    }
+  }
+  
+
+  // Cancel adding a new student
+  cancelAddingNewStudent() {
+    this.addingNewStudent = false;
+  }
+
+  // Validate the student form data
+  isValidStudentData() {
+    return (
+      this.newStudent.name &&
+      this.newStudent.rnNumber &&
+      this.newStudent.role &&
+      this.newStudent.skills
+    );
+  }
+
+  // Edit student (for future implementation)
+  editStudent(student: any) {
+    console.log('Editing student:', student);
+  }
+
+  // Delete student (for future implementation)
+  deleteStudent(studentId: number) {
+    console.log('Deleting student with ID:', studentId);
+  }
+
+
+
+ 
+  students: any[] = [];
+ 
+  isRNSearch = true;
+  empid: string = '';
+  skill: string = '';
+  // originalStudent: any = {};  // Store the original student data when editing
+
+
+   // Filter students based on RN number
+   filterStudents(): void {
     if (this.empid) {
-      this.filteredStudents = this.students.filter(student =>
+      this.filteredStudents = this.students.filter((student) =>
         student.rnNumber.toLowerCase().includes(this.empid.toLowerCase())
       );
     } else {
@@ -41,9 +126,10 @@ export class StudentDetailsComponent {
     }
   }
 
-  skillfilters() {
+   // Filter students based on Skills
+   skillfilters(): void {
     if (this.skill) {
-      this.filteredStudents = this.students.filter(student =>
+      this.filteredStudents = this.students.filter((student) =>
         student.skills.toLowerCase().includes(this.skill.toLowerCase())
       );
     } else {
@@ -51,60 +137,22 @@ export class StudentDetailsComponent {
     }
   }
 
-  deleteStudent(studentId: number) {
-    this.students = this.students.filter(student => student.id !== studentId);
-    this.filteredStudents = [...this.students];
-  }
+  isSidebarOpen: boolean = true;
 
-  startAddingNewStudent() {
-    this.addingNewStudent = true;
-    this.newStudent = { id: 0, rnNumber: '', name: '', role: '', email: '', skills: '', avatar: '', status: '' };
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
   }
-
-  saveNewStudent() {
-    if (this.newStudent.rnNumber && this.newStudent.name && this.newStudent.skills) {
-      const newId = this.students.length ? Math.max(...this.students.map(student => student.id)) + 1 : 1;
-      this.newStudent.id = newId;
-      this.students.push({ ...this.newStudent });
-      this.filteredStudents = [...this.students];
-      this.addingNewStudent = false;
+  toggleSearchMode(): void {
+    if (this.isRNSearch) {
+      this.empid = '';
+      this.filterStudents();
+    } else {
+      this.skill = '';
+      this.skillfilters();
     }
   }
 
-  cancelAddingNewStudent() {
-    this.addingNewStudent = false;
-  }
 
-  // Edit student
-  editStudent(student: any) {
-    this.newStudent = { ...student };
-    this.editingStudent = true;
-    this.addingNewStudent = false;
-  }
 
-  // Save edited student
-  saveEditedStudent() {
-    const studentIndex = this.students.findIndex(student => student.id === this.newStudent.id);
-    if (studentIndex !== -1) {
-      this.students[studentIndex] = { ...this.newStudent };
-      this.filteredStudents = [...this.students];
-      this.editingStudent = false;
-    }
-  }
 
-  cancelEditingStudent() {
-    this.editingStudent = false;
-  }
-
-  // Handling image upload
-  onImageUpload(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.newStudent.avatar = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
 }
