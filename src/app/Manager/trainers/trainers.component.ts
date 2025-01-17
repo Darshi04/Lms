@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-trainers',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [FormsModule,CommonModule,RouterModule],
   templateUrl: './trainers.component.html',
   styleUrl: './trainers.component.css'
 })
@@ -108,5 +109,14 @@ export class TrainersComponent {
       reader.readAsDataURL(file); // Converts image to base64
     }
   }
+  isSidebarOpen: boolean = true; // Initial state: sidebar is closed
+ 
+ 
+ 
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen; // Toggle the sidebar state
+  }
+
+  
   
 }
