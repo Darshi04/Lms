@@ -4,17 +4,17 @@ import { PlotlyModule } from 'angular-plotly.js';
 import { CommonModule } from '@angular/common';
 import { AsideComponent } from '../Calendar/aside.component';
 import { EventService } from '../../event.service';
-import { Observable } from 'rxjs';
 import { FooterComponent } from '../footer/footer.component';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { LayoutComponent } from '../layout/layout.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [PlotlyModule, CommonModule, AsideComponent, FooterComponent,FormsModule],
+  imports: [PlotlyModule, CommonModule, AsideComponent, FooterComponent,FormsModule,LayoutComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
