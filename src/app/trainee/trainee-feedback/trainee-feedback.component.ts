@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TraineeHeaderComponent } from '../trainee-header/trainee-header.component';
 
 @Component({
   selector: 'app-trainee-feedback',
   standalone: true,
-  imports: [RouterModule,ReactiveFormsModule,FormsModule,CommonModule],
+  imports: [RouterModule,ReactiveFormsModule,FormsModule,CommonModule,TraineeHeaderComponent],
   templateUrl: './trainee-feedback.component.html',
   styleUrl: './trainee-feedback.component.css'
 })
