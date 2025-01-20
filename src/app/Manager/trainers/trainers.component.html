@@ -1,7 +1,10 @@
 
 
 
-  
+ 
+
+ 
+ 
  
 <!-- ======== sidebar-nav start =========== -->
 <aside class="sidebar-nav-wrapper" [ngClass]="{'active': isSidebarOpen}">
@@ -23,7 +26,7 @@
           <span class="text">Dashboard</span>
         </a>
       </li>
-
+ 
       <!-- Assigned Courses -->
       <li class="nav-item">
         <a [routerLink]="['/student-details']">
@@ -33,7 +36,7 @@
           <span class="text">Student Details</span>
         </a>
       </li>
-
+ 
       <!-- Publish Marks -->
       <li class="nav-item">
         <a [routerLink]="['/PublishMarks']">
@@ -54,7 +57,7 @@
           <span class="text">Trainers</span>
         </a>
       </li>
-
+ 
       <!-- Course Completion Checklist -->
       <li class="nav-item">
         <a [routerLink]="['/Tracker']">
@@ -64,7 +67,7 @@
           <span class="text">Progress Tracker</span>
         </a>
       </li>
-
+ 
       <!-- Student Communication
       <li class="nav-item">
         <a href="#studentCommunicationSection">
@@ -74,7 +77,7 @@
           <span class="text">Student Communication</span>
         </a>
       </li> -->
-
+ 
      
       <span class="divider"><hr /></span>
       <!-- Sign Out Menu Item -->
@@ -91,10 +94,10 @@
   </nav>
 </aside>
 <!-- ======== sidebar-nav end =========== -->
-
+ 
 <div class="overlay"></div>
 <!-- ======== sidebar-nav end =========== -->
-
+ 
 <!-- ======== main-wrapper start =========== -->
 <main class="main-wrapper" [ngClass]="{'sidebar-closed': !isSidebarOpen}">
   <!-- ========== header start ========== -->
@@ -118,7 +121,7 @@
         </div>
         <div class="col-lg-7 col-md-7 col-6">
           <div class="header-right">
-            
+           
             <!-- message start -->
             <div class="header-message-box ml-15 d-none d-md-flex">
               <button
@@ -258,7 +261,7 @@
     </div>
   </header>
   <!-- ========== header end ========== -->
-
+ 
         <!-- ========== header end ========== -->
         <div class="container mt-5 mb-5">
           <div class="row g-2">
@@ -271,8 +274,8 @@
                 </div>
                 <h5 class="mb-0">{{trainer.name}}</h5>
                 <small>{{trainer.designation}}</small>
-
-
+ 
+ 
                 <div class="contact-info">
                   <div class="row mb-2">
                     <div class="col-auto">
@@ -280,14 +283,14 @@
                     </div>
                     <div class="col-auto">{{trainer.phone}}</div>
                   </div>
-                  
+                 
                   <div class="row mb-2">
                     <div class="col-auto">
                       <strong>Address:</strong>
                     </div>
                     <div class="col-auto">{{trainer.address}}</div>
                   </div>
-                  
+                 
                   <div class="row mb-2">
                     <div class="col-auto">
                       <strong>Email:</strong>
@@ -295,12 +298,12 @@
                     <div class="col-auto">{{trainer.email}}</div>
                   </div>
                 </div>
-                
-                
+               
+               
                  
-                  
-                
-                
+                 
+               
+               
                 <!-- Edit and Remove Buttons -->
                 <div class="mt-3">
                   <button class="btn btn-warning btn-sm" (click)="editTrainer(i)" style="margin-right: 10px;">Edit</button>
@@ -308,7 +311,7 @@
                 </div>
               </div>
             </div>
-        
+       
             <!-- Modal Form to Add or Edit Trainer -->
             <div class="col-md-3" *ngIf="showForm">
               <div class="card p-2 py-3 text-center">
@@ -350,7 +353,7 @@
                 </form>
               </div>
             </div>
-        
+       
             <!-- "+" Card to Open Form (will disappear once clicked) -->
             <div class="col-md-3" *ngIf="!showForm" (click)="openForm()">
               <div class="card p-2 py-3 text-center">
@@ -359,15 +362,15 @@
             </div>
           </div>
         </div>
-        
-      
+       
+     
   <!-- ========== section end ========== -->
-  
+ 
       </main>
-
-
-
-
+ 
+ 
+ 
+ 
       <footer class="footer">
         <div class="container-fluid">
           <div class="row">
@@ -390,5 +393,5 @@
             </div>
           </div>
         </div>
-      </footer> 
+      </footer>
      
