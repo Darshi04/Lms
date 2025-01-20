@@ -1,114 +1,126 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-trainers',
   standalone: true,
-  imports: [FormsModule,CommonModule,RouterModule],
+  imports: [FormsModule,CommonModule,RouterModule,HttpClientModule],
   templateUrl: './trainers.component.html',
   styleUrl: './trainers.component.css'
 })
-export class TrainersComponent {
-  showForm: boolean = false;  // Controls visibility of the form modal
-  editMode: boolean = false;  // Tracks whether we are in "edit" mode
-  selectedTrainerIndex: number = -1;  // Tracks the index of the trainer being edited
+export class TrainersComponent implements OnInit{
 
-  // Initial list of trainers
+  // Array to hold the list of trainers
   trainers = [
-    {
-      name: "Sri Praveen",
-      designation: "Full Stack Developer",
-      photo: "https://i.imgur.com/tmdHXOY.jpg",
-      email: "praveenvgmail.com",
-      phone: "546789",
-      address: "Chennai"
-    },
-    {
-      name: "Lakshmi",
-      designation: "Full Stack Developer",
-      photo: "https://i.imgur.com/o5uMfKo.jpg",
-      email: "lakshmi@gmail.com",
-      phone: "123456",
-      address: "Chennai"
-    }
+    { name: "Sri Praveen", role: "Full Stack Developer", t_id: 1, email: "praveenvgmail.com", ph_no: "546789" },
+    { name: "Lakshmi", role: "Full Stack Developer", t_id: 2, email: "lakshmi@gmail.com", ph_no: "123456" }
   ];
 
-  // Object to hold new or edited trainer data
+  // Model for the new trainer
   newTrainer = {
     name: '',
-    designation: '',
-    photo: '',
+    role: '',
+    t_id: 0,
     email: '',
-    phone: '',
-    address: ''
+    ph_no: ''
   };
 
-  // Opens the modal form and hides the "+" card
-  openForm() {
-    this.showForm = true;
-    this.editMode = false;
-    this.resetForm();
-  }
+  // Flags for controlling form visibility and edit mode
+  showForm: boolean = false;
+  editMode: boolean = false;
+  selectedTrainerIndex: number = -1;
 
-  // Closes the modal form and shows the "+" card
-  closeForm() {
-    this.showForm = false;
-    this.resetForm();
-  }
+  // API URL for saving trainer details
+  private apiUrl = 'http://localhost:8081/trainers';  // Replace with the correct backend URL
 
-  // Handles form submission for adding a new trainer
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {}
+
+  // Function to handle form submission for saving or updating the trainer
   submitTrainer() {
-    if (this.newTrainer.name && this.newTrainer.designation && this.newTrainer.photo &&
-        this.newTrainer.email && this.newTrainer.phone && this.newTrainer.address) {
-      
+    if (this.newTrainer.name && this.newTrainer.role && this.newTrainer.email && this.newTrainer.ph_no) {
       if (this.editMode) {
-        // Update the trainer details
-        this.trainers[this.selectedTrainerIndex] = { ...this.newTrainer };
+        // Update the existing trainer
+        this.updateTrainer(this.selectedTrainerIndex, this.newTrainer);
       } else {
-        // Add new trainer to the list
-        this.trainers.push({ ...this.newTrainer });
+        // Add a new trainer
+        this.saveTrainer(this.newTrainer);
       }
-      
-      this.closeForm();  // Hide the form after submission
     }
   }
 
-  // Populates the form for editing a specific trainer
+  // Function to send the new trainer details to the backend (Add operation)
+  saveTrainer(trainer: any) {
+    this.http.post<any>(this.apiUrl, trainer).subscribe(
+      (response) => {
+        console.log('Trainer saved:', response);
+        // After saving, add the trainer to the list
+        this.trainers.push(response);
+        // Close the form modal and reset form data
+        this.closeForm();
+        this.resetForm();
+      },
+      (error) => {
+        console.error('Error saving trainer:', error);
+        // Handle error and optionally show an error message
+      }
+    );
+  }
+
+  // Function to update the existing trainer details (Edit operation)
+  updateTrainer(index: number, trainer: any) {
+    // Send PUT request to update the trainer on the backend
+    this.http.put<any>(`${this.apiUrl}/${trainer.t_id}`, trainer).subscribe(
+      (response) => {
+        console.log('Trainer updated:', response);
+        // Update the trainer data in the list
+        this.trainers[index] = response;
+        // Close the form modal and reset form data
+        this.closeForm();
+        this.resetForm();
+      },
+      (error) => {
+        console.error('Error updating trainer:', error);
+        // Handle error and optionally show an error message
+      }
+    );
+  }
+
+  // Reset the form data after submission
+  resetForm() {
+    this.newTrainer = { name: '', role: '', t_id: 0, email: '', ph_no: '' };
+  }
+
+  // Populate the form for editing an existing trainer
   editTrainer(index: number) {
     this.selectedTrainerIndex = index;
-    this.newTrainer = { ...this.trainers[index] };  // Pre-fill the form with trainer's data
-    this.showForm = true;
-    this.editMode = true;
+    this.newTrainer = { ...this.trainers[index] }; // Pre-fill the form with trainer's data
+    this.showForm = true; // Show the form
+    this.editMode = true; // Set the form to edit mode
   }
 
-  // Removes a trainer from the list
+  // Remove a trainer from the list
   removeTrainer(index: number) {
-    this.trainers.splice(index, 1);  // Remove the trainer at the specified index
+    this.trainers.splice(index, 1);
   }
 
-  // Resets the form data
-  resetForm() {
-    this.newTrainer = {
-      name: '',
-      designation: '',
-      photo: '',
-      email: '',
-      phone: '',
-      address: ''
-    };
+  // Open the form to add a new trainer
+  openForm() {
+    this.showForm = true;  // Show the form modal
+    this.editMode = false;  // Set to add mode
+    this.resetForm(); // Reset the form
   }
-  onFileChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.newTrainer.photo = e.target.result; // This will store the image as a base64 string
-      };
-      reader.readAsDataURL(file); // Converts image to base64
-    }
+
+  // Close the form and hide the modal
+  closeForm() {
+    this.showForm = false;  // Hide the form modal
   }
+
+  
   isSidebarOpen: boolean = true; // Initial state: sidebar is closed
  
  
@@ -118,5 +130,6 @@ export class TrainersComponent {
   }
 
   
-  
 }
+
+
