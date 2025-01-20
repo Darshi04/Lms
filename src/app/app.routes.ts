@@ -15,6 +15,8 @@ import { InsightsComponent } from './Manager/insights/insights.component';
 import { DashboardComponent } from './trainee/dashboard/dashboard.component';
 import { ForgetPasswordComponent } from './Login/forget-password/forget-password.component';
 import { CardComponent } from './TrainerComponent/card/card.component';
+import { LayoutComponent } from './TrainerComponent/layout/layout.component';
+
 
 
 export const routes: Routes = [
@@ -36,6 +38,9 @@ export const routes: Routes = [
     {path:"PublishMarks",component:PublishMarksComponent},
     {path:"Insights",component:InsightsComponent},
     {path:"dashboard",component:DashboardComponent},
-    {path:"forgetpassword",component:ForgetPasswordComponent}
+    {path:"forgetpassword",component:ForgetPasswordComponent},
+
+    {path:"lay",component:LayoutComponent},
+
 
 ];

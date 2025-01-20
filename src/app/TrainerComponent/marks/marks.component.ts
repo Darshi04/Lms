@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from '../footer/footer.component';
+import { LayoutComponent } from '../layout/layout.component';
 
 @Component({
   selector: 'app-marks',
   standalone: true,
-  imports: [FormsModule,CommonModule, FooterComponent],
+  imports: [FormsModule,CommonModule, FooterComponent,LayoutComponent],
   templateUrl: './marks.component.html',
   styleUrl: './marks.component.css'
 })
