@@ -125,6 +125,15 @@
     transform: translateX(0); /* Sidebar shown */
   }
   
-
+  .image-container {
+    width: 100%; /* Ensures it fills the container width */
+    height: 200px; /* Fixed height */
+    overflow: hidden; /* Ensures excess image content doesn't show */
+  }
   
+  .card-img-top {
+    width: 100%; /* Scales the image to the width of the container */
+    object-fit: cover; /* Ensures the image maintains aspect ratio without stretching */
+  }
+
   

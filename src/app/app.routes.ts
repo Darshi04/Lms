@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './TrainerComponent/home/home.component';
-import { AsideComponent } from './TrainerComponent/aside/aside.component';
+import { AsideComponent } from './TrainerComponent/Calendar/aside.component';
 import { MarksComponent } from './TrainerComponent/marks/marks.component';
 import { CourseComponent } from './TrainerComponent/course/course.component';
 import { ChecklistComponent } from './TrainerComponent/checklist/checklist.component';
@@ -12,16 +12,24 @@ import { CourseDetailsComponent } from './Manager/course-details/course-details.
 import { TrainersComponent } from './Manager/trainers/trainers.component';
 import { PublishMarksComponent } from './Manager/publish-marks/publish-marks.component';
 import { InsightsComponent } from './Manager/insights/insights.component';
+import { DashboardComponent } from './trainee/dashboard/dashboard.component';
+import { ForgetPasswordComponent } from './Login/forget-password/forget-password.component';
+import { CardComponent } from './TrainerComponent/card/card.component';
+import { LayoutComponent } from './TrainerComponent/layout/layout.component';
+
 
 
 export const routes: Routes = [
     {path:"",component:LoginComponentComponent},
+    {path:"login",component:LoginComponentComponent},
+    
     {path:"home",component:HomeComponent},
     {path:"aside",component:AsideComponent},
     {path:"marks",component:MarksComponent},
     {path:"course",component:CourseComponent},
     {path:"check",component:ChecklistComponent},
-    {path:"login",component:LoginComponentComponent},
+    {path:"card",component:CardComponent},
+
     {path:"timeline",component:RoadmapComponent},
     {path:"manager",component:ManagerDashboardComponent},
     {path:"student-details",component:StudentDetailsComponent},
@@ -29,6 +37,10 @@ export const routes: Routes = [
     {path:"Trainers",component:TrainersComponent},
     {path:"PublishMarks",component:PublishMarksComponent},
     {path:"Insights",component:InsightsComponent},
-    
+    {path:"dashboard",component:DashboardComponent},
+    {path:"forgetpassword",component:ForgetPasswordComponent},
+
+    {path:"lay",component:LayoutComponent},
+
 
 ];

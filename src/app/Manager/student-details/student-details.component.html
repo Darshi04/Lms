@@ -104,95 +104,143 @@
   </header>
 
   <!-- Student Details Section -->
-<!-- Student Details Section -->
-<div class="container">
-  <div class="row mb-4">
-    <div class="col-lg-12 text-center">
-      <div class="row">
-        <div class="col-md-8 offset-md-2">
-          <div class="input-group mb-3">
-            <select class="form-select custom-dropdown" [(ngModel)]="isRNSearch" (ngModelChange)="toggleSearchMode()">
-              <option [ngValue]="true">RN No</option>
-              <option [ngValue]="false">Skills</option>
-            </select>
-
-            <!-- Input field for RN or Skill Search -->
-            <input *ngIf="isRNSearch" type="text" class="form-control" placeholder="Enter RN Number..." [(ngModel)]="empid" (input)="filterStudents()">
-            <input *ngIf="!isRNSearch" type="text" class="form-control" placeholder="Enter Skill..." [(ngModel)]="skill" (input)="skillfilters()">
+  <div class="container">
+    <!-- Search Section -->
+    <div class="row mb-4">
+      <div class="col-lg-12 text-center">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <div class="input-group mb-3">
+              
+              <!-- Search Mode Dropdown -->
+              <select class="form-select custom-dropdown" [(ngModel)]="isRNSearch" (ngModelChange)="toggleSearchMode()">
+                <option [ngValue]="true">RN No</option>
+                <option [ngValue]="false">Skills</option>
+              </select>
+    
+              <!-- RN Number or Skill Search Input -->
+              <input *ngIf="isRNSearch"
+                type="text"
+                class="form-control input-text"
+                placeholder="Enter RN Number..."
+                aria-label="RN Number"
+                [(ngModel)]="empid"
+                (input)="filterStudents()">
+                
+              <input *ngIf="!isRNSearch"
+                type="text"
+                class="form-control input-text"
+                placeholder="Enter Skill..."
+                aria-label="Skill"
+                [(ngModel)]="skill"
+                (input)="skillfilters()">
+              
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card-style mb-30">
-        <h6 class="mb-10">Student Info</h6>
   
-        <!-- Table for displaying students -->
-        <div class="table-wrapper table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Profile</th>
-                <th>Name</th>
-                <th>RN Number</th>
-                <th>Role</th>
-                <th>Skills</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Displaying student list -->
-              <tr *ngFor="let student of filteredStudents">
-                <td><img [src]="student.avatar" alt="Profile Image" style="width: 50px; height: 50px;" /></td>
-                <td>{{ student.name }}</td>
-                <td>{{ student.rnNumber }}</td>
-                <td>{{ student.role }}</td>
-                <td>{{ student.skills }}</td>
-                <td>
-                  <button (click)="editStudent(student)">Edit</button>
-                  <button (click)="deleteStudent(student.id)">Delete</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+    <!-- Table to Display Students -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card-style mb-30">
+          <h6 class="mb-10">Student Info</h6>
+    
+          <div class="table-wrapper table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Profile</th>
+                  <th>Name</th>
+                  <th>RN Number</th>
+                  <th>Role</th>
+                  <th>Skills</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let student of filteredStudents">
+                  <td><img [src]="student.avatar" alt="Profile Image" style="width: 50px; height: 50px;" /></td>
+                  <td>{{ student.name }}</td>
+                  <td>{{ student.rnNumber }}</td>
+                  <td>{{ student.role }}</td>
+                  <td>{{ student.skills }}</td>
+                  <td>
+                    <!-- Edit Icon -->
+                    <button (click)="editStudent(student)" class="btn btn-warning btn-sm" aria-label="Edit">
+                      <i class="bi bi-pencil-square"></i><!-- Bootstrap edit icon -->
+                    </button>
+                  
+                    <!-- Delete Icon -->
+                    <button (click)="deleteStudent(student.sno)" class="btn btn-danger btn-sm" aria-label="Delete">
+                      <i class="bi bi-trash"></i> <!-- Bootstrap delete icon -->
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-  
-        <!-- Add New Student Button -->
-        <div class="d-flex justify-content-end mt-3">
-          <button class="btn btn-primary" (click)="start()">Add New Student</button>
-        </div>
-  
       </div>
     </div>
-  </div>
   
-  <!-- Form for adding a new student -->
-  <div *ngIf="addingNewStudent" class="form-container">
-    <div class="form-popup">
-      <form>
-        <h3>Add New Student</h3>
-        <div>
-          <input type="text" [(ngModel)]="newStudent.name" name="name" placeholder="Name" />
-        </div>
-        <div>
-          <input type="text" [(ngModel)]="newStudent.rnNumber" name="rnNumber" placeholder="RN Number" />
-        </div>
-        <div>
-          <input type="text" [(ngModel)]="newStudent.role" name="role" placeholder="Role" />
-        </div>
-        <div>
-          <input type="text" [(ngModel)]="newStudent.skills" name="skills" placeholder="Skills" />
-        </div>
-        <div class="form-actions">
-          <button type="button" class="btn btn-primary" (click)="saveNewStudent()">Save</button>
-          <button type="button" class="btn btn-secondary" (click)="cancelAddingNewStudent()">Cancel</button>
-        </div>
-      </form>
+    <!-- Add New Student Button -->
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-primary" (click)="start()">
+        <i class="bi bi-person-add"></i> 
+      </button>
     </div>
-    <div class="overlay"></div>
+  
+    <!-- Form for Adding New Student -->
+    <div *ngIf="addingNewStudent" class="form-container">
+      <div class="form-popup">
+        <form>
+          <h3>Add New Student</h3>
+          <div>
+            <input type="text" [(ngModel)]="newStudent.name" name="name" placeholder="Name" />
+          </div>
+          <div>
+            <input type="text" [(ngModel)]="newStudent.rnNumber" name="rnNumber" placeholder="RN Number" />
+          </div>
+          <div>
+            <input type="text" [(ngModel)]="newStudent.role" name="role" placeholder="Role" />
+          </div>
+          <div>
+            <input type="text" [(ngModel)]="newStudent.skills" name="skills" placeholder="Skills" />
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" (click)="saveNewStudent()">Save</button>
+            <button type="button" class="btn btn-secondary" (click)="cancelAddingNewStudent()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Form for Editing an Existing Student -->
+    <div *ngIf="isEditing" class="form-container">
+      <div class="form-popup">
+        <form>
+          <h3>Edit Student</h3>
+          <div>
+            <input type="text" [(ngModel)]="currentStudent.name" name="name" placeholder="Name" />
+          </div>
+          <div>
+            <input type="text" [(ngModel)]="currentStudent.rnNumber" name="rnNumber" placeholder="RN Number" />
+          </div>
+          <div>
+            <input type="text" [(ngModel)]="currentStudent.role" name="role" placeholder="Role" />
+          </div>
+          <div>
+            <input type="text" [(ngModel)]="currentStudent.skills" name="skills" placeholder="Skills" />
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" (click)="saveEditedStudent()">Save</button>
+            <button type="button" class="btn btn-secondary" (click)="cancelEditing()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
   
   
