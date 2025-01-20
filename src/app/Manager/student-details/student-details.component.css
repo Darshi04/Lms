@@ -1,3 +1,6 @@
+
+
+
 body, html {
   margin: 0;
   padding: 0;
@@ -76,8 +79,103 @@ table th, table td {
 table td button {
   margin: 5px;
 }
-/* Centering the form and background opacity */
+
+
+
+
+
+.sidebar-nav-wrapper {
+  overflow: hidden;
+}
+/* General style for sidebar icons */
+.sidebar-nav .nav-item .icon i {
+  font-size: 18px;  /* Adjust this value to match the size of the text */
+  vertical-align: middle;  /* Align icons vertically to middle */
+}
+ 
+/* Optional: Add some space between the icon and the text */
+.sidebar-nav .nav-item .icon {
+  margin-right: 10px;
+}
+ 
+/* Ensure consistent alignment */
+.sidebar-nav .nav-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+ 
+/* Styling for hover effect */
+.sidebar-nav .nav-item a:hover {
+  background-color: #f4f4f4;
+  border-radius: 4px;
+}
+ 
+.sidebar-nav .nav-item a:hover .icon i {
+  color: #007bff;  /* Change icon color on hover */
+}
+ 
+.navbar-logo p i{
+  font-size: 20px;
+  animation-iteration-count: 2;
+ 
+}
+ 
+ 
+.sidebar-nav .nav-item a:hover {
+  background-color: #f3f4f6;
+  transition: 0.3s ease;
+}
+ 
+.sidebar-nav .nav-item .icon {
+  transition: 0.3s ease;
+}
+ 
+.sidebar-nav .nav-item a:hover .icon {
+  transform: scale(1.1);
+}
+ 
+/* Sidebar is closed, content takes up full width */
+.main-wrapper.sidebar-closed {
+  margin-left: 0;  /* Remove space for sidebar */
+  transition: margin 0.3s ease-in-out;
+}
+ 
+
+
+
+/* Sidebar is open, content has space for sidebar */
+.main-wrapper {
+  margin-left: 250px;  /* Sidebar width */
+  transition: margin 0.3s ease-in-out;
+  transition: margin-left 0.3s ease-in-out;
+}
+ 
+/* Sidebar styles */
+.sidebar-nav-wrapper {
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  transform: translateX(-250px); /* Initially hidden */
+  transition: transform 0.3s ease-in-out;
+}
+ 
+.sidebar-nav-wrapper.active {
+  transform: translateX(0); /* Sidebar shown */
+}
+
+
+
+ 
+
+
+
+
+/* Center the form and apply background overlay */
 .form-container {
+  background-color: rgba(0, 0, 0, 0.3); /* Dark transparent background */
   position: fixed;
   top: 0;
   left: 0;
@@ -89,40 +187,31 @@ table td button {
   z-index: 9999;
 }
 
+/* Form popup styling */
 .form-popup {
-  background-color: white;
+  background-color: #fff; /* White background for the form */
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 400px;
-  text-align: center;
+  max-width: 100%;
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: -1;
-}
-
-/* Styling form inputs */
-input {
+/* Input fields styling */
+input[type="text"] {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
-  border-radius: 5px;
   border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-/* Styling buttons */
+/* Button styling */
 .btn {
-  padding: 10px 15px;
-  margin-top: 10px;
+  padding: 10px 20px;
+  margin: 10px 5px;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -135,3 +224,71 @@ input {
   background-color: #6c757d;
   color: white;
 }
+
+/* 
+drop down */
+/* Dropdown styling with filter icon inside */
+.custom-dropdown {
+  position: relative; /* To position the icon inside */
+  width: 7%; /* Width of the dropdown */
+  height: 40px; /* Consistent height */
+  padding-left: 30px; /* Space for the icon */
+  border-radius: 4px;
+  border: 1px solid #365CF5;
+  font-size: 1em;
+  box-sizing: border-box; /* Ensure padding is included */
+  margin-top: 10px; /* Consistent margin-top with input fields */
+}
+
+/* Bootstrap filter icon inside the dropdown */
+.custom-dropdown::before {
+  content: "\f0b0"; /* Bootstrap filter icon unicode */
+  font-family: "Bootstrap Icons"; /* Using Bootstrap Icons */
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%); /* Vertically center the icon */
+  font-size: 18px; /* Icon size */
+  color: #365CF5; /* Icon color */
+  pointer-events: none; /* Disable interaction with the icon */
+}
+
+/* Consistent styling for the input fields */
+.form-control.input-text {
+  width: 75%; /* Input box width */
+  height: 40px; /* Match height of the dropdown */
+  padding: 10px; /* Padding for input field */
+  border-radius: 4px;
+  border: 1px solid #365CF5;
+  font-size: 1em;
+  box-sizing: border-box;
+  margin-top: 10px; /* Consistent margin-top */
+}
+
+.custom-dropdown:focus, .form-control.input-text:focus {
+  border-color: #365CF5;
+  outline: none;
+}
+
+
+
+
+
+
+/* for icons */
+
+/* Remove default button styles */
+.btn-icon {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 1.5em; /* Size of the icon */
+  margin: 0 10px; /* Space between icons */
+}
+
+
+
+
+
+
