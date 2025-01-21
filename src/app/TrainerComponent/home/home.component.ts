@@ -115,7 +115,7 @@ export class HomeComponent implements OnInit {
                 enabled: true,
               },
               legend: {
-                display: false,  // Hides the legend
+                display: true,  // Hides the legend
               },
             },
             layout: {
@@ -156,6 +156,6 @@ export class HomeComponent implements OnInit {
       
       
       
-    
+
 }
 
