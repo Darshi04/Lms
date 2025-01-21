@@ -1,0 +1,53 @@
+
+
+ 
+<!-- ======== sidebar-nav start =========== -->
+<app-trainee-header>
+    <!-- ========== header end ========== -->
+  
+          <!-- ========== header end ========== -->
+          <!-- ========== section start ========== -->
+    <section class="section">
+      <div class="container-fluid">
+        <!-- ========== title-wrapper start ========== -->
+        <div class="title-wrapper pt-30">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <div class="title ">
+                <h2>Trainee Result</h2>
+              </div>
+            </div>
+            <!-- end col -->
+          </div>
+          <!-- end row -->
+        </div>
+        <div class="container-result  ">
+
+          <!-- Row for displaying results -->
+          <div class="row">
+            <div class="col-md-4" *ngFor="let result of results">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title">{{ result.subname }}</h5>
+                  <p class="card-text">Score: {{ result.score }}</p>
+            
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ========== title-wrapper end ========== -->
+      </div>
+      
+      
+    </section>
+  
+    <!-- ========== section end ========== -->
+    
+        
+      </app-trainee-header>
+  
+  
+  
+       
+      

@@ -6,11 +6,13 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';  
 import { EventService, Event } from '../../event.service';
 import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-aside',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './aside.component.html',
   styleUrls: ['./aside.component.css'],
   encapsulation: ViewEncapsulation.None  // Disable encapsulation
@@ -23,10 +25,15 @@ export class AsideComponent implements AfterViewInit {
   scheduledUsers: any[] = [];
   completedUsers: any[] = [];
   events: any[] = []; // Array to store events
+  selectedEvent: Event | null = null; // Track the selected event for editing
 
   constructor(private eventService: EventService, private http: HttpClient) {}
+  newEventTitle: string = ''; // This will store the title entered by the user
+  selectedDate: string = '';  // This will store the selected date when a user clicks a date
+  
 
   ngAfterViewInit(): void {
+    
     // Fetch events and update the calendar on component load
     this.fetchScheduledEvents();
     
@@ -35,7 +42,10 @@ export class AsideComponent implements AfterViewInit {
       console.log('Updated events in AsideComponent:', events);
       this.initializeCalendar(events); // Reinitialize the calendar with updated events
     });
+
   }
+
+ 
 
   fetchScheduledEvents(): void {
     // Fetch scheduled events from the backend
@@ -46,8 +56,8 @@ export class AsideComponent implements AfterViewInit {
         const completed = response.completed || [];
         this.scheduledUsers = scheduled;
         this.completedUsers = completed;
-        this.events = [...scheduled, ...completed]; // Combine scheduled and completed events
-        this.initializeCalendar(this.events); // Initialize calendar with the fetched events
+        this.events = [...scheduled, ...completed]; 
+        this.initializeCalendar(this.events); 
       },
       error: (err) => {
         console.error('Error fetching scheduled events:', err);
@@ -63,17 +73,13 @@ export class AsideComponent implements AfterViewInit {
       events: events,  // Use the updated events array
       plugins: [dayGridPlugin, interactionPlugin],
       dateClick: (info) => this.handleDateClick(info),
-      eventClick: (info) => this.handleEventClick(info),
+      eventClick: (info) => this.handleEventClick(info), 
       eventClassNames: (info) => {
-        const eventDateStr = info.event.startStr.split('T')[0]; // Get the date part in YYYY-MM-DD format
-        const currentDateStr = new Date().toISOString().split('T')[0]; // Current date in YYYY-MM-DD format
-  
-        // Compare event date string with current date string
+        const eventDateStr = info.event.startStr.split('T')[0];
+        const currentDateStr = new Date().toISOString().split('T')[0]; 
         if (eventDateStr < currentDateStr) {
-          // Event is in the past
           return ['event-completed'];
         } else {
-          // Event is today or in the future
           return ['event-scheduled'];
         }
       },
@@ -81,38 +87,34 @@ export class AsideComponent implements AfterViewInit {
     this.calendarMini.render();
   }
 
-  handleDateClick(info: any): void {
-    const newEventTitle = prompt('Enter event title:', 'New Event');
-    if (newEventTitle) {
-      const newEvent: Event = {
-        title: newEventTitle,
-        date: info.dateStr,
-        id: `${new Date().getTime()}`,  // Unique ID
-        status: 'scheduled'  // Make sure it's strictly 'scheduled' or 'completed'
-      };
-
-      // Add the new event to the backend
-      this.http.post('http://localhost:8080/Db', newEvent).subscribe({
-        next: () => {
-          console.log('Event added successfully');
-          this.fetchScheduledEvents(); // Fetch updated events to show on the calendar
-        },
-        error: (err) => {
-          console.error('Error adding event:', err);
+        // Show modal to add event
+        handleEventClick(info: any): void {
+          this.selectedEvent = info.event;  // Save the selected event object
+          this.newEventTitle = '';  // Clear the event title input
+          const deleteEventModal = new bootstrap.Modal(document.getElementById('deleteEventModal'));
+          deleteEventModal.show();  // Open the modal to input the event title
         }
-      });
-    }
-  }
 
-  handleEventClick(info: any): void {
-    if (confirm('Are you sure you want to delete this event?')) {
-      const eventId = info.event.id;
-
-      // Call the backend to delete the event
+  // Delete the event
+  deleteEvent(): void {
+    if (this.selectedEvent) {
+      const eventId = this.selectedEvent.id;
       this.http.get(`http://localhost:8080/deleteById?id=${eventId}`).subscribe({
         next: () => {
-          console.log(`Event with ID ${eventId} deleted successfully`);
-          this.fetchScheduledEvents(); // Fetch updated events to show on the calendar
+  
+      const modalElement = document.getElementById('deleteEventModal');
+      if (modalElement) {
+        // Get the modal instance to hide it
+        const modalInstance = bootstrap.Modal.getInstance(modalElement);
+        if (modalInstance) {
+          modalInstance.hide();  
+        } 
+      } else {
+        console.error('Modal element not found!');
+      }
+          
+          this.fetchScheduledEvents(); 
+
         },
         error: (err) => {
           console.error(`Error deleting event with ID ${eventId}:`, err);
@@ -120,4 +122,41 @@ export class AsideComponent implements AfterViewInit {
       });
     }
   }
+
+
+    // Show modal to add event
+    handleDateClick(info: any): void {
+      this.selectedDate = info.dateStr;  // Save the selected date
+      this.newEventTitle = '';  // Clear the event title input
+      const addEventModal = new bootstrap.Modal(document.getElementById('addEventModal'));
+      addEventModal.show();  // Open the modal to input the event title
+    }
+
+
+  
+    // Add the new event after entering the title
+    addEvent(): void {
+      if (this.newEventTitle) {
+        const newEvent: Event = {
+          title: this.newEventTitle,
+          date: this.selectedDate,
+          id: `${new Date().getTime()}`,
+          status: 'scheduled'
+        };
+  
+        // Add the new event to the backend
+        this.http.post('http://localhost:8080/Db', newEvent).subscribe({
+          next: () => {
+            console.log('Event added successfully');
+            this.fetchScheduledEvents();  // Refresh the events
+            const addEventModal = bootstrap.Modal.getInstance(document.getElementById('addEventModal'));
+            addEventModal.hide();  // Close the modal after adding the event
+          },
+          error: (err) => {
+            console.error('Error adding event:', err);
+          }
+        });
+      }
+    }
+  
 }

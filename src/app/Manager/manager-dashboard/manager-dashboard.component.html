@@ -12,7 +12,7 @@
       <ul>
         <!-- Dashboard Menu Item -->
         <li class="nav-item">
-          <a href="/home" class="active">
+          <a [routerLink]="['/manager']" class="active">
             <span class="icon">
               <!-- Dashboard Icon -->
               <i class="fas fa-columns"></i>
@@ -23,17 +23,20 @@
   
         <!-- Assigned Courses -->
         <li class="nav-item">
-          <a href="/course">
+          <a [routerLink]="['/student-details']">
             <span class="icon">
               <i class="fas fa-book"></i>
             </span>
-            <span class="text">Assigned Courses</span>
+            <span class="text">Student Details</span>
           </a>
         </li>
+
+        
+        
   
         <!-- Publish Marks -->
         <li class="nav-item">
-          <a href="/marks">
+          <a [routerLink]="['/PublishMarks']">
             <span class="icon">
               <i class="fas fa-pencil-alt"></i>
             </span>
@@ -44,24 +47,24 @@
        
         <!-- Track Student Progress -->
         <li class="nav-item">
-          <a href="#studentProgressSection">
+          <a [routerLink]="['/Trainers']">
             <span class="icon">
               <i class="fas fa-chart-bar"></i>
             </span>
-            <span class="text">Track Student Progress</span>
+            <span class="text">Trainers</span>
           </a>
         </li>
   
         <!-- Course Completion Checklist -->
         <li class="nav-item">
-          <a href="/marks">
+          <a [routerLink]="['/Tracker']">
             <span class="icon">
               <i class="fas fa-check-circle"></i>
             </span>
-            <span class="text">Course Completion Checklist</span>
+            <span class="text">Progress Tracker</span>
           </a>
         </li>
-  
+ 
         <!-- Student Communication
         <li class="nav-item">
           <a href="#studentCommunicationSection">
@@ -72,16 +75,7 @@
           </a>
         </li> -->
   
-        <!-- Contact Menu Item -->
-        <li class="nav-item">
-          <a href="#contactSection">
-            <span class="icon">
-              <i class="fas fa-phone-alt"></i>
-              <!-- Font Awesome Phone Icon for Contact -->
-            </span>
-            <span class="text">Contact</span>
-          </a>
-        </li>
+       
         <span class="divider"><hr /></span>
         <!-- Sign Out Menu Item -->
         <li class="nav-item">
@@ -124,78 +118,7 @@
           </div>
           <div class="col-lg-7 col-md-7 col-6">
             <div class="header-right">
-              <!-- notification start -->
-              <div class="notification-box ml-15 d-none d-md-flex">
-                <button
-                  class="dropdown-toggle"
-                  type="button"
-                  id="notification"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <svg
-                    width="22"
-                    height="22"
-                    viewBox="0 0 22 22"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M11 20.1667C9.88317 20.1667 8.88718 19.63 8.23901 18.7917H13.761C13.113 19.63 12.1169 20.1667 11 20.1667Z"
-                      fill=""
-                    />
-                    <path
-                      d="M10.1157 2.74999C10.1157 2.24374 10.5117 1.83333 11 1.83333C11.4883 1.83333 11.8842 2.24374 11.8842 2.74999V2.82604C14.3932 3.26245 16.3051 5.52474 16.3051 8.24999V14.287C16.3051 14.5301 16.3982 14.7633 16.564 14.9352L18.2029 16.6342C18.4814 16.9229 18.2842 17.4167 17.8903 17.4167H4.10961C3.71574 17.4167 3.5185 16.9229 3.797 16.6342L5.43589 14.9352C5.6017 14.7633 5.69485 14.5301 5.69485 14.287V8.24999C5.69485 5.52474 7.60672 3.26245 10.1157 2.82604V2.74999Z"
-                      fill=""
-                    />
-                  </svg>
-                  <span></span>
-                </button>
-                <ul
-                  class="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="notification"
-                >
-                  <li>
-                    <a href="#0">
-                      <div class="image">
-                        <img src="/images/lead/lead-6.png" alt="" />
-                      </div>
-                      <div class="content">
-                        <h6>
-                          John Doe
-                          <span class="text-regular">
-                            comment on a product.
-                          </span>
-                        </h6>
-                        <p>
-                          Lorem ipsum dolor sit amet, consect etur adipiscing elit
-                          Vivamus tortor.
-                        </p>
-                        <span>10 mins ago</span>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#0">
-                      <div class="image">
-                        <img src="/images/lead/lead-1.png" alt="" />
-                      </div>
-                      <div class="content">
-                        <h6>
-                          Jonathon
-                          <span class="text-regular"> like on a product. </span>
-                        </h6>
-                        <p>
-                          Lorem ipsum dolor sit amet, consect etur adipiscing elit
-                          Vivamus tortor.
-                        </p>
-                        <span>10 mins ago</span>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <!-- notification end -->
+              
               <!-- message start -->
               <div class="header-message-box ml-15 d-none d-md-flex">
                 <button
@@ -355,7 +278,7 @@
         <!-- ========== title-wrapper end ========== -->
     
         <div class="row">
-          <div class="col-xl-3 col-lg-4 col-sm-6" [routerLink]="['/student-details']">
+          <div class="col-xl-3 col-lg-4 col-sm-6">
               
                 <div class="icon-card mb-30">
                   <div class="icon purple">
@@ -370,77 +293,17 @@
             </div>
             
           <!-- End Col -->
+      
+      
+        
     
-          <div class="col-xl-3 col-lg-4 col-sm-6" [routerLink]="['/course-details']">
-            <div class="icon-card mb-30">
-              <div class="icon success">
-                <i class="lni lni-book"></i> <!-- Updated icon for Course Details -->
-              </div>
-              <div class="content">
-                <h6 class="mb-10">Course Details</h6>
-                <h3 class="text-bold mb-10">9</h3>
-              </div>
-            </div>
-            <!-- End Icon Cart -->
-          </div>
+        
+          
     
-          <div class="col-xl-3 col-lg-4 col-sm-6" [routerLink]="['/Trainers']">
-            <div class="icon-card mb-30">
-              <div class="icon primary">
-                <i class="lni lni-users"></i> <!-- Updated icon for Trainers Details -->
-              </div>
-              <div class="content">
-                <h6 class="mb-10">Trainers Details</h6>
-                <h3 class="text-bold mb-10">2</h3>
-              </div>
-            </div>
-            <!-- End Icon Cart -->
-          </div>
-    
-          <div class="col-xl-3 col-lg-4 col-sm-6" [routerLink]="['/PublishMarks']">
-            <div class="icon-card mb-30">
-              <div class="icon primary">
-                <i class="lni lni-pencil"></i> <!-- Updated icon for Publish Mark -->
-              </div>
-              <div class="content">
-                <h6 class="mb-10">Publish Mark</h6>
-                <h3 class="text-bold mb-10">2</h3>
-              </div>
-            </div>
-            <!-- End Icon Cart -->
-          </div>
-          <!-- End Col -->
-    
-          <div class="col-xl-3 col-lg-4 col-sm-6" [routerLink]="['/ViewFeedback']">
-            <div class="icon-card mb-30">
-              <div class="icon primary">
-                <i class="lni lni-comments"></i> <!-- Updated icon for View Feedback -->
-              </div>
-              <div class="content">
-                <h6 class="mb-10">View Feedback</h6>
-                <h3 class="text-bold mb-10">2</h3>
-              </div>
-            </div>
-            <!-- End Icon Cart -->
-          </div>
-          <!-- End Col -->
-    
-          <div class="col-xl-3 col-lg-4 col-sm-6" [routerLink]="['/Insights']">
-            <div class="icon-card mb-30">
-              <div class="icon orange">
-                <i class="lni lni-cog"></i> <!-- Updated icon for Insights & Results -->
-              </div>
-              <div class="content">
-                <h6 class="mb-10">Insights & Results</h6>
-                <h3 class="text-bold mb-10">37</h3>
-              </div>
-            </div>
-            <!-- End Icon Cart -->
-          </div>
-          <!-- End Col -->
         </div>
       </div>
     </section>
+  
     <!-- ========== section end ========== -->
     
         </main>
@@ -448,27 +311,5 @@
   
   
   
-        <footer class="footer">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-6 order-last order-md-first">
-                <div class="copyright text-center text-md-start">
-                  <p class="text-sm">
-                    Designed and Developed by
-                    <a href="#copyrights" rel="nofollow" target="_blank"> WebApp </a>
-                  </p>
-                </div>
-              </div>
-              <!-- end col-->
-              <div class="col-md-6">
-                <div
-                  class="terms d-flex justify-content-center justify-content-md-end"
-                >
-                  <a href="#0" class="text-sm">Term & Conditions</a>
-                  <a href="#0" class="text-sm ml-15">Privacy & Policy</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer> 
+       
        
