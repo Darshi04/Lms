@@ -20,6 +20,8 @@ import { TraineeFeedbackComponent } from './trainee/trainee-feedback/trainee-fee
 import { TraineeResultComponent } from './trainee/trainee-result/trainee-result.component';
 import { TraineeTrackerComponent } from './trainee/trainee-tracker/trainee-tracker.component';
 import { LayoutComponent } from './TrainerComponent/layout/layout.component';
+import { TrainermarkComponent } from './MARKS/trainermark/trainermark.component';
+import { ManagerMarksComponent } from './MARKS/manager-marks/manager-marks.component';
 
 
 
@@ -52,6 +54,9 @@ export const routes: Routes = [
     {path:"forgetpassword",component:ForgetPasswordComponent},
 
     {path:"lay",component:LayoutComponent},
+
+    {path:"trainermark",component:TrainermarkComponent},
+    {path:"managermark",component:ManagerMarksComponent}
 
 
 ];
