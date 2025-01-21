@@ -98,3 +98,11 @@
   transform: translateX(-250px); /* Initially hidden */
   transition: transform 0.3s ease-in-out
 }
+.disabled {
+  opacity: 0.5;
+  pointer-events: none; /* Prevent interaction with the course card */
+}
+
+.disabled .form-check-input {
+  pointer-events: none; /* Prevent interaction with checkboxes */
+}

@@ -13,10 +13,10 @@
     <span>{{ event.eventInfo.timestamp | date: 'MMMM dd, yyyy' }}</span>
     <h4>{{ event.eventInfo.title }}</h4>
     <div class="topics-container">
-      <ng-container *ngFor="let topic of event.eventInfo.topics">
+      <ng-container  *ngFor="let topic of event.eventInfo.topics">
         <div class="topic">
           <i class="fa-regular fa-circle-check" [style.color]="getTopicIconColor(topic)"></i>
-          <span> {{ topic.topic }}</span>
+          <span> {{ topic.topic_name }}</span>
         </div>
       </ng-container>
     </div>

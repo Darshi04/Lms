@@ -1,0 +1,38 @@
+<div class="container">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Student Id</th>
+          <th scope="col">Student Name</th>
+          <th *ngFor="let subject of subjects" scope="col">{{ subject }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loop through each student and create a row for them -->
+        <tr *ngFor="let student of students">
+          <!-- Student Id and Name -->
+          <td [attr.rowspan]="studentMarks[student.id]?.length || 1" scope="row">{{ student.rn_id }}</td>
+          <td [attr.rowspan]="studentMarks[student.id]?.length || 1">{{ student.student_name }}</td>
+          <!-- <td [attr.rowspan]="subjects.length" scope="row">{{ student.rn_id }}</td>
+          <td [attr.rowspan]="subjects.length">{{ student.student_name }}</td> -->
+  
+          <!-- Loop through subjects and show marks -->
+          <ng-container *ngFor="let subject of subjects">
+            <td>
+              <!-- Display mark for subject or 0 if no mark exists -->
+              <ng-container *ngIf="studentMarks[student.rn_id] && studentMarks[student.rn_id][subject]; else noMarks">
+                <td [ngClass]="getMarkClass(studentMarks[student.rn_id][subject]?.mark)">
+                  {{ studentMarks[student.rn_id][subject]?.mark }}
+                </td>
+              </ng-container>
+  
+              <!-- Display 0 if no marks exist for the subject -->
+              <ng-template #noMarks>
+                0
+              </ng-template>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
