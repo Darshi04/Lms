@@ -21,10 +21,11 @@
             <td>
               <!-- Display mark for subject or 0 if no mark exists -->
               <ng-container *ngIf="studentMarks[student.rn_id] && studentMarks[student.rn_id][subject]; else noMarks">
-                <td [ngClass]="getMarkClass(studentMarks[student.rn_id][subject]?.mark)">
+                <td [ngClass]="getMarkClass(student.rn_id, subject, studentMarks[student.rn_id][subject]?.mark)" data-bs-toggle="modal" data-bs-target="#modal1">
                   {{ studentMarks[student.rn_id][subject]?.mark }}
                 </td>
               </ng-container>
+              
   
               <!-- Display 0 if no marks exist for the subject -->
               <ng-template #noMarks>
@@ -36,3 +37,28 @@
       </tbody>
     </table>
   </div>
+
+    <!-- Modal 4 - Linux -->
+    <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="courseModalLabel4" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content p-2">
+          <div class="modal-header">
+            <h5 class="modal-title" id="courseModalLabel4">Linux</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p class="mb-2"><strong>This course will help you become proficient in Linux system administration:</strong></p>
+            <ul>
+              <li>Introduction to Linux Operating System</li>
+              <li>Linux Command Line and Shell Scripting</li>
+              <li>Linux File System and Permissions</li>
+              <li>Package Management and System Maintenance</li>
+              <li>Networking and Security Basics on Linux</li>
+            </ul>
+            <p class="mt-3"><strong>Duration:</strong> 3 days | <strong>Level:</strong> Beginner to Intermediate</p>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  
