@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
 import { CommonModule } from '@angular/common';
-import { AsideComponent } from '../Calendar/aside.component';
+import { AsideComponent } from '../../Manager/Calendar/aside.component';
 import { EventService } from '../../event.service';
 import { FooterComponent } from '../footer/footer.component';
 import { HttpClient } from '@angular/common/http';

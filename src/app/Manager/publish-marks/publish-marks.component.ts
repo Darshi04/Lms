@@ -2,11 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HeaderComponent } from "../header/header.component";
+import { FooterComponent } from "../../TrainerComponent/footer/footer.component";
 
 @Component({
   selector: 'app-publish-marks',
   standalone: true,
-  imports: [RouterModule,CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [RouterModule, CommonModule, FormsModule, ReactiveFormsModule, HeaderComponent, FooterComponent],
   templateUrl: './publish-marks.component.html',
   styleUrl: './publish-marks.component.css'
 })

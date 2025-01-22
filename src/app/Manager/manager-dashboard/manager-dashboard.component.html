@@ -1,59 +1,111 @@
-
-          
-     <app-header></app-header>     
-          <!-- ========== section start ========== -->
-
-
-          
-    <section class="section">
-      <div class="container-fluid">
-        <!-- ========== title-wrapper start ========== -->
-        <div class="title-wrapper pt-30">
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <div class="title">
-                <h2>Manager Dashboard</h2>
-              </div>
+<app-header>
+  <section class="section">
+    <div class="container-fluid">
+      <!-- ========== title-wrapper start ========== -->
+       <div class="title-wrapper pt-30">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="title">
+              <h2>Manager Dashboard</h2>
             </div>
-            <!-- end col -->
           </div>
-          <!-- end row -->
+          <!-- end col -->
+          <div class="col-md-6">
+            <div class="breadcrumb-wrapper">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="#0">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Manager
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <!-- end col -->
         </div>
-        <!-- ========== title-wrapper end ========== -->
-    
-        <div class="row">
-          <div class="col-xl-3 col-lg-4 col-sm-6">
-              
-                <div class="icon-card mb-30">
-                  <div class="icon purple">
-                    <i class="lni lni-users"></i> <!-- Updated icon for Student Details -->
-                  </div>
-                  <div class="content">
-                    <h6 class="mb-10">Student Details</h6>
-                    <h3 class="text-bold mb-10">3</h3>
-                  </div>
-                </div>
-           
+        <!-- end row -->
+      </div>
+      <!-- ========== title-wrapper end ========== -->
+  
+      <!-- Trainer Dashboard Cards -->
+      <div class="row">
+        <!-- Scheduled Tests -->
+        <div class="col-xl-3 col-lg-4 col-sm-6">
+          <div class="icon-card mb-30">
+            <div class="icon purple">
+              <i class="lni lni-calendar"></i>
+            </div>
+            <div class="content">
+              <h6 class="mb-10">Scheduled Tests</h6>
+              <h3 class="text-bold mb-10" >5</h3>
+            </div>
+          </div>
+          <!-- End Scheduled Tests -->
+        </div>
+  
+        <!-- Pending Reviews -->
+        <div class="col-xl-3 col-lg-4 col-sm-6">
+          <div class="icon-card mb-30">
+            <div class="icon success">
+              <i class="lni lni-pencil-alt"></i>
+            </div>
+            <div class="content">
+              <h6 class="mb-10">Total GET's</h6>
+              <h3 class="text-bold mb-10">8</h3>
+            </div>
+          </div>
+          <!-- End Pending Reviews -->
+        </div>
+
+        
+  
+        <!-- Completed Tests -->
+        <div class="col-xl-3 col-lg-4 col-sm-6">
+          <div class="icon-card mb-30">
+            <div class="icon primary">
+              <i class="lni lni-checkmark-circle"></i>
+            </div>
+            <div class="content">
+              <h6 class="mb-10">Completed Tests</h6>
+              <h3 class="text-bold mb-10">4</h3>
+            </div>
+          </div>
+          <!-- End Completed Tests -->
+        </div>
+  
+        <!-- Upcoming Sessions -->
+        <div class="col-xl-3 col-lg-4 col-sm-6">
+          <div class="icon-card mb-30">
+            <div class="icon orange">
+              <i class="fas fa-clock"></i>
             </div>
             
-          <!-- End Col -->
-      
-      
-        
-    
-        
-          
-    
+            <div class="content">
+              <h6 class="mb-10">Upcoming Sessions</h6>
+              <h3 class="text-bold mb-10">5</h3>
+            </div>
+          </div>
+          <!-- End Upcoming Sessions -->
         </div>
       </div>
-    </section>
+      <!-- End Row -->
   
-    <!-- ========== section end ========== -->
+     
     
-       
   
-  
-  
-  
-       
-       
+
+<app-aside></app-aside>
+    
+
+    
+    
+  </div>  
+  </section>
+
+
+
+  <app-footer></app-footer>
+</app-header>

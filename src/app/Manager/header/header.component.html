@@ -57,7 +57,7 @@
   
         <!-- Course Completion Checklist -->
         <li class="nav-item">
-          <a [routerLink]="['/Tracker']">
+          <a [routerLink]="['/tracker']">
             <span class="icon">
               <i class="fas fa-check-circle"></i>
             </span>
@@ -233,21 +233,9 @@
                     </div>
                   </li>
                   <li class="divider"></li>
+            
                   <li>
-                    <a href="#0"> <i class="lni lni-user"></i> View Profile </a>
-                  </li>
-                  <li>
-                    <a href="#0"> <i class="lni lni-alarm"></i> Notifications </a>
-                  </li>
-                  <li>
-                    <a href="#0"> <i class="lni lni-inbox"></i> Messages </a>
-                  </li>
-                  <li>
-                    <a href="#0"> <i class="lni lni-cog"></i> Settings </a>
-                  </li>
-                  <li class="divider"></li>
-                  <li>
-                    <a href="#0"> <i class="lni lni-exit"></i> Sign Out </a>
+                    <a href="#signOut"> <i class="lni lni-exit"></i> Sign Out </a>
                   </li>
                 </ul>
               </div>
@@ -257,4 +245,6 @@
         </div>
       </div>
     </header>
+    <ng-content></ng-content>
+
 </main>

@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './TrainerComponent/home/home.component';
-import { AsideComponent } from './TrainerComponent/Calendar/aside.component';
+import { AsideComponent } from './Manager/Calendar/aside.component';
 import { MarksComponent } from './TrainerComponent/marks/marks.component';
 import { CourseComponent } from './TrainerComponent/course/course.component';
 import { ChecklistComponent } from './TrainerComponent/checklist/checklist.component';
@@ -16,6 +16,7 @@ import { DashboardComponent } from './trainee/dashboard/dashboard.component';
 import { ForgetPasswordComponent } from './Login/forget-password/forget-password.component';
 import { CardComponent } from './TrainerComponent/card/card.component';
 import { LayoutComponent } from './TrainerComponent/layout/layout.component';
+import { ProgressTrackerComponent } from './Manager/progress-tracker/progress-tracker.component';
 
 
 
@@ -23,7 +24,7 @@ export const routes: Routes = [
     {path:"",component:LoginComponentComponent},
     {path:"login",component:LoginComponentComponent},
     
-    {path:"home",component:HomeComponent},
+    {path:"Home",component:HomeComponent},
     {path:"aside",component:AsideComponent},
     {path:"marks",component:MarksComponent},
     {path:"course",component:CourseComponent},
@@ -39,6 +40,7 @@ export const routes: Routes = [
     {path:"Insights",component:InsightsComponent},
     {path:"dashboard",component:DashboardComponent},
     {path:"forgetpassword",component:ForgetPasswordComponent},
+    {path:"tracker",component:ProgressTrackerComponent},
 
     {path:"lay",component:LayoutComponent},
 
