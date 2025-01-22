@@ -28,8 +28,8 @@ export class AsideComponent implements AfterViewInit {
   selectedEvent: Event | null = null; // Track the selected event for editing
 
   constructor(private eventService: EventService, private http: HttpClient) {}
-  newEventTitle: string = ''; // This will store the title entered by the user
-  selectedDate: string = '';  // This will store the selected date when a user clicks a date
+  newEventTitle: string = ''; 
+  selectedDate: string = '';  
   
 
   ngAfterViewInit(): void {

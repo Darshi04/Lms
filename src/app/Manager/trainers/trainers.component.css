@@ -263,8 +263,8 @@ img {
 /* Move the button to the bottom-right */
 #addTrainerBtn {
   position: fixed;
-  bottom: 20px; /* Adjust this value to move it higher or lower */
-  right: 20px; /* Adjust this value to move it left or right */
+  bottom: 60px; /* Adjust this value to move it higher or lower */
+  right: 30px; /* Adjust this value to move it left or right */
   z-index: 9999; /* Ensures the button stays on top of other content */
 }
 
@@ -272,3 +272,6 @@ img {
 #addIcon {
   font-size:26px; /* You can increase or decrease the size */
 }
+
+
+

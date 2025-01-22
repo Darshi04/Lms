@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { NgxTimelineComponent, NgxTimelineEventChangeSide } from '@frxjs/ngx-timeline';
 import { SharedService } from '../../shared.service';
 import { RouterModule } from '@angular/router';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from "../../TrainerComponent/footer/footer.component";
 
 @Component({
   selector: 'app-progress-tracker',
   standalone: true,
-  imports: [FormsModule,CommonModule,NgxTimelineComponent,RouterModule],
+  imports: [FormsModule, CommonModule, NgxTimelineComponent, RouterModule, HeaderComponent, FooterComponent],
   templateUrl: './progress-tracker.component.html',
   styleUrl: './progress-tracker.component.css'
 })
