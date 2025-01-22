@@ -2,11 +2,13 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { LayoutComponent } from '../../Trainer/header/layout.component';
+import { FooterComponent } from '../../Trainer/footer/footer.component';
 
 @Component({
   selector: 'app-trainermark',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,LayoutComponent,FooterComponent],
   templateUrl: './trainermark.component.html',
   styleUrl: './trainermark.component.css'
 })

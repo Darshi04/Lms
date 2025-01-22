@@ -1,0 +1,15 @@
+.table th, .table td {
+    vertical-align: middle;
+    padding: 12px; /* Adds more padding for better spacing */
+    text-align: left; /* Left-align the content for better readability */
+    font-size: 1rem; /* Slightly larger font for readability */
+  }
+  
+  .table th {
+    font-weight: bold; /* Make headers bold */
+    background-color: #f8f9fa; /* Light background color for headers */
+    color: #495057; /* Darker text for headers */
+    text-align: left; /* Align headers to the left */
+  }
+  
+  
