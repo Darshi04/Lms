@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';  // Import FormsModule
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { HeaderComponent } from "../header/header.component";
-import { FooterComponent } from "../../TrainerComponent/footer/footer.component";
+import { FooterComponent } from "../../Trainer/footer/footer.component";
 import { TrainerService } from '../../trainer.service';
 
 

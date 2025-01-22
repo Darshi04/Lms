@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedService } from '../../shared.service';
 import { FooterComponent } from '../footer/footer.component';
-import { LayoutComponent } from '../layout/layout.component';
+import { LayoutComponent } from '../header/layout.component';
 
 interface Topic {
   topic_id: number;

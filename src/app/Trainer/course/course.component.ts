@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
-import { LayoutComponent } from '../layout/layout.component';
+import { LayoutComponent } from '../header/layout.component';
 
 @Component({
   selector: 'app-course',

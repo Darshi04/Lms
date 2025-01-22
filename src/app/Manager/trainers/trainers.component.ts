@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
-import { FooterComponent } from "../../TrainerComponent/footer/footer.component";
+import { FooterComponent } from "../../Trainer/footer/footer.component";
 import { TrainerService } from '../../trainer.service';
 
 
