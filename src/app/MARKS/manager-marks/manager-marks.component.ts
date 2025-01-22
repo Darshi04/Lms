@@ -21,7 +21,7 @@ export class ManagerMarksComponent {
 
       // Loop through each student and process their marks
       this.students.forEach((student: any) => {
-        // If the student has no marks, we set their marks to 0 for all subjects
+        // If the student has no marks, set them to 0 for all subjects
         if (!student.marks || student.marks.length === 0) {
           console.log('No marks for student', student.rn_id);
           this.studentMarks[student.rn_id] = {};  // Initialize student marks if they don't exist
@@ -41,27 +41,70 @@ export class ManagerMarksComponent {
           this.studentMarks[student.rn_id] = {};
         }
 
-        // Loop through all marks and process them for each subject
-        sortedMarks.forEach((mark: any) => {
-          // Only store the latest mark for each subject
-          if (!this.studentMarks[student.rn_id][mark.subject]) {
-            this.studentMarks[student.rn_id][mark.subject] = {
-              mark: mark.mark,
-              mark_id: mark.mark_id
-            };
-            console.log("Updated mark for", student.rn_id, mark.subject, this.studentMarks[student.rn_id][mark.subject]);
+        const subjectMarks: { [subject: string]: any[] } = {};  // To track marks for each subject
 
-            // Add the subject to the subjects array if it hasn't been added already
-            if (!this.subjects.includes(mark.subject)) {
-              this.subjects.push(mark.subject);
-            }
+        // Loop through all marks and store them in subjectMarks
+        sortedMarks.forEach((mark: any) => {
+          if (!subjectMarks[mark.subject]) {
+            subjectMarks[mark.subject] = [];
           }
+          subjectMarks[mark.subject].push(mark);
+          
+          // Add the subject to the subjects array if it hasn't been added already
+          if (!this.subjects.includes(mark.subject)) {
+            this.subjects.push(mark.subject);
+          }
+        });
+
+        // Now process the marks and set the reattempt flag for each subject
+        Object.keys(subjectMarks).forEach(subject => {
+          const marksForSubject = subjectMarks[subject];
+          const isReattempt = marksForSubject.length > 1;  // If more than 1 mark exists, it's a reattempt
+
+          // Store the latest mark for each subject
+          this.studentMarks[student.rn_id][subject] = {
+            mark: marksForSubject[0].mark,
+            mark_id: marksForSubject[0].mark_id,
+            isReattempt: isReattempt
+          };
+          console.log("Updated mark for", student.rn_id, subject, this.studentMarks[student.rn_id][subject]);
         });
       });
     });
   }
 
-  getMarkClass(mark: number): string {
+  // getMarkClass(studentId: string, subject: string, mark: number): string {
+  //   // Check if the student has a reattempt for this subject
+  //   const marksForSubject = this.studentMarks[studentId][subject];
+  //   const isReattempt = marksForSubject?.isReattempt || false;
+  //   console.log(isReattempt);
+
+  //   // If it's a reattempt, display yellow
+  //   if (isReattempt) {
+  //     return 'yellow';
+  //   }
+
+  //   // Green for marks >= 75, red for marks < 75
+  //   return mark >= 75 ? 'green' : 'red';
+  // }
+  getMarkClass(studentId: string, subject: string, mark: number): string {
+    // Check if the student has a reattempt for this subject
+    const marksForSubject = this.studentMarks[studentId][subject];
+    const isReattempt = marksForSubject?.isReattempt || false;
+    console.log(isReattempt);
+  
+    // If it's a reattempt and the mark is below 75, return 'red' class
+    if (isReattempt && mark < 75) {
+      return 'red';
+    }
+  
+    // If it's a reattempt but the mark is 75 or above, return 'yellow'
+    if (isReattempt) {
+      return 'yellow';
+    }
+  
+    // Green for marks >= 75, red for marks < 75
     return mark >= 75 ? 'green' : 'red';
   }
+  
 }
