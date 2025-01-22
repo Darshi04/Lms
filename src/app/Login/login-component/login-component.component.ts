@@ -59,7 +59,7 @@ export class LoginComponentComponent {
             // Log and navigate based on role
             if (this.role === 'student') {
               console.log('Navigating to dashboard');
-              this.router.navigate(['/dashboard']);
+              this.router.navigate(['/trainee-dashboard']);
             } 
             
             else if (this.role === 'manager') {
