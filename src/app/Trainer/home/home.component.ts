@@ -5,7 +5,7 @@ import { EventService } from '../../event.service';
 import { FooterComponent } from '../footer/footer.component';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { LayoutComponent } from '../layout/layout.component';
+import { LayoutComponent } from '../header/layout.component';
 import { Chart, registerables } from 'chart.js';
 
 Chart.register(...registerables);
