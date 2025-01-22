@@ -4,7 +4,7 @@ import { AsideComponent } from './Manager/Calendar/aside.component';
 import { MarksComponent } from './TrainerComponent/marks/marks.component';
 import { CourseComponent } from './TrainerComponent/course/course.component';
 import { ChecklistComponent } from './TrainerComponent/checklist/checklist.component';
-import { RoadmapComponent } from './Manager/roadmap/roadmap.component';
+import { RoadmapComponent } from './CommonComponent/roadmap/roadmap.component';
 import { LoginComponentComponent } from './Login/login-component/login-component.component';
 import { ManagerDashboardComponent } from './Manager/manager-dashboard/manager-dashboard.component';
 import { StudentDetailsComponent } from './Manager/student-details/student-details.component';
@@ -22,6 +22,7 @@ import { TraineeTrackerComponent } from './trainee/trainee-tracker/trainee-track
 import { LayoutComponent } from './TrainerComponent/layout/layout.component';
 import { TrainermarkComponent } from './MARKS/trainermark/trainermark.component';
 import { ManagerMarksComponent } from './MARKS/manager-marks/manager-marks.component';
+import { ManagerRoadmapComponent } from './Manager/manager-roadmap/manager-roadmap.component';
 
 
 
@@ -43,6 +44,7 @@ export const routes: Routes = [
     {path:"Trainers",component:TrainersComponent},
     {path:"PublishMarks",component:PublishMarksComponent},
     {path:"Insights",component:InsightsComponent},
+    {path:"manager-roadmap",component:ManagerRoadmapComponent},
     
     {path:"forgetpassword",component:ForgetPasswordComponent},
    
