@@ -1,83 +1,191 @@
-<div class="container">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">Student Id</th>
-        <th scope="col">Student Name</th>
-        <th *ngFor="let subject of subjects" scope="col">{{ subject }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Loop through each student and create a row for them -->
-      <tr *ngFor="let student of students">
-        <td [attr.rowspan]="studentMarks[student.id]?.length || 1" scope="row">{{ student.rn_id }}</td>
-        <td [attr.rowspan]="studentMarks[student.id]?.length || 1">{{ student.student_name }}</td>
-
-        <!-- Loop through subjects and show marks -->
-        <ng-container *ngFor="let subject of subjects">
-          <td>
-            <ng-container *ngIf="studentMarks[student.rn_id] && studentMarks[student.rn_id][subject]; else noMarks">
-              <!-- Display all marks, but only trigger modal for reattempted marks -->
-              <td
-                [ngClass]="getMarkClass(student.rn_id, subject, studentMarks[student.rn_id][subject]?.mark)"
-                data-bs-toggle="modal"
-                data-bs-target="#modal1"
-                (click)="showMarkHistory(student.rn_id, subject)"
-                *ngIf="studentMarks[student.rn_id][subject]?.isReattempt"> <!-- Modal will only show for reattempt marks -->
-                {{ studentMarks[student.rn_id][subject]?.mark }}
-              </td>
-              
-              <!-- If it's not a reattempt, just show the mark without triggering the modal -->
-              <td [ngClass]="getMarkClass(student.rn_id, subject, studentMarks[student.rn_id][subject]?.mark)"
-                *ngIf="!studentMarks[student.rn_id][subject]?.isReattempt">
-                {{ studentMarks[student.rn_id][subject]?.mark }}
-              </td>
-            </ng-container>
-
-            <!-- Display 0 if no marks exist for the subject -->
-            <ng-template #noMarks>
-              0
-            </ng-template>
-          </td>
-        </ng-container>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- Modal for Showing Mark History -->
-<div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="markHistoryModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content p-2">
-      <div class="modal-header">
-        <h5 class="modal-title" id="markHistoryModalLabel">{{ selectedSubject }} - {{ selectedStudentName }}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<app-header>
+  <section class="container-fluid">
+    <!-- ========== title-wrapper start ========== -->
+    <div class="title-wrapper pt-30">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="title">
+            <h2>Student Marks</h2>
+          </div>
+        </div>
+        <!-- end col -->
+        <div class="col-md-6">
+          <div class="breadcrumb-wrapper">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="#0">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Student Marks
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <!-- end col -->
       </div>
-      <div class="modal-body">
-        <!-- Display Mark History only if there is more than one attempt -->
-        <p *ngIf="selectedMarkHistory && selectedMarkHistory.length > 1" class="mb-2">
-          <strong>Mark History for {{ selectedStudentName }} - {{ selectedSubject }} ({{selectedMarkHistory.length}} attempts)</strong>
-        </p>
-        
-        <!-- Display Mark History Table -->
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Mark</th>
-              <th scope="col">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let mark of selectedMarkHistory">
-              <td>{{ mark.mark }}</td>
-              <td>{{ mark.edit_date | date:'short' }}</td>
-            </tr>
-          </tbody>
-        </table>
-        
-        <!-- Display message if there is no reattempts -->
-        <p *ngIf="selectedMarkHistory && selectedMarkHistory.length === 1">No reattempts for this subject.</p>
+      <!-- end row -->
+    </div>
+    <!-- ========== title-wrapper end ========== -->
+
+    <div class="tables-wrapper table-components mt-1">
+      <div class="row">
+        <div class="col-lg-12">
+          <!-- Description on the Right -->
+          <div class="description mb-3 d-flex justify-content-end">
+            <div class="me-4 d-flex align-items-center">
+              <span class="circle bg-success"></span> Pass
+            </div>
+            <div class="me-4 d-flex align-items-center">
+              <span class="circle bg-danger"></span> Fail
+            </div>
+            <div class="d-flex align-items-center">
+              <span class="circle bg-warning"></span> History of arrears
+            </div>
+          </div>
+
+          <div class="table-wrapper table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Student Id</th>
+                  <th scope="col">Student Name</th>
+                  <th *ngFor="let subject of subjects" scope="col">
+                    {{ subject }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Loop through each student and create a row for them -->
+                <tr *ngFor="let student of students">
+                  <td
+                    [attr.rowspan]="studentMarks[student.id]?.length || 1"
+                    scope="row"
+                  >
+                    {{ student.rn_id }}
+                  </td>
+                  <td [attr.rowspan]="studentMarks[student.id]?.length || 1">
+                    {{ student.student_name }}
+                  </td>
+
+                  <!-- Loop through subjects and show marks -->
+                  <ng-container *ngFor="let subject of subjects">
+                    <ng-container
+                      *ngIf="
+                        studentMarks[student.rn_id] &&
+                          studentMarks[student.rn_id][subject];
+                        else noMarks
+                      "
+                    >
+                      <!-- Display all marks, but only trigger modal for reattempted marks -->
+                      <td
+                        class="tablefont"
+                        [ngClass]="
+                          getMarkClass(
+                            student.rn_id,
+                            subject,
+                            studentMarks[student.rn_id][subject]?.mark
+                          )
+                        "
+                        data-bs-toggle="modal"
+                        data-bs-target="#modal1"
+                        (click)="showMarkHistory(student.rn_id, subject)"
+                        *ngIf="
+                          studentMarks[student.rn_id][subject]?.isReattempt
+                        "
+                      >
+                        <!-- Modal will only show for reattempt marks -->
+                        {{ studentMarks[student.rn_id][subject]?.mark }}
+                      </td>
+
+                      <!-- If it's not a reattempt, just show the mark without triggering the modal -->
+                      <td
+                        class="tablefont"
+                        [ngClass]="
+                          getMarkClass(
+                            student.rn_id,
+                            subject,
+                            studentMarks[student.rn_id][subject]?.mark
+                          )
+                        "
+                        *ngIf="
+                          !studentMarks[student.rn_id][subject]?.isReattempt
+                        "
+                      >
+                        {{ studentMarks[student.rn_id][subject]?.mark }}
+                      </td>
+                    </ng-container>
+
+                    <!-- Display 0 if no marks exist for the subject -->
+                    <ng-template #noMarks> <td>-</td></ng-template>
+                  </ng-container>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Modal for Showing Mark History -->
+  <div
+    class="modal fade"
+    id="modal1"
+    tabindex="-1"
+    aria-labelledby="markHistoryModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content p-2">
+        <div class="modal-header">
+          <h5 class="modal-title" id="markHistoryModalLabel">
+           {{ selectedStudentName }} 
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <!-- Display Mark History only if there is more than one attempt -->
+          <p
+            *ngIf="selectedMarkHistory && selectedMarkHistory.length > 1"
+            class="mb-2"
+          >
+            <strong
+              >{{ selectedSubject }} ({{
+                selectedMarkHistory.length
+              }}
+              Attempts)</strong
+            >
+          </p>
+
+          <!-- Display Mark History Table -->
+          <div class="table-wrapper table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Mark</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let mark of selectedMarkHistory">
+                <td>{{ mark.mark }}</td>
+                <td>{{ mark.edit_date | date : "short" }}</td>
+              </tr>
+            </tbody>
+          </table>
+</div>
+          <!-- Display message if there is no reattempts -->
+          <p *ngIf="selectedMarkHistory && selectedMarkHistory.length === 1">
+            No reattempts for this subject.
+          </p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</app-header>

@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from '../../Manager/header/header.component';
 
 @Component({
   selector: 'app-manager-marks',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,HeaderComponent],
   templateUrl: './manager-marks.component.html',
   styleUrl: './manager-marks.component.css'
 })
