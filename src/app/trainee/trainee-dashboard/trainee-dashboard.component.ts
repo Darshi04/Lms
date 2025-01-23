@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { TraineeHeaderComponent } from '../trainee-header/trainee-header.component';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-trainee-dashboard',
   standalone: true,
-  imports: [CommonModule,FormsModule,RouterModule,TraineeHeaderComponent],
+  imports: [CommonModule,FormsModule,RouterModule,TraineeHeaderComponent,RouterLink],
   templateUrl: './trainee-dashboard.component.html',
   styleUrl: './trainee-dashboard.component.css'
 })
