@@ -58,4 +58,9 @@ export const routes: Routes = [
     {path:"managermark",component:ManagerMarksComponent},
     {path:"forgetpassword",component:ForgetPasswordComponent},
 
+
+
+
+    { path: '', redirectTo: '/login', pathMatch: 'full' }
+
 ];

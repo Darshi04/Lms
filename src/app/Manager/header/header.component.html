@@ -204,8 +204,8 @@
                         <img src="/images/profile/profile-image.png" alt="" />
                       </div>
                       <div>
-                        <h6 class="fw-500">Adam Joe</h6>
-                        <p>Admin</p>
+                        <h6 class="fw-500" *ngIf="user">{{ user.manager_name || 'User' }}</h6>
+<p>{{ role || 'No role provided' }}
                       </div>
                     </div>
                   </div>
@@ -223,11 +223,9 @@
                         />
                       </div>
                       <div class="content">
-                        <h4 class="text-sm">Adam Joe</h4>
-                        <a
-                          class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs"
-                          href="#"
-                          >Emailgmail.com</a
+                        <h4 class="text-sm" *ngIf="user">{{ user.manager_name || 'No name available' }}</h4>
+                        <a class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs" href="#"
+                          >{{ user.email || 'No email available' }}</a
                         >
                       </div>
                     </div>
@@ -235,8 +233,7 @@
                   <li class="divider"></li>
             
                   <li>
-                    <a href="#signOut"> <i class="lni lni-exit"></i> Sign Out </a>
-                  </li>
+                    <a href="javascript:void(0);" (click)="onSignOut()"> <i class="lni lni-exit"></i> Sign Out</a>                  </li>
                 </ul>
               </div>
               <!-- profile end -->

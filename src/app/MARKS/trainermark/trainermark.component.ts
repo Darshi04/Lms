@@ -24,7 +24,12 @@ export class TrainermarkComponent implements OnInit{
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.selectedTrainerId = 'TR1234';  // Set the initial trainer ID
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const parsedUserData = JSON.parse(userData);
+      this.selectedTrainerId = parsedUserData.trainers[0]?.trainer_id || '';  // Ensure to handle the case if trainer_id is missing
+    }
+    // this.selectedTrainerId = 'TR1234';  // Set the initial trainer ID
     this.selectedSubject = 'Java core';
     this.selectedStudentType = 'AllStudent'; // Default value
     this.fetchStudents(); // Fetch students when component initializes
