@@ -34,13 +34,13 @@ export class LoginComponentComponent {
       let loginEndpoint = '';
 
       switch (this.role) {
-        case 'student':
+        case 'Student':
           loginEndpoint = '/validate_student';
           break;
-        case 'manager':
+        case 'Manager':
           loginEndpoint = '/validate_manager';
           break;
-        case 'trainer':
+        case 'Trainer':
           loginEndpoint = '/validate_trainer';
           break;
         default:
@@ -53,21 +53,22 @@ export class LoginComponentComponent {
           next: (response: any) => {
             console.log('Login successful', response);
 
+            localStorage.setItem('user', JSON.stringify(response));
             // Store role in localStorage
             localStorage.setItem('role', this.role);
 
             // Log and navigate based on role
-            if (this.role === 'student') {
+            if (this.role === 'Student') {
               console.log('Navigating to dashboard');
               this.router.navigate(['/trainee-dashboard']);
             } 
             
-            else if (this.role === 'manager') {
+            else if (this.role === 'Manager') {
               console.log('Navigating to manager');
-              this.router.navigate(['/manager']);
-            } else if (this.role === 'trainer') {
+              this.router.navigate(['manager-dashboard']);
+            } else if (this.role === 'Trainer') {
               console.log('Navigating to home');
-              this.router.navigate(['/home']);
+              this.router.navigate(['/trainer-dashboard']);
             }
           },
           error: (error) => {

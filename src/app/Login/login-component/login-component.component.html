@@ -8,16 +8,16 @@
         <form (ngSubmit)="onLoginSubmit()" #loginForm="ngForm">
           <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
             <p class="lead fw-normal mb-0 me-3">Who Are You?</p>
-            <button type="button" (click)="selectRole('student')" 
-                    [ngClass]="{'selected': role === 'student'}" class="btn btn-primary btn-floating mx-1">
+            <button type="button" (click)="selectRole('Student')" 
+                    [ngClass]="{'selected': role === 'Student'}" class="btn btn-primary btn-floating mx-1">
               Student
             </button>
-            <button type="button" (click)="selectRole('manager')" 
-                    [ngClass]="{'selected': role === 'manager'}" class="btn btn-primary btn-floating mx-1">
+            <button type="button" (click)="selectRole('Manager')" 
+                    [ngClass]="{'selected': role === 'Manager'}" class="btn btn-primary btn-floating mx-1">
               Manager
             </button>
-            <button type="button" (click)="selectRole('trainer')" 
-                    [ngClass]="{'selected': role === 'trainer'}" class="btn btn-primary btn-floating mx-1">
+            <button type="button" (click)="selectRole('Trainer')" 
+                    [ngClass]="{'selected': role === 'Trainer'}" class="btn btn-primary btn-floating mx-1">
               Trainer
             </button>
           </div>
@@ -55,3 +55,17 @@
     </div>
   </div>
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- While login i am getting the details of the person who login, From that details i have id which should be used to send with the http get to get other things related  to them when navigate to specific page.........For example a student is login in , their name should be displayed in dashborad and when they navigate to MarksComponent, their marks should be get from backend using their id and when signout their details should be deleted from the angular ................Explain how will i implement that? -->

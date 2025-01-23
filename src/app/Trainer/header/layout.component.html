@@ -66,7 +66,7 @@
         <span class="divider"><hr /></span>
         <!-- Sign Out Menu Item -->
         <li class="nav-item">
-          <a href="#signOut">
+          <a href="javascript:void(0);" (click)="onSignOut()">
             <span class="icon">
               <i class="fas fa-sign-out-alt"></i>
               <!-- Font Awesome Sign Out Icon -->
@@ -185,8 +185,9 @@
                         <img src="/images/profile/profile-image.png" alt="" />
                       </div>
                       <div>
-                        <h6 class="fw-500">Adam Joe</h6>
-                        <p>Trainer</p>
+                        <h6 class="fw-500" *ngIf="user">{{ user.trainer_name || 'User' }}</h6>
+<p>{{ role || 'No role provided' }}
+
                       </div>
                     </div>
                   </div>
@@ -204,18 +205,16 @@
                         />
                       </div>
                       <div class="content">
-                        <h4 class="text-sm">Adam Joe</h4>
-                        <a
-                          class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs"
-                          href="#"
-                          >Emailgmail.com</a
+                        <h4 class="text-sm" *ngIf="user">{{ user.trainer_name || 'No name available' }}</h4>
+                        <a class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs" href="#"
+                          >{{ user.email || 'No email available' }}</a
                         >
                       </div>
                     </div>
                   </li>
                   <li class="divider"></li>
                   <li>
-                    <a href="#0"> <i class="lni lni-exit"></i> Sign Out</a>
+                    <a href="javascript:void(0);" (click)="onSignOut()"> <i class="lni lni-exit"></i> Sign Out</a>
                   </li>
                 </ul>
               </div>
