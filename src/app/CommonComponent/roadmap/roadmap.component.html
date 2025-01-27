@@ -1,0 +1,43 @@
+
+<ng-template #centerIconCustomTemplate let-index="index" let-event="event">
+  <div class="icon-container">
+    <i 
+      class="fa-regular fa-circle-check" 
+      [style.color]="getCenterIconColor(event)">
+    </i>
+  </div>
+</ng-template>
+
+
+<ng-template #innerEventCustomTemplate let-event="event">
+  <div class="event" (click)="handleClick(event)">
+    <span>{{ event.eventInfo.timestamp | date: 'MMMM dd, yyyy' }}</span>
+    <h4>{{ event.eventInfo.title }}</h4>
+    <div class="topics-container">
+      <ng-container  *ngFor="let topic of event.eventInfo.topics">
+        <div class="topic">
+          <i class="fa-regular fa-circle-check" [style.color]="getTopicIconColor(topic)"></i>
+          <span> {{ topic.topic_name }}</span>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #dateInstantCustomTemplate let-item="item">
+  <span>
+  </span>
+</ng-template>
+
+<div class="custom-theme">
+  <ngx-timeline
+[events]="events"
+[langCode]="'en'"
+[enableAnimation]="true"
+[reverseOrder]="false"
+[changeSide]="changeSide"
+[innerEventCustomTemplate]="innerEventCustomTemplate"
+[centerIconCustomTemplate]="centerIconCustomTemplate"
+[dateInstantCustomTemplate]="dateInstantCustomTemplate">
+</ngx-timeline>
+</div>

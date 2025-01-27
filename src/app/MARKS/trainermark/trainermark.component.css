@@ -1,0 +1,21 @@
+.table th, .table td {
+    vertical-align: middle;
+    padding: 12px; 
+    text-align: left; 
+    border: solid 1px #eeeef0 ;
+  
+    
+}
+  .table th {
+    background-color: #f8f9fae0;
+    color: #495057; 
+    text-align: left; 
+  }
+
+.table-wrapper {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  
+  overflow: hidden;  
+}
+
+
+  

@@ -60,11 +60,11 @@ export class ForgetPasswordComponent {
   
     let endpoint = '';
     if (this.role === 'student') {
-      endpoint = 'http://localhost:8080/update';
+      endpoint = 'http://localhost:8080/update_student_password';
     } else if (this.role === 'manager') {
-      endpoint = 'http://localhost:8080/updatem';
+      endpoint = 'http://localhost:8080/update_manager_password';
     } else if (this.role === 'trainer') {
-      endpoint = 'http://localhost:8080/updatet';
+      endpoint = 'http://localhost:8080/update_trainer_password';
     }
 
     const payload = {

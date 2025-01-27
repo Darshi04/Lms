@@ -15,10 +15,13 @@ export class LoginComponentComponent {
   email: string = '';
   password: string = '';
   role: string = '';
-  message: string = ''; 
+  message: string = '';
   private apiUrl: string = 'http://localhost:8080'; // Backend URL
 
-  constructor(private http: HttpClient, private router: Router) {}
+
+
+  constructor(private http: HttpClient, private router: Router) { }
+
 
   selectRole(selectedRole: string): void {
     this.role = selectedRole;
@@ -26,22 +29,19 @@ export class LoginComponentComponent {
   }
 
   onLoginSubmit(): void {
-    if (this.email && this.password && this.role) {
-      const loginData = {
-        email: this.email,
-        password: this.password
-      };
-
+    if (this.email && this.password) {
+      const loginData = { email: this.email, password: this.password };
       let loginEndpoint = '';
+
       switch (this.role) {
-        case 'student':
-          loginEndpoint = '/validate';  // General user validation
+        case 'Student':
+          loginEndpoint = '/validate_student';
           break;
-        case 'manager':
-          loginEndpoint = '/validatem';  // Manager validation
+        case 'Manager':
+          loginEndpoint = '/validate_manager';
           break;
-        case 'trainer':
-          loginEndpoint = '/validatet';  // Trainer validation
+        case 'Trainer':
+          loginEndpoint = '/validate_trainer';
           break;
         default:
           this.message = 'Please select a role';
@@ -49,28 +49,37 @@ export class LoginComponentComponent {
       }
 
       this.http.post(`${this.apiUrl}${loginEndpoint}`, loginData)
-      .subscribe({
-        next: (response: any) => {
-          console.log('Login successful', response);
-          
-          if (this.role === 'student') {
-            this.router.navigate(['course']);
-          } else if (this.role === 'manager') {
-            this.router.navigate(['manager']);
-          } else if (this.role === 'trainer') {
-            this.router.navigate(['home']);
-          } 
-          // else {
-          //   this.router.navigate(['timeline']);
-          // }
-        },
-        error: (error) => {
-          console.error('Login failed', error);
-          this.message = 'Invalid email or password'; 
-        }
-      });
-  } else {
-    this.message = 'Please fill in all fields'; 
+        .subscribe({
+          next: (response: any) => {
+            console.log('Login successful', response);
+
+            localStorage.setItem('user', JSON.stringify(response));
+            // Store role in localStorage
+            localStorage.setItem('role', this.role);
+
+            // Log and navigate based on role
+            if (this.role === 'Student') {
+              console.log('Navigating to dashboard');
+              this.router.navigate(['/trainee-dashboard']);
+            } 
+            
+            else if (this.role === 'Manager') {
+              console.log('Navigating to manager');
+              this.router.navigate(['manager-dashboard']);
+            } else if (this.role === 'Trainer') {
+              console.log('Navigating to home');
+              this.router.navigate(['/trainer-dashboard']);
+            }
+          },
+          error: (error) => {
+            console.error('Login failed', error);
+            this.message = 'Invalid email or password';
+          }
+        });
+    } else {
+      this.message = 'Please fill in all fields';
+    }
   }
-}
+
+
 }

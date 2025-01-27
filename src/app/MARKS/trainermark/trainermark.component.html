@@ -1,0 +1,202 @@
+<app-layout>
+  <!-- ========== section start ========== -->
+  <section class="table-components">
+    <div class="container-fluid">
+      <!-- ========== title-wrapper start ========== -->
+      <div class="title-wrapper pt-30">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="title">
+              <h2>Student Marks</h2>
+            </div>
+          </div>
+          <!-- end col -->
+          <div class="col-md-6">
+            <div class="breadcrumb-wrapper">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="#0">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Student Marks
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row -->
+      </div>
+      <!-- ========== title-wrapper end ========== -->
+
+      <!-- ========== forms-wrapper start ========== -->
+      <div class="forms-wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card-style mb-3">
+              <!-- Filters aligned in a single line -->
+  
+              <div class="row">
+                <!-- Trainer Id is removed, as we are fetching it from localStorage -->
+                
+                <div class="col-md-6">
+                  <div class="select-style-1">
+                    <label class="mb-2">Select Subject</label>
+                    <div class="select-position">
+                      <select class="form-control"
+                        [(ngModel)]="selectedSubject" (change)="fetchMarks()">
+                        <option value="Java core">Java core</option>
+                        <option value="Data Structures">Data Structures</option>
+                        <option value="Cloud Computing">Cloud Computing</option>
+                        <option value="Linux">Linux</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-md-6">
+                  <div class="select-style-1">
+                    <label class="mb-2">Student Type</label>
+                    <div class="select-position">
+                      <select
+                        class="form-control"
+                        [(ngModel)]="selectedStudentType"
+                        (change)="fetchMarks()"
+                      >
+                        <option value="AllStudent">All Students</option>
+                        <option value="ReAttempt">ReAttempt Students</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Displaying the fetched marks (for reattempt) -->
+              <div class="tables-wrapper mt-1">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div *ngIf="marklists.length > 0 && !noMarksFound">
+                      <h6 class="mb-3">{{ selectedSubject }}</h6>
+                      <div class="table-wrapper table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Student ID</th>
+                              <th>Marks</th>
+                              <th>Edit Date</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let student of marklists">
+                              <td>{{ student.stdent_id }}</td>
+                              
+                              <!-- Conditional rendering of input or label based on selectedStudentType -->
+                              <td>
+                                <!-- If it's a reattempt, display an input field for the mark -->
+                                <ng-container *ngIf="selectedStudentType === 'ReAttempt'">
+                                  <input  
+                                    [(ngModel)]="student.mark"
+                                    type="number"
+                                    class="form-control"
+                                    min="1"
+                                    max="100"
+                                  />
+                                </ng-container>
+                                
+                                <!-- If it's not a reattempt, display the mark as a label -->
+                                <ng-container *ngIf="selectedStudentType !== 'ReAttempt'">
+                                  <label class="form-control" style="border: none;">{{ student.mark || '-' }}</label>
+                                </ng-container>
+                              </td>
+                              
+                              <td>{{ student.edit_date | date: 'dd/MM/yyyy' }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <button *ngIf="selectedStudentType === 'ReAttempt'"
+                          class="btn btn-outline-primary"
+                          style="float: right"
+                          (click)="attemptMarks()"
+                        >
+                          Publish Marks
+                        </button>
+                      </div>
+                      <button
+                      class="btn btn-outline-primary mt-4"
+                      style="float: right"
+                      (click)="attemptMarks()">
+                      Publish Marks
+                    </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+  
+              <!-- No Marks Published Yet (for new marks) -->
+              <div class="tables-wrapper">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div
+                      *ngIf="
+                        marklists.length === 0 &&
+                        studentIds.length > 0 &&
+                        !noMarksFound
+                      "
+                    >
+                      <div class="table-wrapper table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Student ID</th>
+                              <th>Marks</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let id of studentIds">
+                              <td>{{ id }}</td>
+                              <td>
+                                <input
+                                  type="number"
+                                  [(ngModel)]="marksMap[id]"
+                                  name="mark-{{ id }}"
+                                  class="form-control"
+                                  min="1"
+                                  max="100"
+                                />
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <button
+                      class="btn btn-outline-primary mt-4"
+                      style="float: right"
+                      (click)="publishMarks()"
+                    >
+                      Publish Marks
+                    </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Display No marks found message -->
+              <div *ngIf="noMarksFound">
+                <h6>No marks found for students.</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ========== forms-wrapper end ========== -->
+    </div>
+  </section>
+  <!-- ========== section end ========== -->
+
+  <!-- ========== footer start =========== -->
+  <app-footer></app-footer>
+  <!-- ========== footer end =========== -->
+</app-layout>

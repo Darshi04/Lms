@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FooterComponent } from '../../TrainerComponent/footer/footer.component';
+import { FooterComponent } from '../../Trainer/footer/footer.component';
 import { SharedService } from '../../shared.service';
 import { RouterModule } from '@angular/router';
 

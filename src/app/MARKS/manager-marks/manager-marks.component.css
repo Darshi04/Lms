@@ -1,0 +1,52 @@
+.green {
+    color: green;
+  }
+  
+  .red {
+    color: rgb(255, 0, 0);
+  }
+  
+  .yellow {
+    color: #db9f08;
+  }
+
+.tablefont{
+  font-weight: 600;
+}
+  
+
+  .table th, .table td {
+    vertical-align: middle;
+    padding: 12px; /* Adds more padding for better spacing */
+    text-align: left; /* Left-align the content for better readability */
+    font-size: 1rem; /* Slightly larger font for readability */
+  }
+  
+  .table th {
+    font-weight: bold; /* Make headers bold */
+    background-color: #f8f9fa; /* Light background color for headers */
+    text-align: left; /* Align headers to the left */
+  }
+  
+
+  .circle {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.circle:hover {
+    transform: scale(1.2); /* Slightly enlarge on hover */
+}
+
+table.table th {
+  padding: 1rem; /* Adjust the padding as needed */
+}
+
+table.table td{
+  padding-left: 1rem; /* Adjust the padding as needed */
+}
