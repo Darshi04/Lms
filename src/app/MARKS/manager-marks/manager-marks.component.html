@@ -74,7 +74,7 @@
                     <ng-container
                       *ngIf="
                         studentMarks[student.rn_id] &&
-                          studentMarks[student.rn_id][subject];
+                          studentMarks[student.rn_id][subject]?.mark;
                         else noMarks
                       "
                     >

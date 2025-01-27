@@ -22,6 +22,8 @@ export class ManagerMarksComponent {
 
   constructor(private http: HttpClient) {
     this.http.get('http://localhost:8080/students_mark').subscribe((response: any) => {
+      console.log(response);
+      
       this.students = response.students;
       this.subjects = this.extractSubjects(response.students);
       

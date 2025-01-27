@@ -27,7 +27,6 @@
   }
   
   .sidebar-nav .nav-item a:hover {
-    background-color: #f4f4f4;
     border-radius: 4px;
     transition: 0.3s ease;
   }
@@ -64,7 +63,16 @@
   }
 
 
+  .nav-item a.active {
+    border-radius: 4px;
+    color: black;
 
+  }
+
+  .nav-item a.active .icon i {
+    color: #007bff;  
+
+  }
  
 
 

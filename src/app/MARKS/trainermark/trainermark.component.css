@@ -1,15 +1,21 @@
 .table th, .table td {
     vertical-align: middle;
-    padding: 12px; /* Adds more padding for better spacing */
-    text-align: left; /* Left-align the content for better readability */
-    font-size: 1rem; /* Slightly larger font for readability */
-  }
+    padding: 12px; 
+    text-align: left; 
+    border: solid 1px #eeeef0 ;
   
+    
+}
   .table th {
-    font-weight: bold; /* Make headers bold */
-    background-color: #f8f9fa; /* Light background color for headers */
-    color: #495057; /* Darker text for headers */
-    text-align: left; /* Align headers to the left */
+    background-color: #f8f9fae0;
+    color: #495057; 
+    text-align: left; 
   }
-  
+
+.table-wrapper {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  
+  overflow: hidden;  
+}
+
+
   

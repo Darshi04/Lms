@@ -20,13 +20,15 @@ Chart.register(...registerables);
 })
 
 export class HomeComponent implements OnInit {
+  studentCount: number = 0;  // Variable to hold the student count
+
   scheduledCount: number = 0;
   completedCount: number = 0;
   public chart: any;  // Declare the chart instance
 
   sch: any = "";
 
-  constructor(private eventService: EventService, private obj: HttpClient) {}
+  constructor(private eventService: EventService, private http: HttpClient) {}
 
   isSidebarOpen: boolean = true; 
 
@@ -38,7 +40,7 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.obj.get("http://localhost:8080/Count").subscribe({
+    this.http.get("http://localhost:8080/Count").subscribe({
       next: (response) => {
         this.sch = response;
         console.log(response);
@@ -51,10 +53,11 @@ export class HomeComponent implements OnInit {
       }
     });
 
-        this.obj.get<any>('http://localhost:8080/subject-stats').subscribe((data) => {
+        this.http.get<any>('http://localhost:8080/subject-stats').subscribe((data) => {
       this.renderChart(data);
     });
         
+    this.getStudentCount();  // Call the function to fetch the student count
 
   }
 
@@ -62,9 +65,13 @@ export class HomeComponent implements OnInit {
 
 
       renderChart(data: any): void {
+
+    
         const subjects = Object.keys(data);  // Extract subjects from the response
         const passCounts = subjects.map((subject) => data[subject]['Pass'] || 0);  // Pass counts
         const failCounts = subjects.map((subject) => data[subject]['Fail'] || 0);  // Fail counts
+
+        
       
         // Create the chart using Chart.js
         this.chart = new Chart('marksChart', {
@@ -153,7 +160,16 @@ export class HomeComponent implements OnInit {
       }
       
       
-      
+      getStudentCount(): void {
+        this.http.get<number>('http://localhost:8080/student/count').subscribe(
+          (count) => {
+            this.studentCount = count;  // Store the count received from the backend
+          },
+          (error) => {
+            console.error('Error fetching student count', error);  // Handle errors
+          }
+        );
+      }
       
       
 

@@ -41,24 +41,13 @@
           </a>
         </li>
         
-        
-        <!-- Track Student Progress -->
-        <li class="nav-item">
-          <a routerLink="/trainer-dashboard" routerLinkActive="active">
-            <span class="icon">
-              <i class="fas fa-chart-bar"></i>
-            </span>
-            <span class="text">Track Student Progress</span>
-          </a>
-        </li>
-  
         <!-- Course Completion Checklist -->
         <li class="nav-item">
             <a routerLink="/trainer-checklist" routerLinkActive="active">
                 <span class="icon">
               <i class="fas fa-check-circle"></i>
             </span>
-            <span class="text">Course Completion Checklist</span>
+            <span class="text">Course Checklist</span>
           </a>
         </li>
   
@@ -185,7 +174,7 @@
                         <img src="/images/profile/profile-image.png" alt="" />
                       </div>
                       <div>
-                        <h6 class="fw-500" *ngIf="user">{{ user.trainer_name || 'User' }}</h6>
+                        <h6 class="fw-500" *ngIf="user">{{ user.name || 'User' }}</h6>
 <p>{{ role || 'No role provided' }}
 
                       </div>

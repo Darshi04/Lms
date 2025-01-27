@@ -55,7 +55,7 @@ export const routes: Routes = [
     {path:"card",component:CardComponent},
 
     {path:"trainermark",component:TrainermarkComponent},
-    {path:"managermark",component:ManagerMarksComponent},
+    {path:"markuhh",component:ManagerMarksComponent},
     {path:"forgetpassword",component:ForgetPasswordComponent},
 
 
