@@ -20,6 +20,69 @@ export class ManagerMarksComponent {
   selectedStudentName: any;
   selectedSubject: any;
 
+  // constructor(private http: HttpClient) {
+  //   this.http.get('http://localhost:8080/students_mark').subscribe((response: any) => {
+  //     console.log(response);
+      
+  //     this.students = response.students;
+  //     this.subjects = this.extractSubjects(response.students);
+      
+
+  //     // Loop through each student and process their marks
+  //     this.students.forEach((student: any) => {
+  //       // If the student has no marks, set them to 0 for all subjects
+  //       if (!student.marks || student.marks.length === 0) {
+  //         console.log('No marks for student', student.rn_id);
+  //         this.studentMarks[student.rn_id] = {};  // Initialize student marks if they don't exist
+  //         this.subjects.forEach(subject => {
+  //           // Set mark to 0 for each subject if no marks are found
+  //           this.studentMarks[student.rn_id][subject] = { mark: 0 };
+  //         });
+  //         return;
+  //       }
+
+  //       // Sort the marks by the edit_date in descending order to get the latest mark
+  //       const sortedMarks = student.marks.sort((a: any, b: any) => new Date(b.edit_date).getTime() - new Date(a.edit_date).getTime());
+  //       console.log("Sorted Marks for student", student.rn_id, sortedMarks);
+
+  //       // Initialize the student's marks if not already done
+  //       if (!this.studentMarks[student.rn_id]) {
+  //         this.studentMarks[student.rn_id] = {};
+  //       }
+        
+        
+  //       const subjectMarks: { [subject: string]: any[] } = {};  // To track marks for each subject
+
+  //       // Loop through all marks and store them in subjectMarks
+  //       sortedMarks.forEach((mark: any) => {
+  //         if (!subjectMarks[mark.subject]) {
+  //           subjectMarks[mark.subject] = [];
+  //         }
+  //         subjectMarks[mark.subject].push(mark);
+          
+  //         // Add the subject to the subjects array if it hasn't been added already
+  //         if (!this.subjects.includes(mark.subject)) {
+  //           this.subjects.push(mark.subject);
+  //         }
+  //         this.studentMarks[student.rn_id].marks = sortedMarks;
+  //       });
+
+  //       // Now process the marks and set the reattempt flag for each subject
+  //       Object.keys(subjectMarks).forEach(subject => {
+  //         const marksForSubject = subjectMarks[subject];
+  //         const isReattempt = marksForSubject.length > 1;  // If more than 1 mark exists, it's a reattempt
+
+  //         // Store the latest mark for each subject
+  //         this.studentMarks[student.rn_id][subject] = {
+  //           mark: marksForSubject[0].mark,
+  //           mark_id: marksForSubject[0].mark_id,
+  //           isReattempt: isReattempt
+  //         };
+  //         console.log("Updated mark for", student.rn_id, subject, this.studentMarks[student.rn_id][subject]);
+  //       });
+  //     });
+  //   });
+  // }
   constructor(private http: HttpClient) {
     this.http.get('http://localhost:8080/students_mark').subscribe((response: any) => {
       console.log(response);
@@ -27,7 +90,6 @@ export class ManagerMarksComponent {
       this.students = response.students;
       this.subjects = this.extractSubjects(response.students);
       
-
       // Loop through each student and process their marks
       this.students.forEach((student: any) => {
         // If the student has no marks, set them to 0 for all subjects
@@ -40,19 +102,22 @@ export class ManagerMarksComponent {
           });
           return;
         }
-
+  
         // Sort the marks by the edit_date in descending order to get the latest mark
-        const sortedMarks = student.marks.sort((a: any, b: any) => new Date(b.edit_date).getTime() - new Date(a.edit_date).getTime());
+        const sortedMarks = student.marks
+          .filter((mark: any) => mark.mark !== null)  // Remove null marks
+          .sort((a: any, b: any) => new Date(b.edit_date).getTime() - new Date(a.edit_date).getTime());
+  
         console.log("Sorted Marks for student", student.rn_id, sortedMarks);
-
+  
         // Initialize the student's marks if not already done
         if (!this.studentMarks[student.rn_id]) {
           this.studentMarks[student.rn_id] = {};
         }
-        
-        
-        const subjectMarks: { [subject: string]: any[] } = {};  // To track marks for each subject
 
+  
+        const subjectMarks: { [subject: string]: any[] } = {};  // To track marks for each subject
+  
         // Loop through all marks and store them in subjectMarks
         sortedMarks.forEach((mark: any) => {
           if (!subjectMarks[mark.subject]) {
@@ -66,16 +131,16 @@ export class ManagerMarksComponent {
           }
           this.studentMarks[student.rn_id].marks = sortedMarks;
         });
-
+  
         // Now process the marks and set the reattempt flag for each subject
         Object.keys(subjectMarks).forEach(subject => {
           const marksForSubject = subjectMarks[subject];
           const isReattempt = marksForSubject.length > 1;  // If more than 1 mark exists, it's a reattempt
-
-          // Store the latest mark for each subject
+  
+          // Store the latest mark for each subject (or 0 if no mark)
           this.studentMarks[student.rn_id][subject] = {
-            mark: marksForSubject[0].mark,
-            mark_id: marksForSubject[0].mark_id,
+            mark: marksForSubject.length > 0 ? marksForSubject[0].mark : 0,  // Set to 0 if no valid marks
+            mark_id: marksForSubject.length > 0 ? marksForSubject[0].mark_id : null,
             isReattempt: isReattempt
           };
           console.log("Updated mark for", student.rn_id, subject, this.studentMarks[student.rn_id][subject]);
@@ -83,6 +148,8 @@ export class ManagerMarksComponent {
       });
     });
   }
+  
+  
 
   extractSubjects(students: any[]): string[] {
     const subjects = new Set<string>();
@@ -146,7 +213,7 @@ export class ManagerMarksComponent {
       this.selectedSubject = subject;
   
       // Retrieve all marks for the selected student and subject
-      const studentMarkHistory = student.marks.filter((mark: any) => mark.subject === subject);
+      const studentMarkHistory = student.marks.filter((mark: any) => mark.subject === subject && mark.mark !== null);
   
       // Ensure selectedMarkHistory is an array
       this.selectedMarkHistory = Array.isArray(studentMarkHistory) ? studentMarkHistory : [studentMarkHistory];
