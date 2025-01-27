@@ -31,14 +31,22 @@ body, html {
 .table {
   width: 100%;
   table-layout: fixed;
+ 
+ 
+  border-collapse: collapse;
 }
 
 th, td {
-  padding: 10px;
+
+  padding: 8px;
+  text-align: left; /* Adjust as needed */
+  word-wrap: break-word; /* Prevents overflow of long text */
+  overflow: hidden;
 }
 
 th {
-  background-color: #f8f9fa;
+  background-color: #f8f9fa; /* Optional: To distinguish header */
+  font-weight: bold;
 }
 
 .col-lg-6 {
@@ -68,16 +76,18 @@ th {
   border: 1px solid #365CF5;
 }
 
-.table {
-  border-collapse: collapse;
-}
+
 
 table th, table td {
   text-align: center;
 }
 
 table td button {
-  margin: 5px;
+  margin-right: 5px;
+}
+
+td i {
+  font-size: 16px; /* Ensure the icon is not too large */
 }
 
 
@@ -200,10 +210,11 @@ table td button {
 /* Input fields styling */
 input[type="text"] {
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
+
 }
 
 /* Button styling */
@@ -293,3 +304,13 @@ drop down */
 
 
 
+
+
+
+
+.student-avatar {
+  width: 50px; /* Adjust size as needed */
+  height: 50px;
+  border-radius: 50%; /* To make it round */
+  object-fit: cover; /* Ensures image fits in the container */
+}
