@@ -45,11 +45,8 @@
                   <div class="select-style-1">
                     <label class="mb-2">Select Subject</label>
                     <div class="select-position">
-                      <select
-                        class="form-control"
-                        [(ngModel)]="selectedSubject"
-                        (change)="fetchMarks()"
-                      >
+                      <select class="form-control"
+                        [(ngModel)]="selectedSubject" (change)="fetchMarks()">
                         <option value="Java core">Java core</option>
                         <option value="Data Structures">Data Structures</option>
                         <option value="Cloud Computing">Cloud Computing</option>
@@ -94,20 +91,31 @@
                           <tbody>
                             <tr *ngFor="let student of marklists">
                               <td>{{ student.stdent_id }}</td>
+                              
+                              <!-- Conditional rendering of input or label based on selectedStudentType -->
                               <td>
-                                <input
-                                  [(ngModel)]="student.mark"
-                                  type="number"
-                                  class="form-control"
-                                  min="1"
-                                  max="100"
-                                />
+                                <!-- If it's a reattempt, display an input field for the mark -->
+                                <ng-container *ngIf="selectedStudentType === 'ReAttempt'">
+                                  <input  
+                                    [(ngModel)]="student.mark"
+                                    type="number"
+                                    class="form-control"
+                                    min="1"
+                                    max="100"
+                                  />
+                                </ng-container>
+                                
+                                <!-- If it's not a reattempt, display the mark as a label -->
+                                <ng-container *ngIf="selectedStudentType !== 'ReAttempt'">
+                                  <label class="form-control" style="border: none;">{{ student.mark || '-' }}</label>
+                                </ng-container>
                               </td>
+                              
                               <td>{{ student.edit_date | date: 'dd/MM/yyyy' }}</td>
                             </tr>
                           </tbody>
                         </table>
-                        <button
+                        <button *ngIf="selectedStudentType === 'ReAttempt'"
                           class="btn btn-outline-primary"
                           style="float: right"
                           (click)="attemptMarks()"
@@ -119,6 +127,7 @@
                   </div>
                 </div>
               </div>
+              
   
               <!-- No Marks Published Yet (for new marks) -->
               <div class="tables-wrapper">

@@ -53,11 +53,15 @@ export class TrainermarkComponent implements OnInit{
     );
   }
 
-  // This method fetches the marks based on the selected parameters
+  initialMarksMap: { [key: string]: number | null } = {};  // Holds initial marks of students
+
   fetchMarks(): void {
     if (!this.selectedTrainerId || !this.selectedSubject || !this.selectedStudentType) {
       return;
     }
+
+    this.marklists = [];
+  this.marksMap = {};
   
     const markRequest = {
       trainerId: this.selectedTrainerId,
@@ -123,6 +127,7 @@ export class TrainermarkComponent implements OnInit{
       }
     );
   }
+  
 
   // Attempt to publish reattempt marks (if needed)
   attemptMarks(): void {

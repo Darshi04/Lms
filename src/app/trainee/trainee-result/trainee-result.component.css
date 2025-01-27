@@ -1,4 +1,4 @@
-.card {
+/* .card {
     border: 1px solid #ddd;
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -15,6 +15,7 @@
   }
   
   .card-body {
+    height: 130px;
     padding: 20px;
   }
   
@@ -34,22 +35,19 @@
   }
 
 
-  /* General style for sidebar icons */
 .sidebar-nav .nav-item .icon i {
-    font-size: 18px;  /* Adjust this value to match the size of the text */
-    vertical-align: middle;  /* Align icons vertically to middle */
+    font-size: 18px; 
+    vertical-align: middle; 
 }
 
 
 
-/* Ensure consistent alignment */
 .sidebar-nav .nav-item {
     display: flex;
     align-items: center;
     padding: 10px 0;
 }
 
-/* Styling for hover effect */
 .sidebar-nav .nav-item a:hover {
     background-color: #f4f4f4;
     border-radius: 4px;
@@ -57,7 +55,7 @@
 }
 
 .sidebar-nav .nav-item a:hover .icon i {
-    color: #007bff;  /* Change icon color on hover */
+    color: #007bff;
 }
 
 .navbar-logo p i{
@@ -80,60 +78,47 @@
     top: 0;
     left: 0;
     bottom: 0;
-    transform: translateX(-250px); /* Initially hidden */
+    transform: translateX(-250px);
     transition: transform 0.3s ease-in-out;
   }
 
   
-  /* Optional: Add some space between the icon and the text */
   .sidebar-nav .nav-item .icon {
     margin-right: 10px;
     transition: 0.3s ease;
     
   }
   
-  /* Ensure consistent alignment */
   .sidebar-nav .nav-item {
     display: flex;
     align-items: center;
     padding: 10px 0;
   }
-  
-
-  
-
- 
-  
- 
-  
-
-  /* Sidebar is closed, content takes up full width */
-  .main-wrapper.sidebar-closed {
-    margin-left: 0;  /* Remove space for sidebar */
+    .main-wrapper.sidebar-closed {
+    margin-left: 0;  
     transition: margin 0.3s ease-in-out;
   }
   
-  /* Sidebar is open, content has space for sidebar */
   .main-wrapper {
-    margin-left: 250px;  /* Sidebar width */
+    margin-left: 250px; 
     transition: margin 0.3s ease-in-out;
     transition: margin-left 0.3s ease-in-out;
   }
 
   
   .sidebar-nav-wrapper.active {
-    transform: translateX(0); /* Sidebar shown */
+    transform: translateX(0); 
   }
   
   .image-container {
-    width: 100%; /* Ensures it fills the container width */
-    height: 200px; /* Fixed height */
-    overflow: hidden; /* Ensures excess image content doesn't show */
+    width: 100%;
+    height: 200px; 
+    overflow: hidden; 
   }
   
   .card-img-top {
-    width: 100%; /* Scales the image to the width of the container */
-    object-fit: cover; /* Ensures the image maintains aspect ratio without stretching */
+    width: 100%;
+    object-fit: cover; 
   }
   .card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -147,4 +132,76 @@
 .container-result{
   justify-items: auto;
 }
+ */
 
+
+
+ .card {
+    background-color: #fff;
+    border-radius: 10px;
+    border: none;
+    height: 200px;
+    width: 400px;
+    position: relative;
+    margin-bottom: 30px;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,0.1), 0 0.9375rem 1.40625rem rgba(90,97,105,0.1), 0 0.25rem 0.53125rem rgba(90,97,105,0.12), 0 0.125rem 0.1875rem rgba(90,97,105,0.1);
+}
+
+.attempt{
+  color: white;
+  font-weight: 400;
+}
+.l-bg-cherry {
+    background: linear-gradient(to right, #493240, #f09) !important;
+    color: #fff;
+}
+
+.l-bg-blue-dark {
+    background: linear-gradient(to right, #373b44, #4286f4) !important;
+    color: #fff;
+}
+
+.l-bg-green-dark {
+    background: linear-gradient(to right, #0a504a, #38ef7d) !important;
+    color: #fff;
+}
+
+.l-bg-orange-dark {
+    background: linear-gradient(to right, #a86008, #ffba56) !important;
+    color: #fff;
+}
+
+.card .card-statistic-3 .card-icon-large .fas, .card .card-statistic-3 .card-icon-large .far, .card .card-statistic-3 .card-icon-large .fab, .card .card-statistic-3 .card-icon-large .fal {
+    font-size: 110px;
+}
+
+.card .card-statistic-3 .card-icon {
+    text-align: center;
+    line-height: 50px;
+    margin-left: 15px;
+    color: #000;
+    position: absolute;
+    right: -5px;
+    top: 20px;
+    opacity: 0.1;
+}
+
+.l-bg-cyan {
+    background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+    color: #fff;
+}
+
+.l-bg-green {
+    background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
+    color: #fff;
+}
+
+.l-bg-orange {
+    background: linear-gradient(to right, #f9900e, #ffba56) !important;
+    color: #fff;
+}
+
+.l-bg-cyan {
+    background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+    color: #fff;
+}

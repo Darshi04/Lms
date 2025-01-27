@@ -15,7 +15,7 @@
 
         <!-- Loop through subjects and show marks -->
         <ng-container *ngFor="let subject of subjects">
-          <td>
+          
             <ng-container *ngIf="studentMarks[student.rn_id] && studentMarks[student.rn_id][subject]; else noMarks">
               <!-- Display all marks, but only trigger modal for reattempted marks -->
               <td
@@ -36,9 +36,9 @@
 
             <!-- Display 0 if no marks exist for the subject -->
             <ng-template #noMarks>
-              0
+              <td>-</td>
             </ng-template>
-          </td>
+          
         </ng-container>
       </tr>
     </tbody>
