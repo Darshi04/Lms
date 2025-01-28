@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -20,7 +20,7 @@ import { TrainerService } from '../../trainer.service';
 export class StudentDetailsComponent implements OnInit  {
   // Flags and variables
   addingNewStudent = false;
-  newStudent = { name: '', rnNumber: '', t_id: '', email: '', role: '', skills: '' }; 
+  newStudent = { name: '', rnNumber: '', t_id: '', email: '', role: '', skills: '' ,profile:''}; 
   filteredStudents: any[] = [];
   students: any[] = [];
   currentStudent: any = null;
@@ -29,6 +29,11 @@ export class StudentDetailsComponent implements OnInit  {
   empid: string = '';
   skill: string = '';
   isSidebarOpen: boolean = true;
+
+  selectedImage: any = null; // Store selected image
+
+
+  
 
   trainerIds: number[] = []; // To hold trainer IDs for the dropdown
 
@@ -44,6 +49,7 @@ export class StudentDetailsComponent implements OnInit  {
     // Fetch students (already existing code)
     this.loadStudents();
   }
+  
 
   // Fetch students (already existing code)
   loadStudents() {
@@ -73,37 +79,40 @@ export class StudentDetailsComponent implements OnInit  {
   // Show the form to add a new student
   start() {
     this.addingNewStudent = true;
-    this.newStudent = { name: '', rnNumber: '', t_id: '', email: '', role: '', skills: '' }; // Reset form
+    this.newStudent = { name: '', rnNumber: '', t_id: '', email: '', role: '', skills: '',profile:'' }; // Reset form
   }
 
   // Save the new student
   saveNewStudent() {
-    if (this.newStudent.name && this.newStudent.rnNumber && this.newStudent.t_id && this.newStudent.email && this.newStudent.role && this.newStudent.skills) {
-      // Generate random password
-      const randomPassword = this.generateRandomPassword(8); // Generate a password of length 8
-      const data = { ...this.newStudent, password: randomPassword }; // Add password to the student data
+    if (this.newStudent.name && this.newStudent.rnNumber && this.newStudent.t_id && this.newStudent.email && this.newStudent.role && this.newStudent.skills && this.newStudent.profile) {
+        const randomPassword = this.generateRandomPassword(8);
 
-      console.log('Saving new student with random password:', data);
+        // Check if profile image is selected and set profile field
+        const data = { 
+            ...this.newStudent, 
+            password: randomPassword, 
+            profile: this.selectedImage || 'default-avatar-url'  // Use base64 or default URL if no image
+        };
 
-      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        console.log('Data to Save:', data); // Log the data being sent
 
-      this.http.post('http://localhost:8081/students', data, { headers: headers }).subscribe(
-        (response: any) => {
-          console.log('Student saved:', response);
-          this.filteredStudents.push(response);
-          this.addingNewStudent = false; // Close the form
-        },
-        (error) => {
-          console.error('Error saving student:', error);
-          if (error.status === 400) {
-            console.error('Bad Request: ', error.error);
-          }
-        }
-      );
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        this.http.post('http://localhost:8081/students', data, { headers: headers }).subscribe(
+            (response: any) => {
+                console.log('Student saved:', response);
+                this.filteredStudents.push(response);
+                this.addingNewStudent = false; // Close the form
+            },
+            (error) => {
+                console.error('Error saving student:', error);
+            }
+        );
     } else {
-      console.error('All fields are required');
+        console.error('All fields are required');
     }
-  }
+}
+
 
   // Cancel adding a new student
   cancelAddingNewStudent() {
@@ -118,18 +127,22 @@ export class StudentDetailsComponent implements OnInit  {
       this.newStudent.t_id &&
       this.newStudent.email &&
       this.newStudent.role &&
-      this.newStudent.skills
+      this.newStudent.skills &&
+      this.newStudent.profile
     );
   }
 
-  // Save the edited student data
-  saveEditedStudent() {
+   // Save the edited student
+   saveEditedStudent() {
     if (this.currentStudent && this.isEditing) {
       console.log('Saving updated student:', this.currentStudent);
 
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-      });
+      // If an image is selected, update the avatar field
+      if (this.selectedImage) {
+        this.currentStudent.avatar = this.selectedImage;
+      }
+
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
       this.http.put(`http://localhost:8081/students/${this.currentStudent.sno}`, this.currentStudent, { headers })
         .subscribe(
@@ -137,11 +150,8 @@ export class StudentDetailsComponent implements OnInit  {
             console.log('Student updated:', response);
 
             // Find and update the student in the list
-            const index = this.filteredStudents.findIndex(
-              (student) => student.sno === this.currentStudent.sno
-            );
+            const index = this.filteredStudents.findIndex((student) => student.sno === this.currentStudent.sno);
             if (index !== -1) {
-              // Update the student object in the filteredStudents array
               this.filteredStudents[index] = { ...this.currentStudent };
             }
 
@@ -229,6 +239,20 @@ export class StudentDetailsComponent implements OnInit  {
       this.skillfilters();
     }
   }
+
+   // Handle file change (image upload)
+   onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.newStudent.profile = e.target.result; // Set the profile field to the base64 string
+        console.log('Selected Image Base64:', this.newStudent.profile); // Check the value
+      };
+      reader.readAsDataURL(file);  // Convert the image to base64 format
+    }
   }
+
   
 
+}
