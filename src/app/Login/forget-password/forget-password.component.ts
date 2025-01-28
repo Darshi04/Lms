@@ -11,54 +11,77 @@ import { Router } from '@angular/router';
   templateUrl: './forget-password.component.html',
   styleUrls: ['./forget-password.component.css']
 })
+
 export class ForgetPasswordComponent {
-  emailSubmitted = false;
   email: string = '';
+  role: string = '';
   newPassword: string = '';
   confirmPassword: string = '';
-  role: string = '';
-  message: string = '';  
+  verificationCode: string = '';
+  emailSubmitted = false;
+  verificationCodeSent = false;
+  codeVerified = false;
+  message: string = '';
+  roles = ['student', 'manager', 'trainer'];
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  selectRole(selectedRole: string): void {
+selectRole(selectedRole: string): void {
     this.role = selectedRole;
     this.message = ''; 
   }
 
+  // Submit the email and request verification code
   onEmailSubmit() {
     if (!this.email) {
       this.message = 'Please enter a valid email address.';
       return;
     }
-  
-    let endpoint = '';
-    if (this.role === 'student') {
-      endpoint = 'http://localhost:8080/student_verify';
-    } else if (this.role === 'manager') {
-      endpoint = 'http://localhost:8080/manager_verify';
-    } else if (this.role === 'trainer') {
-      endpoint = 'http://localhost:8080/trainer_verify';
-    }
-
-    this.http.post(endpoint, { email: this.email }).subscribe(
+    
+   
+    let endpoint = 'http://localhost:8080/request';
+    this.http.post(endpoint, { email: this.email, role: this.role }).subscribe(
       (response: any) => {
-        this.emailSubmitted = true;
+        this.message = 'Verification code sent. Check your email.';
+        this.verificationCodeSent = true;
       },
       error => {
-        console.error('Error occurred:', error);
-        this.message = 'Email not found or other error occurred.';
+        this.message = error?.error?.msg || 'Error occurred while sending verification code.';
       }
     );
   }
 
+
+  // Submit and verify the verification code
+  onCodeSubmit() {
+    if (!this.verificationCode) {
+      this.message = 'Please enter the verification code.';
+      return;
+    }
+
+    let endpoint = 'http://localhost:8080/verify';
+    
+
+    this.http.post(endpoint, { email: this.email, code: this.verificationCode ,role:this.role}).subscribe(
+      (response: any) => {
+        this.message = 'Code verified. You can now reset your password.';
+        this.codeVerified = true;
+      },
+      error => {
+        this.message = 'Invalid verification code.';
+      }
+    );
+  }
+
+  // Submit new password
   onSetPasswordSubmit() {
     if (this.newPassword !== this.confirmPassword) {
       this.message = 'Passwords do not match.';
       return;
     }
-  
+
     let endpoint = '';
+    // Set role-based endpoint for password update
     if (this.role === 'student') {
       endpoint = 'http://localhost:8080/update_student_password';
     } else if (this.role === 'manager') {
@@ -67,22 +90,20 @@ export class ForgetPasswordComponent {
       endpoint = 'http://localhost:8080/update_trainer_password';
     }
 
-    const payload = {
-      email: this.email,
-      password: this.newPassword
-    };
-  
+    const payload = { email: this.email, password: this.newPassword };
+
     this.http.post(endpoint, payload).subscribe(
       (response: any) => {
-        this.message = response.msg; 
+        this.message = 'Password updated successfully.';
         setTimeout(() => {
-          this.router.navigate(['/login']); 
-        }, 2000); 
+          this.router.navigate(['/login']);
+        }, 2000);
       },
       error => {
-        console.error('Error updating password:', error);
         this.message = 'Error updating password.';
       }
     );
   }
 }
+
+
