@@ -33,7 +33,7 @@ export class HeaderComponent implements AfterViewInit{
     }
     }
   
-  // This lifecycle hook ensures that on route change, the sidebar doesn't transition.
+ // This lifecycle hook ensures that on route change, the sidebar doesn't transition.
  ngAfterViewInit() {
   this.router.events.subscribe(() => {
     // Reset sidebar state when navigation ends
