@@ -8,9 +8,9 @@ import { TraineeHeaderComponent } from '../trainee-header/trainee-header.compone
 @Component({
   selector: 'app-trainee-feedback',
   standalone: true,
-  imports: [RouterModule,ReactiveFormsModule,FormsModule,CommonModule,TraineeHeaderComponent],
+  imports: [RouterModule, ReactiveFormsModule, FormsModule, CommonModule, TraineeHeaderComponent],
   templateUrl: './trainee-feedback.component.html',
-  styleUrl: './trainee-feedback.component.css'
+  styleUrls: ['./trainee-feedback.component.css'],
 })
 export class TraineeFeedbackComponent implements OnInit {
   isSidebarOpen: boolean = true;
@@ -19,18 +19,18 @@ export class TraineeFeedbackComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private http: HttpClient) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     // Initialize the form with validators
     this.feedbackForm = this.fb.group({
-      name: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      comments: ['', [Validators.required]]
+      name: ['', [Validators.required]], // Required field
+      email: ['', [Validators.required, Validators.email]], // Required field with email validation
+      comments: ['', [Validators.required]], // Required field
     });
   }
 
   // Method to toggle sidebar visibility
   toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen; // Toggle the sidebar state
+    this.isSidebarOpen = !this.isSidebarOpen;
   }
 
   // Submit the feedback form
@@ -46,17 +46,18 @@ export class TraineeFeedbackComponent implements OnInit {
     console.log('Feedback submitted:', data);
 
     // Make the HTTP POST request to the backend server
-    this.http.post("http://localhost:8081/feedback", data).subscribe({
+    this.http.post('http://localhost:8081/feedback', data).subscribe({
       next: (res: any) => {
         console.log(res); // Handle successful response
-        localStorage.setItem("status", "1");
+        localStorage.setItem('status', '1');
         alert('Feedback submitted successfully!');
+        this.feedbackForm.reset(); // Reset the form after submission
       },
       error: (e) => {
         console.log(e); // Handle error response
         this.serverMsg = e.error?.msg || 'Submission failed. Please try again later.';
         alert(this.serverMsg); // Show error message
-      }
+      },
     });
   }
 }
