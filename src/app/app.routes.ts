@@ -8,7 +8,7 @@ import { RoadmapComponent } from './CommonComponent/roadmap/roadmap.component';
 import { LoginComponentComponent } from './Login/login-component/login-component.component';
 import { ManagerDashboardComponent } from './Manager/manager-dashboard/manager-dashboard.component';
 import { StudentDetailsComponent } from './Manager/student-details/student-details.component';
-import { CourseDetailsComponent } from './Manager/course-details/course-details.component';
+import { CourseDetailsComponent } from './Manager/TrackCourse/course-details.component';
 import { TrainersComponent } from './Manager/trainers/trainers.component';
 import { PublishMarksComponent } from './Manager/publish-marks/publish-marks.component';
 import { InsightsComponent } from './Manager/insights/insights.component';
@@ -23,6 +23,7 @@ import { LayoutComponent } from './Trainer/header/layout.component';
 import { TrainermarkComponent } from './MARKS/trainermark/trainermark.component';
 import { ManagerMarksComponent } from './MARKS/manager-marks/manager-marks.component';
 import { ManagerRoadmapComponent } from './Manager/manager-roadmap/manager-roadmap.component';
+import { CourseInfoComponent } from './Manager/course-info/course-info.component';
 
 
 
@@ -40,7 +41,7 @@ export const routes: Routes = [
 
     {path:"manager-dashboard",component:ManagerDashboardComponent},
     {path:"manager-studentDetails",component:StudentDetailsComponent},
-    {path:"manager-course",component:CourseDetailsComponent},
+    {path:"manager-course",component:CourseInfoComponent},
     {path:"manager-trainerDetails",component:TrainersComponent},
     {path:"manager-publishMarks",component:PublishMarksComponent},
     {path:"manager-insights",component:InsightsComponent},
@@ -49,12 +50,12 @@ export const routes: Routes = [
 
     
     {path:"trainer-dashboard",component:HomeComponent},
-    {path:"trainer-publishMarks",component:MarksComponent},
+    {path:"trainer-publishMarks",component:TrainermarkComponent},
     {path:"trainer-course",component:CourseComponent},
     {path:"trainer-checklist",component:ChecklistComponent},
     {path:"card",component:CardComponent},
 
-    {path:"trainermark",component:TrainermarkComponent},
+    {path:"trainermark",component:MarksComponent},
     {path:"markuhh",component:ManagerMarksComponent},
     {path:"forgetpassword",component:ForgetPasswordComponent},
 

@@ -136,7 +136,7 @@
 
 
 
- .card {
+ /* .card {
     background-color: #fff;
     border-radius: 10px;
     border: none;
@@ -204,4 +204,19 @@
 .l-bg-cyan {
     background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
     color: #fff;
+} */
+
+.name{
+  font-weight: bold; 
+  background: #f4f7fa;
+  padding: 3rem;
+  text-align: center;
+}
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+.card-body {
+  text-align: center;
 }
