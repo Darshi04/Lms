@@ -51,6 +51,7 @@ export class TraineeFeedbackComponent implements OnInit {
         console.log(res); // Handle successful response
         localStorage.setItem("status", "1");
         alert('Feedback submitted successfully!');
+       this.resetForm();
       },
       error: (e) => {
         console.log(e); // Handle error response
@@ -58,5 +59,11 @@ export class TraineeFeedbackComponent implements OnInit {
         alert(this.serverMsg); // Show error message
       }
     });
+  }
+  resetForm(){
+   
+    this.feedbackForm.reset();
+       // Reset any previous error messages
+    
   }
 }
