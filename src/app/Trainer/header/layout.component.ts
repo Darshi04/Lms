@@ -1,18 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component } from '@angular/core';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { filter } from 'rxjs';
+import { Router, RouterModule } from '@angular/router';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule,RouterModule,SidebarComponent],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css'
 })
 export class LayoutComponent implements AfterViewInit {
   user: any;
   role: any;
+  studentCount:number=0;
 
   isSidebarOpen: boolean = true; // Initial state: sidebar is open
 
@@ -22,12 +23,16 @@ export class LayoutComponent implements AfterViewInit {
     const role = localStorage.getItem('role');
     if (userData) {
       const parsedUserData = JSON.parse(userData);
-      console.log(parsedUserData); // Check the parsed user data
+      console.log(parsedUserData); 
 
       console.log(this.user);
-      this.user = parsedUserData.trainers[0]; // Access the first student in the array
+      this.user = parsedUserData.trainers[0]; 
       console.log(this.user);
-    }
+
+       this.studentCount = this.user.students ? this.user.students.length : 0;
+       console.log('Student Count:', this.studentCount);  
+       localStorage.setItem('studentCount', this.studentCount.toString());
+      }
     if (role) {
       this.role = role;
     }
@@ -61,7 +66,8 @@ export class LayoutComponent implements AfterViewInit {
     // localStorage.clear();
   
     this.user = null; // Clear the user data in the component
-  
+  // Remove the student count from localStorage
+  // localStorage.removeItem('studentCount'); 
     // Redirect to the login page
     this.router.navigate(['/login']);
   }

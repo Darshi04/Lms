@@ -50,12 +50,12 @@ export const routes: Routes = [
 
     
     {path:"trainer-dashboard",component:HomeComponent},
-    {path:"trainer-publishMarks",component:MarksComponent},
+    {path:"trainer-publishMarks",component:TrainermarkComponent},
     {path:"trainer-course",component:CourseComponent},
     {path:"trainer-checklist",component:ChecklistComponent},
     {path:"card",component:CardComponent},
 
-    {path:"trainermark",component:TrainermarkComponent},
+    {path:"trainermark",component:MarksComponent},
     {path:"markuhh",component:ManagerMarksComponent},
     {path:"forgetpassword",component:ForgetPasswordComponent},
 

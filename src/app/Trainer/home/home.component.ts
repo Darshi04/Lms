@@ -21,14 +21,20 @@ Chart.register(...registerables);
 
 export class HomeComponent implements OnInit {
   studentCount: number = 0;  // Variable to hold the student count
-
+  
   scheduledCount: number = 0;
   completedCount: number = 0;
   public chart: any;  // Declare the chart instance
 
   sch: any = "";
 
-  constructor(private eventService: EventService, private http: HttpClient) {}
+  constructor(private eventService: EventService, private http: HttpClient) {
+      // Directly retrieve the student count from localStorage
+  const storedStudentCount = localStorage.getItem('studentCount');
+  
+  // If the student count exists in localStorage, use it, otherwise set a default value of 0.
+  this.studentCount = storedStudentCount ? parseInt(storedStudentCount) : 0;
+  }
 
   isSidebarOpen: boolean = true; 
 
@@ -49,7 +55,7 @@ export class HomeComponent implements OnInit {
         this.completedCount = this.sch.completed || 0;
       },
       error: (err) => {
-        console.error('Error fetching user count:', err);
+        console.error('Error fetching test count:', err);
       }
     });
 
@@ -57,7 +63,6 @@ export class HomeComponent implements OnInit {
       this.renderChart(data);
     });
         
-    this.getStudentCount();  // Call the function to fetch the student count
 
   }
 
@@ -65,8 +70,6 @@ export class HomeComponent implements OnInit {
 
 
       renderChart(data: any): void {
-
-    
         const subjects = Object.keys(data);  // Extract subjects from the response
         const passCounts = subjects.map((subject) => data[subject]['Pass'] || 0);  // Pass counts
         const failCounts = subjects.map((subject) => data[subject]['Fail'] || 0);  // Fail counts
@@ -158,20 +161,5 @@ export class HomeComponent implements OnInit {
           },
         });
       }
-      
-      
-      getStudentCount(): void {
-        this.http.get<number>('http://localhost:8080/student/count').subscribe(
-          (count) => {
-            this.studentCount = count;  // Store the count received from the backend
-          },
-          (error) => {
-            console.error('Error fetching student count', error);  // Handle errors
-          }
-        );
-      }
-      
-      
-
 }
 

@@ -58,29 +58,29 @@ export class TraineeResultComponent {
   }
 
   // Group marks by subject and also calculate the average for each subject
-  getSubjectsWithAttempts() {
-    const subjects: any[] = [];
-    const marks = this.user.marks;
+//   getSubjectsWithAttempts() {
+//     const subjects: any[] = [];
+//     const marks = this.user.marks;
 
-    marks.forEach((mark: {
-      mark: null; subject: string 
-}) => {
-      let subject = subjects.find(s => s.name === mark.subject);
-      if (!subject) {
-        subject = { name: mark.subject, marks: [] };
-        subjects.push(subject);
-      }
-      if (mark.mark !== null) {  // Ignore null marks when adding to the subject's marks array
-        subject.marks.push(mark);
-      }
-    });
+//     marks.forEach((mark: {
+//       mark: null; subject: string 
+// }) => {
+//       let subject = subjects.find(s => s.name === mark.subject);
+//       if (!subject) {
+//         subject = { name: mark.subject, marks: [] };
+//         subjects.push(subject);
+//       }
+//       if (mark.mark !== null) {  // Ignore null marks when adding to the subject's marks array
+//         subject.marks.push(mark);
+//       }
+//     });
 
-    // Calculate and add the average for each subject
-    subjects.forEach((subject: any) => {
-      subject.average = this.calculateAverageForSubject(subject.name); // Add the average for the subject
-    });
+//     // Calculate and add the average for each subject
+//     subjects.forEach((subject: any) => {
+//       subject.average = this.calculateAverageForSubject(subject.name); // Add the average for the subject
+//     });
 
-    return subjects;
-  }
+//     return subjects;
+//   }
 
 }
