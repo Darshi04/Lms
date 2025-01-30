@@ -1,22 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports:[CommonModule, RouterModule],
+  imports:[CommonModule, RouterModule,HttpClientModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements AfterViewInit{
+export class HeaderComponent implements AfterViewInit,OnInit{
+  
   user:any;
   role: any;
 
   isSidebarOpen: boolean = true; // Initial state: sidebar is closed
  
-    constructor(private router: Router) {
+    constructor(private router: Router,private http:HttpClient) {
       const userData = localStorage.getItem('user');
       const role = localStorage.getItem('role');
 
@@ -44,6 +46,7 @@ export class HeaderComponent implements AfterViewInit{
       document.querySelector('.sidebar-nav-wrapper')?.classList.remove('active');
     }
   });
+
 }
 
  
@@ -65,4 +68,18 @@ export class HeaderComponent implements AfterViewInit{
     // Redirect to the login page
     this.router.navigate(['/login']);
   }
+
+  message:any[]=[];
+
+  ngOnInit(): void {
+    this.getMessage();
+  }
+  
+  getMessage(){  
+    const apiUrl = 'http://localhost:8081/comments';
+      this.http.get<any[]>(apiUrl).subscribe((data)=>{
+        this.message=data;
+      })
+  }
+  
 }

@@ -8,7 +8,7 @@ import { RoadmapComponent } from './CommonComponent/roadmap/roadmap.component';
 import { LoginComponentComponent } from './Login/login-component/login-component.component';
 import { ManagerDashboardComponent } from './Manager/manager-dashboard/manager-dashboard.component';
 import { StudentDetailsComponent } from './Manager/student-details/student-details.component';
-import { CourseDetailsComponent } from './Manager/TrackCourse/course-details.component';
+
 import { TrainersComponent } from './Manager/trainers/trainers.component';
 import { PublishMarksComponent } from './Manager/publish-marks/publish-marks.component';
 import { InsightsComponent } from './Manager/insights/insights.component';
