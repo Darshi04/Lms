@@ -3,7 +3,7 @@
 content: "";
 flex: 1;
 height: 1px;
-background: #eee;
+background: #b9b8b8;
 }
 .h-custom {
 height: calc(100% - 73px);
@@ -20,4 +20,8 @@ height: calc(100% - 73px);
 .h-custom {
 height: 100%;
 }
+}
+
+.para{
+  font-weight: 550;
 }
