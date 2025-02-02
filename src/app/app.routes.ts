@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './Trainer/home/home.component';
 import { AsideComponent } from './Manager/Calendar/aside.component';
-import { MarksComponent } from './Trainer/marks/marks.component';
 import { CourseComponent } from './Trainer/course/course.component';
 import { ChecklistComponent } from './Trainer/checklist/checklist.component';
 import { RoadmapComponent } from './CommonComponent/roadmap/roadmap.component';
@@ -20,7 +19,7 @@ import { TraineeFeedbackComponent } from './trainee/trainee-feedback/trainee-fee
 import { TraineeResultComponent } from './trainee/trainee-result/trainee-result.component';
 import { TraineeTrackerComponent } from './trainee/trainee-tracker/trainee-tracker.component';
 import { LayoutComponent } from './Trainer/header/layout.component';
-import { TrainermarkComponent } from './MARKS/trainermark/trainermark.component';
+import { TrainermarkComponent } from './Trainer/marks/trainermark.component';
 import { ManagerMarksComponent } from './MARKS/manager-marks/manager-marks.component';
 import { ManagerRoadmapComponent } from './Manager/manager-roadmap/manager-roadmap.component';
 import { CourseInfoComponent } from './Manager/course-info/course-info.component';
@@ -55,8 +54,7 @@ export const routes: Routes = [
     {path:"trainer-checklist",component:ChecklistComponent},
     {path:"card",component:CardComponent},
 
-    {path:"trainermark",component:MarksComponent},
-    {path:"markuhh",component:ManagerMarksComponent},
+    {path:"Manager-marks",component:ManagerMarksComponent},
     {path:"forgetpassword",component:ForgetPasswordComponent},
 
 

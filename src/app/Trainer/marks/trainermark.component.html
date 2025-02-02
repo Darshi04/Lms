@@ -58,7 +58,7 @@
   
                 <div class="col-md-6">
                   <div class="select-style-1">
-                    <label class="mb-2">Student Type</label>
+                    <label class="mb-2">Filter By</label>
                     <div class="select-position">
                       <select
                         class="form-control"
@@ -66,7 +66,7 @@
                         (change)="fetchMarks()"
                       >
                         <option value="AllStudent">All Students</option>
-                        <option value="ReAttempt">ReAttempt Students</option>
+                        <option value="ReAttempt">Re-Attempted</option>
                       </select>
                     </div>
                   </div>
@@ -115,14 +115,15 @@
                             </tr>
                           </tbody>
                         </table>
-                        <button *ngIf="selectedStudentType === 'ReAttempt'"
-                          class="btn btn-outline-primary"
+                        
+                      </div>
+                      <button *ngIf="selectedStudentType === 'ReAttempt'"
+                          class="btn btn-outline-primary mt-4"
                           style="float: right"
                           (click)="attemptMarks()"
                         >
                           Publish Marks
                         </button>
-                      </div>
                       
                     </div>
                   </div>
