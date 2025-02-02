@@ -82,4 +82,7 @@
   }
   
   
-   
+  .details{
+    overflow-y: auto;
+    max-height: 240px;
+  }
