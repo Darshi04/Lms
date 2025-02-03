@@ -37,26 +37,23 @@
               <div class="img mb-2">
                 <!-- Trainer Image Placeholder (if any) -->
               </div>
-              <h5 class="mb-2">{{trainer.name}}</h5>
-              <small style="margin-bottom: 10px;">{{trainer.role}}</small>
+              <h5 class="mb-2">{{trainer.trainer_name}}</h5>
+          <small style="margin-bottom: 10px;">{{trainer.role}}</small>
+  
+          <div class="contact-info">
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <span class="key">T_ID</span>: <span class="value">{{trainer.trainer_id}}</span>
+              </li>
+              <li class="mb-2">
+                <span class="key">Phone</span>: <span class="value">{{trainer.ph_no}}</span>
+              </li>
+              <li class="mb-2">
+                <span class="key">Email</span>: <span class="value">{{trainer.email}}</span>
+              </li>
+            </ul>
+          </div>
 
-              <div class="contact-info table-responsive">
-                <ul class="list-unstyled table-responsive">
-                  <li class="mb-2">
-                    <span class="key">T_ID</span>: <span class="value">{{trainer.t_id}}</span>
-                  </li>
-                  <li class="mb-2">
-                    <span class="key">Phone</span>: <span class="value">{{trainer.ph_no}}</span>
-                  </li>
-                  <!-- Email with Wrap Handling -->
-                  <li class="mb-2">
-                    <span class="key">Email</span>: 
-                    <span class="value d-block text-wrap" style="word-break: break-word;">
-                      {{trainer.email}}
-                    </span>
-                  </li>
-                </ul>
-              </div>
 
               <!-- Edit and Remove Buttons -->
               <div class="mt-3">
@@ -69,50 +66,7 @@
               </div>
             </div>
           </div>
-
-          <!-- Modal Form to Add or Edit Trainer -->
-          <div class="modal"  *ngIf="showForm" (click)="closeForm()">
-            <div class="modal-content" (click)="$event.stopPropagation()">
-              <h1>{{editMode ? 'Edit Trainer' : 'Add Trainer'}}</h1>
-              <form (ngSubmit)="submitTrainer()">
-                <!-- Name Field -->
-                <div class="mb-2">
-                  <label for="name">Name:</label>
-                  <input id="name" [(ngModel)]="newTrainer.name" name="name" class="form-control" required>
-                </div>
-
-                <!-- Role Field -->
-                <div class="mb-2">
-                  <label for="role">Role:</label>
-                  <input id="role" [(ngModel)]="newTrainer.role" name="role" class="form-control" required>
-                </div>
-
-                <!-- Email Field -->
-                <div class="mb-2">
-                  <label for="email">Email:</label>
-                  <input id="email" [(ngModel)]="newTrainer.email" name="email" class="form-control" required>
-                </div>
-
-                <!-- Phone Field -->
-                <div class="mb-2">
-                  <label for="phone">Phone:</label>
-                  <input id="phone" [(ngModel)]="newTrainer.ph_no" name="phone" class="form-control" required>
-                </div>
-
-                <!-- T_ID Field -->
-                <div class="mb-2">
-                  <label for="t_id">T_ID:</label>
-                  <input id="t_id" [(ngModel)]="newTrainer.t_id" name="t_id" class="form-control" [readonly]="editMode" required>
-                </div>
-
-                <button type="submit" class="btn btn-primary" style="margin-right: 10px;">
-                  {{editMode ? 'Update' : 'Submit'}}
-                </button>
-                <button type="button" class="btn btn-secondary mt-2" (click)="closeForm()">Close</button>
-              </form>
-            </div>
-          </div>
-
+          
           <!-- "+" Card to Open Form (will disappear once clicked) -->
           <div class="d-flex justify-content-end">
             <button class="btn btn-primary" *ngIf="!showForm" (click)="openForm()" id="addTrainerBtn">
@@ -120,6 +74,56 @@
             </button>
           </div>
         </div>
+      </div>
+  
+      <!-- Modal Form to Add or Edit Trainer -->
+      <div class="modal" *ngIf="showForm" (click)="closeForm()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+          <h1>{{editMode ? 'Edit Trainer' : 'Add Trainer'}}</h1>
+          <form (ngSubmit)="submitTrainer()">
+            <!-- Name Field -->
+            <div class="mb-2">
+              <label for="name">Name:</label>
+              <input id="name" [(ngModel)]="newTrainer.trainer_name" name="name" class="form-control" required>
+            </div>
+  
+            <!-- Role Field -->
+            <div class="mb-2">
+              <label for="role">Role:</label>
+              <input id="role" [(ngModel)]="newTrainer.role" name="role" class="form-control" required>
+            </div>
+  
+            <!-- Email Field -->
+            <div class="mb-2">
+              <label for="email">Email:</label>
+              <input id="email" [(ngModel)]="newTrainer.email" name="email" class="form-control" required>
+            </div>
+  
+            <!-- Phone Field -->
+            <div class="mb-2">
+              <label for="phone">Phone:</label>
+              <input id="phone" [(ngModel)]="newTrainer.ph_no" name="phone" class="form-control" required>
+            </div>
+  
+            <!-- T_ID Field -->
+            <div class="mb-2">
+              <label for="t_id">T_ID:</label>
+              <input id="t_id" [(ngModel)]="newTrainer.trainer_id" name="t_id" class="form-control" [readonly]="editMode" required>
+            </div>
+  
+            <button type="submit" class="btn btn-primary" style="margin-right: 10px;">
+              {{editMode ? 'Update' : 'Submit'}}
+            </button>
+            <button type="button" class="btn btn-secondary mt-2" (click)="closeForm()">Close</button>
+          </form>
+        </div>
+      </div>
+  
+      <!-- "+" Card to Open Form (will disappear once clicked) -->
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-primary" *ngIf="!showForm" (click)="openForm()" id="addTrainerBtn">
+          <i class="bi bi-person-add" id="addIcon"></i>
+        </button>
       </div>
     </div>
   </section>

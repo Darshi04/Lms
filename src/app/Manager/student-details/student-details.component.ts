@@ -17,10 +17,10 @@ import { TrainerService } from '../../trainer.service';
   templateUrl: './student-details.component.html',
   styleUrls: ['./student-details.component.css']
 })
-export class StudentDetailsComponent implements OnInit  {
+export class StudentDetailsComponent implements OnInit {
   // Flags and variables
   addingNewStudent = false;
-  newStudent = { name: '', rnNumber: '', t_id: '', email: '', role: '', skills: '' ,profile:''};
+  newStudent = { student_name: '', rn_id: '', t_id: '' as string | null, email: '', role: '', skills: '' };
   filteredStudents: any[] = [];
   students: any[] = [];
   currentStudent: any = null;
@@ -29,31 +29,32 @@ export class StudentDetailsComponent implements OnInit  {
   empid: string = '';
   skill: string = '';
   isSidebarOpen: boolean = true;
- 
-  selectedImage: any = null; // Store selected image
- 
- 
- 
- 
-  trainerIds: number[] = []; // To hold trainer IDs for the dropdown
- 
-  constructor(private http: HttpClient,private trainerService:TrainerService) {}
- 
+
+  trainerIds: String[] = []; // To hold trainer IDs for the dropdown
+
+  constructor(private http: HttpClient, private trainerService: TrainerService) { }
+
   ngOnInit() {
-   // Fetch trainerIds from the service
-   this.trainerService.trainerIds$.subscribe(trainerIds => {
-    this.trainerIds = trainerIds;
-    console.log('Trainer IDs fetched:', this.trainerIds);  // Log trainerIds
-  });
- 
+    
+    // this.trainerService.trainerIds$.subscribe((trainerIds: String[]) => {
+    //   this.trainerIds = trainerIds;
+    //   console.log('Trainer IDs fetched:', this.trainerIds);  // Log trainerIds
+    // });
+
+    this.trainerIds = this.trainerService.getTrainerIds();
+    console.log('Trainer IDs fetched via getTrainerIds():', this.trainerIds);
+
+
+    
     // Fetch students (already existing code)
     this.loadStudents();
   }
- 
- 
+
+
   // Fetch students (already existing code)
   loadStudents() {
-    this.http.get('http://localhost:8081/students').subscribe(
+    
+    this.http.get('http://localhost:8080/allStudents').subscribe(
       (response: any) => {
         this.students = response;
         this.filteredStudents = [...this.students];
@@ -63,6 +64,7 @@ export class StudentDetailsComponent implements OnInit  {
         console.error('Error loading students:', error);
       }
     );
+    
   }
  
   // Generate a random password
@@ -79,41 +81,46 @@ export class StudentDetailsComponent implements OnInit  {
   // Show the form to add a new student
   start() {
     this.addingNewStudent = true;
-    this.newStudent = { name: '', rnNumber: '', t_id: '', email: '', role: '', skills: '',profile:'' }; // Reset form
+    this.newStudent = { student_name: '', rn_id: '', t_id: '', email: '', role: '', skills: '' }; // Reset form
   }
- 
+  
+
   // Save the new student
   saveNewStudent() {
-    if (this.newStudent.name && this.newStudent.rnNumber && this.newStudent.t_id && this.newStudent.email && this.newStudent.role && this.newStudent.skills && this.newStudent.profile) {
-        const randomPassword = this.generateRandomPassword(8);
- 
-        // Check if profile image is selected and set profile field
-        const data = {
-            ...this.newStudent,
-            password: randomPassword,
-            profile: this.selectedImage || 'default-avatar-url'  // Use base64 or default URL if no image
-        };
- 
-        console.log('Data to Save:', data); // Log the data being sent
- 
-        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
- 
-        this.http.post('http://localhost:8081/students', data, { headers: headers }).subscribe(
-            (response: any) => {
-                console.log('Student saved:', response);
-                this.filteredStudents.push(response);
-                this.addingNewStudent = false; // Close the form
-            },
-            (error) => {
-                console.error('Error saving student:', error);
-            }
-        );
+    if (this.newStudent.student_name && this.newStudent.rn_id && this.newStudent.email && this.newStudent.role && this.newStudent.skills) {
+      const randomPassword = this.generateRandomPassword(8);
+
+      if (this.newStudent.t_id === '') {
+        this.newStudent.t_id = null;
+      }
+
+      // Check if profile image is selected and set profile field
+      const data = {
+        ...this.newStudent,
+        password: randomPassword,// Use base64 or default URL if no image
+      };
+
+      console.log('Data to Save:', data); // Log the data being sent
+
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.post('http://localhost:8080/add/student', data, { headers: headers }).subscribe(
+        (response: any) => {
+          console.log('Student saved:', response);
+          this.filteredStudents.push(response);
+          this.addingNewStudent = false; // Close the form
+        },
+        (error) => {
+          console.error('Error saving student:', error);
+        }
+      );
     } else {
-        console.error('All fields are required');
+      console.error('All fields are required');
     }
-}
- 
- 
+    
+  }
+
+
   // Cancel adding a new student
   cancelAddingNewStudent() {
     this.addingNewStudent = false;
@@ -122,35 +129,33 @@ export class StudentDetailsComponent implements OnInit  {
   // Validate the student form data
   isValidStudentData() {
     return (
-      this.newStudent.name &&
-      this.newStudent.rnNumber &&
+      this.newStudent.student_name &&
+      this.newStudent.rn_id &&
       this.newStudent.t_id &&
       this.newStudent.email &&
       this.newStudent.role &&
-      this.newStudent.skills &&
-      this.newStudent.profile
+      this.newStudent.skills
     );
   }
- 
-   // Save the edited student
-   saveEditedStudent() {
+
+
+  
+  // Save the edited student
+  saveEditedStudent() {
     if (this.currentStudent && this.isEditing) {
       console.log('Saving updated student:', this.currentStudent);
- 
-      // If an image is selected, update the avatar field
-      if (this.selectedImage) {
-        this.currentStudent.avatar = this.selectedImage;
-      }
- 
+
+
+
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
- 
-      this.http.put(`http://localhost:8081/students/${this.currentStudent.sno}`, this.currentStudent, { headers })
+
+      this.http.put(`http://localhost:8080/updateStudent/${this.currentStudent.rn_id}`, this.currentStudent, { headers })
         .subscribe(
           (response: any) => {
             console.log('Student updated:', response);
  
             // Find and update the student in the list
-            const index = this.filteredStudents.findIndex((student) => student.sno === this.currentStudent.sno);
+            const index = this.filteredStudents.findIndex((student) => student.rn_id === this.currentStudent.rn_id);
             if (index !== -1) {
               this.filteredStudents[index] = { ...this.currentStudent };
             }
@@ -177,23 +182,26 @@ export class StudentDetailsComponent implements OnInit  {
   // Edit a student
   editStudent(student: any) {
     this.currentStudent = { ...student }; // Clone the student to avoid direct mutation
+    
     this.isEditing = true;
   }
  
   // Delete a student
   deleteStudent(studentId: number) {
+    console.log(studentId);
+
     if (!studentId) {
       console.error('Invalid student ID, cannot proceed with deletion.');
       return;
     }
  
     console.log('Attempting to delete student with ID:', studentId);
- 
-    this.http.delete(`http://localhost:8081/students/${studentId}`).subscribe(
+
+    this.http.delete(`http://localhost:8080/deleteStudent/${studentId}`).subscribe(
       (response: any) => {
         console.log('Student deleted:', response);
         this.filteredStudents = this.filteredStudents.filter(
-          (student) => student.sno !== studentId
+          (student) => student.rn_id !== studentId
         );
       },
       (error) => {
@@ -206,7 +214,7 @@ export class StudentDetailsComponent implements OnInit  {
   filterStudents(): void {
     if (this.empid) {
       this.filteredStudents = this.students.filter((student) =>
-        student.rnNumber.toLowerCase().includes(this.empid.toLowerCase())
+        student.rn_id.toLowerCase().includes(this.empid.toLowerCase())
       );
     } else {
       this.filteredStudents = [...this.students];
@@ -239,21 +247,9 @@ export class StudentDetailsComponent implements OnInit  {
       this.skillfilters();
     }
   }
- 
-   // Handle file change (image upload)
-   onFileChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.newStudent.profile = e.target.result; // Set the profile field to the base64 string
-        console.log('Selected Image Base64:', this.newStudent.profile); // Check the value
-      };
-      reader.readAsDataURL(file);  // Convert the image to base64 format
-    }
-  }
- 
- 
- 
+
+
+
+
+
 }
- 

@@ -80,7 +80,7 @@
         <span class="divider"><hr /></span>
         <!-- Sign Out Menu Item -->
         <li class="nav-item">
-          <a href="#signOut">
+          <a href="javascript:void(0);" (click)="onSignOut()"> 
             <span class="icon">
               <i class="fas fa-sign-out-alt"></i>
               <!-- Font Awesome Sign Out Icon -->
@@ -114,6 +114,7 @@
           </div>
           <div class="col-lg-7 col-md-7 col-6">
             <div class="header-right">
+              
           <!-- message start -->
 <div class="header-message-box ml-15 d-none d-md-flex">
   <button
@@ -130,20 +131,19 @@
 
   <!-- The dropdown menu with scrolling -->
   <ul class="dropdown-menu dropdown-menu-end overflow-auto" aria-labelledby="message" style="max-height: 180px;">
-    <!-- Loop through the messages -->
-    <li *ngFor="let msg of message">
-    
-      <a href="#0">
+                  <li *ngFor="let msg of message" class="message-item">
+                    <a href="#0" class="message-link">
         <div class="image">
-          <img [src]="msg.avatar" alt="" />
+                        <img [src]="msg.avatar" alt="Avatar" class="avatar" />
         </div>
         <div class="content">
-          <h6>{{ msg.name }}</h6>
-          <p>{{ msg.comments }}</p>
-          <span>{{ msg.email }}</span>
+                        <h6 class="name">{{ msg.name }}</h6>
+                        <p class="comments">{{ msg.comments }}</p>
+                        <span class="time">{{ msg.timeAgo }}</span>
         </div>
       </a>
     </li>
+                 
   </ul>
 </div>
 <!-- message end -->

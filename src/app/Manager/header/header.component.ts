@@ -68,18 +68,44 @@ export class HeaderComponent implements AfterViewInit,OnInit{
     // Redirect to the login page
     this.router.navigate(['/login']);
   }
-
   message:any[]=[];
-
+ 
   ngOnInit(): void {
     this.getMessage();
   }
-  
+ 
   getMessage(){  
-    const apiUrl = 'http://localhost:8081/comments';
+    const apiUrl = 'http://localhost:8080/comments';
       this.http.get<any[]>(apiUrl).subscribe((data)=>{
-        this.message=data;
+        this.message=data.reverse();
+          // Add time difference logic
+      this.message.forEach(msg => {
+        msg.timeAgo = this.calculateTimeAgo(msg.feedback_date);
+      });
+       
       })
   }
-  
+ 
+  calculateTimeAgo(feedbackDate: string): string {
+    const currentTime = new Date();
+    const feedbackTime = new Date(feedbackDate);
+    const timeDifference = currentTime.getTime() - feedbackTime.getTime();
+ 
+    // Calculate time differences
+    const seconds = Math.floor(timeDifference / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+ 
+    // Format output
+    if (days > 0) {
+      return `${days} day${days > 1 ? 's' : ''} ago`;
+    } else if (hours > 0) {
+      return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    } else if (minutes > 0) {
+      return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+    } else {
+      return `${seconds} second${seconds > 1 ? 's' : ''} ago`;
+    }
+  }
 }

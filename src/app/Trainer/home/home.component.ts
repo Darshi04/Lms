@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LayoutComponent } from '../header/layout.component';
 import { Chart, registerables } from 'chart.js';
+import { count } from 'rxjs';
 
 Chart.register(...registerables);
 
@@ -28,20 +29,19 @@ export class HomeComponent implements OnInit {
 
   sch: any = "";
 
+  count: any;
+
   constructor(private eventService: EventService, private http: HttpClient) {
-      // Directly retrieve the student count from localStorage
-  const storedStudentCount = localStorage.getItem('studentCount');
+
+let trainersData =  localStorage.getItem('user');
+if (trainersData) {
+  const parsedUserData = JSON.parse(trainersData);
+  this.count = parsedUserData.trainers[0].students.length; 
   
-  // If the student count exists in localStorage, use it, otherwise set a default value of 0.
-  this.studentCount = storedStudentCount ? parseInt(storedStudentCount) : 0;
-  }
+}
+ 
+}
 
-  isSidebarOpen: boolean = true; 
-
-  toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen; 
-
-  }
 
 
 
@@ -63,6 +63,12 @@ export class HomeComponent implements OnInit {
       this.renderChart(data);
     });
         
+
+    
+
+
+    
+
 
   }
 
