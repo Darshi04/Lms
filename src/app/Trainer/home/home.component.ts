@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LayoutComponent } from '../header/layout.component';
 import { Chart, registerables } from 'chart.js';
+import { count } from 'rxjs';
 
 Chart.register(...registerables);
 
@@ -28,14 +29,19 @@ export class HomeComponent implements OnInit {
 
   sch: any = "";
 
-  constructor(private eventService: EventService, private http: HttpClient) {}
+  count: any;
 
-  isSidebarOpen: boolean = true; 
+  constructor(private eventService: EventService, private http: HttpClient) {
 
-  toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen; 
+let trainersData =  localStorage.getItem('user');
+if (trainersData) {
+  const parsedUserData = JSON.parse(trainersData);
+  this.count = parsedUserData.trainers[0].students.length; 
+  
+}
+ 
+}
 
-  }
 
 
 
@@ -58,6 +64,12 @@ export class HomeComponent implements OnInit {
     });
         
     this.getStudentCount();  // Call the function to fetch the student count
+
+    
+
+
+    
+
 
   }
 
