@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 
 export class ForgetPasswordComponent {
   email: string = '';
-  role: string = '';
+  role: string = 'student';
   newPassword: string = '';
   confirmPassword: string = '';
   verificationCode: string = '';

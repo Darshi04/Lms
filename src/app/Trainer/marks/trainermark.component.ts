@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { LayoutComponent } from '../../Trainer/header/layout.component';
-import { FooterComponent } from '../../Trainer/footer/footer.component';
+import { LayoutComponent } from '../header/layout.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-trainermark',

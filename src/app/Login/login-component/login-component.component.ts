@@ -12,9 +12,10 @@ import { Router } from '@angular/router';
   styleUrl: './login-component.component.css'
 })
 export class LoginComponentComponent {
+  
   email: string = '';
   password: string = '';
-  role: string = '';
+  role: string = 'Student';
   message: string = '';
   private apiUrl: string = 'http://localhost:8080'; // Backend URL
 

@@ -1,74 +1,6 @@
 
- 
- <!-- ======== sidebar-nav start =========== -->
-  <aside class="sidebar-nav-wrapper" [ngClass]="{'active': isSidebarOpen}">
-    <div class="navbar-logo">
-      <a href="index.html">
-        <!-- <img src="/images/logo/logo.svg" alt="logo" /> -->
-         <h4>BlueEd</h4>
-      </a>
-    </div>
-    <nav class="sidebar-nav">
-      <ul>
-        <!-- Dashboard Menu Item -->
-        <li class="nav-item">
-            <a routerLink="/trainer-dashboard" routerLinkActive="active">
-                <span class="icon">
-              <!-- Dashboard Icon -->
-              <i class="fas fa-columns"></i>
-            </span>
-            <span class="text">Dashboard</span>
-          </a>
-        </li>
-  
-        <!-- Assigned Courses -->
-        <li class="nav-item">
-            <a routerLink="/trainer-course" routerLinkActive="active">
-                <span class="icon">
-              <i class="fas fa-book"></i>
-            </span>
-            <span class="text">Assigned Courses</span>
-          </a>
-        </li>
-  
-        <!-- Publish Marks -->
-        <li class="nav-item">
-            <a routerLink="/trainer-publishMarks" routerLinkActive="active">
-                <span class="icon">
-              <i class="fas fa-pencil-alt"></i>
-            </span>
-            <span class="text">Publish Marks</span>
-          </a>
-        </li>
-        
-        <!-- Course Completion Checklist -->
-        <li class="nav-item">
-            <a routerLink="/trainer-checklist" routerLinkActive="active">
-                <span class="icon">
-              <i class="fas fa-check-circle"></i>
-            </span>
-            <span class="text">Course Checklist</span>
-          </a>
-        </li>
-  
-
-        <span class="divider"><hr /></span>
-        <!-- Sign Out Menu Item -->
-        <li class="nav-item">
-          <a href="javascript:void(0);" (click)="onSignOut()">
-            <span class="icon">
-              <i class="fas fa-sign-out-alt"></i>
-              <!-- Font Awesome Sign Out Icon -->
-            </span>
-            <span class="text">Sign Out</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </aside>
-  <!-- ======== sidebar-nav end =========== -->
-  
-  <div class="overlay"></div>
+  <app-sidebar [isSidebarOpen]="isSidebarOpen"></app-sidebar>
+  <!-- <div class="overlay"></div> -->
   <!-- ======== sidebar-nav end =========== -->
   
   <!-- ======== main-wrapper start =========== -->
@@ -194,7 +126,7 @@
                         />
                       </div>
                       <div class="content">
-                        <h4 class="text-sm" *ngIf="user">{{ user.trainer_name || 'No name available' }}</h4>
+                        <h4 class="text-sm" *ngIf="user">{{ user.name || 'No name available' }}</h4>
                         <a class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs" href="#"
                           >{{ user.email || 'No email available' }}</a
                         >

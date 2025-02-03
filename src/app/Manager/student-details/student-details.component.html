@@ -1,18 +1,14 @@
 <app-header>
-
-
+ 
+ 
   <section class="section">
-   
-          
-         
-    <!-- Student Details Section -->
     <div class="container">
         <!-- ========== title-wrapper start ========== -->
-        <div class="title-wrapper pt-30">
+        <div class="title-wrapper pt-10">
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="title">
-                <h2>Manager Dashboard</h2>
+                <h2>Student Details</h2>
               </div>
             </div>
             <!-- end col -->
@@ -20,8 +16,8 @@
               <div class="breadcrumb-wrapper">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                      <a href="#0">Dashboard</a>
+                    <li class="breadcrumb-item" style="color: black;">
+                      Manager
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
                      Students
@@ -30,24 +26,24 @@
                 </nav>
               </div>
             </div>
-          
+         
           </div>
          
         </div>
-
+ 
       <!-- Search Section -->
       <div class="row mb-4">
         <div class="col-lg-12 text-center">
           <div class="row">
             <div class="col-md-8 offset-md-2">
-              <div class="input-group mb-3">
-                
+              <div class="input-group">
+               
                 <!-- Search Mode Dropdown -->
                 <select class="form-select custom-dropdown" [(ngModel)]="isRNSearch" (ngModelChange)="toggleSearchMode()">
                   <option [ngValue]="true">RN No</option>
                   <option [ngValue]="false">Skills</option>
                 </select>
-
+ 
                 <!-- RN Number or Skill Search Input -->
                 <input *ngIf="isRNSearch"
                   type="text"
@@ -56,7 +52,7 @@
                   aria-label="RN Number"
                   [(ngModel)]="empid"
                   (input)="filterStudents()">
-                  
+                 
                 <input *ngIf="!isRNSearch"
                   type="text"
                   class="form-control input-text"
@@ -64,21 +60,21 @@
                   aria-label="Skill"
                   [(ngModel)]="skill"
                   (input)="skillfilters()">
-                
+               
               </div>
             </div>
           </div>
         </div>
       </div>
-    
+   
       <!-- Table to Display Students -->
       <div class="row">
         <div class="col-lg-12">
           <div class="card-style mb-30">
             <h6 class="mb-10">Student Info</h6>
-    
+   
             <div class="table-wrapper table-responsive">
-              <table class="table">
+              <table class="table table-responsive">
                 <thead>
                   <tr>
                     <th>Name</th>
@@ -105,7 +101,7 @@
                       <button (click)="editStudent(student)" class="btn btn-warning btn-sm" aria-label="Edit">
                         <i class="bi bi-pencil-square"></i> <!-- Bootstrap edit icon -->
                       </button>
-              
+             
                       <!-- Delete Icon -->
                       <button (click)="deleteStudent(student.rn_id)" class="btn btn-danger btn-sm" aria-label="Delete">
                         <i class="bi bi-trash"></i> <!-- Bootstrap delete icon -->
@@ -118,14 +114,14 @@
           </div>
         </div>
       </div>
-    
+   
       <!-- Add New Student Button -->
       <div class="d-flex justify-content-end">
         <button class="btn btn-primary" (click)="start()">
-          <i class="bi bi-person-add"></i> 
+          <i class="bi bi-person-add"></i>
         </button>
       </div>
-    
+   
       <!-- Form for Adding New Student -->
       <div *ngIf="addingNewStudent" class="form-container">
         <div class="form-popup">
@@ -140,7 +136,7 @@
             <div>
               <input type="text" [(ngModel)]="newStudent.rn_id" name="rnNumber" placeholder="RN Number" />
             </div>
-    
+   
             <!-- Trainer Id Dropdown -->
              <!-- Trainer Id Dropdown -->
       <div> 
@@ -149,7 +145,7 @@
           <option *ngFor="let trainerId of trainerIds" [value]="trainerId">{{ trainerId }}</option> <!-- Dynamically populate -->
         </select>
       </div>    
-
+ 
             <div>
               <input type="text" [(ngModel)]="newStudent.email" name="email" placeholder="Email" />
             </div>
@@ -166,7 +162,7 @@
           </form>
         </div>
       </div>
-    
+   
       <!-- Form for Editing an Existing Student -->
       <div *ngIf="isEditing" class="form-container">
         <div class="form-popup">
@@ -183,7 +179,7 @@
             </div>
               <!-- Trainer Id Dropdown -->
       <div> 
-        <select class="form-select" [(ngModel)]="currentStudent.t_id" name="t_id" required>
+        <select class="form-select" [(ngModel)]="currentStudent.t_id" name="t_id">
           <option value="" disabled>Select Trainer</option> <!-- Default option -->
           <option *ngFor="let trainerId of trainerIds" [value]="trainerId">{{ trainerId }}</option> <!-- Dynamically populate -->
         </select>
@@ -205,9 +201,10 @@
         </div>
       </div>
     </div>
-  
-  
+ 
+ 
   </section>
-
+ 
   <app-footer></app-footer>
 </app-header>
+ 

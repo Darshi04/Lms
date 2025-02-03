@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-
+ 
+ 
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';  // Import FormsModule
@@ -8,8 +8,8 @@ import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http'
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../../Trainer/footer/footer.component";
 import { TrainerService } from '../../trainer.service';
-
-
+ 
+ 
 @Component({
   selector: 'app-student-details',
   standalone: true,
@@ -66,7 +66,7 @@ export class StudentDetailsComponent implements OnInit {
     );
     
   }
-
+ 
   // Generate a random password
   generateRandomPassword(length: number): string {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -77,7 +77,7 @@ export class StudentDetailsComponent implements OnInit {
     }
     return password;
   }
-
+ 
   // Show the form to add a new student
   start() {
     this.addingNewStudent = true;
@@ -125,7 +125,7 @@ export class StudentDetailsComponent implements OnInit {
   cancelAddingNewStudent() {
     this.addingNewStudent = false;
   }
-
+ 
   // Validate the student form data
   isValidStudentData() {
     return (
@@ -153,13 +153,13 @@ export class StudentDetailsComponent implements OnInit {
         .subscribe(
           (response: any) => {
             console.log('Student updated:', response);
-
+ 
             // Find and update the student in the list
             const index = this.filteredStudents.findIndex((student) => student.rn_id === this.currentStudent.rn_id);
             if (index !== -1) {
               this.filteredStudents[index] = { ...this.currentStudent };
             }
-
+ 
             // Reset editing state
             this.isEditing = false;
             this.currentStudent = null;
@@ -172,20 +172,20 @@ export class StudentDetailsComponent implements OnInit {
       console.error('No student selected for editing or invalid data');
     }
   }
-
+ 
   // Cancel editing mode
   cancelEditing() {
     this.isEditing = false;
     this.currentStudent = null;
   }
-
+ 
   // Edit a student
   editStudent(student: any) {
     this.currentStudent = { ...student }; // Clone the student to avoid direct mutation
     
     this.isEditing = true;
   }
-
+ 
   // Delete a student
   deleteStudent(studentId: number) {
     console.log(studentId);
@@ -194,7 +194,7 @@ export class StudentDetailsComponent implements OnInit {
       console.error('Invalid student ID, cannot proceed with deletion.');
       return;
     }
-
+ 
     console.log('Attempting to delete student with ID:', studentId);
 
     this.http.delete(`http://localhost:8080/deleteStudent/${studentId}`).subscribe(
@@ -209,7 +209,7 @@ export class StudentDetailsComponent implements OnInit {
       }
     );
   }
-
+ 
   // Filter students based on RN number
   filterStudents(): void {
     if (this.empid) {
@@ -220,7 +220,7 @@ export class StudentDetailsComponent implements OnInit {
       this.filteredStudents = [...this.students];
     }
   }
-
+ 
   // Filter students based on Skills
   skillfilters(): void {
     if (this.skill) {
@@ -231,12 +231,12 @@ export class StudentDetailsComponent implements OnInit {
       this.filteredStudents = [...this.students];
     }
   }
-
+ 
   // Toggle sidebar visibility
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
-
+ 
   // Toggle between RN Number search and Skills search
   toggleSearchMode(): void {
     if (this.isRNSearch) {
