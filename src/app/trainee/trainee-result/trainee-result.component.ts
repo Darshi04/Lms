@@ -17,14 +17,7 @@ export class TraineeResultComponent {
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen; // Toggle the sidebar state
   }
-  results = [
-    { id: 1, subname: 'html', score: 85 },
-    { id: 2, subname: 'java script', score: 92 },
-    { id: 3, subname: 'angular', score: 78 },
-    { id: 4, subname: 'data structure', score: 89 },
-    { id: 5, subname: 'java', score: 95 },
-    { id: 6, subname:'sdlc',score:98}
-  ];
+
   
   user: any = {}; // Declare user as an empty object initially
   subjects: any[] = [];
