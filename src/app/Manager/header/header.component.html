@@ -12,7 +12,7 @@
       <ul>
         <!-- Dashboard Menu Item -->
         <li class="nav-item">
-          <a [routerLink]="['/manager']" class="active">
+          <a [routerLink]="['/manager-dashboard']" class="active">
             <span class="icon">
               <!-- Dashboard Icon -->
               <i class="fas fa-columns"></i>
@@ -23,7 +23,7 @@
   
         <!-- Assigned Courses -->
         <li class="nav-item">
-          <a [routerLink]="['/student-details']">
+          <a [routerLink]="['/manager-studentDetails']">
             <span class="icon">
               <i class="fas fa-book"></i>
             </span>
@@ -36,7 +36,7 @@
   
         <!-- Publish Marks -->
         <li class="nav-item">
-          <a [routerLink]="['/PublishMarks']">
+          <a [routerLink]="['/markuhh']">
             <span class="icon">
               <i class="fas fa-pencil-alt"></i>
             </span>
@@ -47,7 +47,7 @@
        
         <!-- Track Student Progress -->
         <li class="nav-item">
-          <a [routerLink]="['/Trainers']">
+          <a [routerLink]="['/manager-trainerDetails']">
             <span class="icon">
               <i class="fas fa-chart-bar"></i>
             </span>
@@ -71,7 +71,7 @@
         <span class="divider"><hr /></span>
         <!-- Sign Out Menu Item -->
         <li class="nav-item">
-          <a href="#signOut">
+          <a href="javascript:void(0);" (click)="onSignOut()"> 
             <span class="icon">
               <i class="fas fa-sign-out-alt"></i>
               <!-- Font Awesome Sign Out Icon -->
@@ -133,46 +133,20 @@
                   </svg>
                   <span></span>
                 </button>
-                <ul
-                  class="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="message"
-                >
-                  <li>
-                    <a href="#0">
+                <ul class="dropdown-menu dropdown-menu-end overflow-auto" aria-labelledby="message" style="max-height: 180px;">
+                  <li *ngFor="let msg of message" class="message-item">
+                    <a href="#0" class="message-link">
                       <div class="image">
-                        <img src="/images/lead/lead-5.png" alt="" />
+                        <img [src]="msg.avatar" alt="Avatar" class="avatar" />
                       </div>
                       <div class="content">
-                        <h6>Jacob Jones</h6>
-                        <p>Hey!I can across your profile and ...</p>
-                        <span>10 mins ago</span>
+                        <h6 class="name">{{ msg.name }}</h6>
+                        <p class="comments">{{ msg.comments }}</p>
+                        <span class="time">{{ msg.timeAgo }}</span>
                       </div>
                     </a>
                   </li>
-                  <li>
-                    <a href="#0">
-                      <div class="image">
-                        <img src="/images/lead/lead-3.png" alt="" />
-                      </div>
-                      <div class="content">
-                        <h6>John Doe</h6>
-                        <p>Would you mind please checking out</p>
-                        <span>12 mins ago</span>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#0">
-                      <div class="image">
-                        <img src="/images/lead/lead-2.png" alt="" />
-                      </div>
-                      <div class="content">
-                        <h6>Anee Lee</h6>
-                        <p>Hey! are you available for freelance?</p>
-                        <span>1h ago</span>
-                      </div>
-                    </a>
-                  </li>
+                 
                 </ul>
               </div>
               <!-- message end -->

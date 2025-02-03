@@ -50,8 +50,9 @@ export class ChecklistComponent implements OnInit{
   loadCourses() {
     this.eventService.getCourses().subscribe(
       (response: any) => {
-        if (response && response.courses) {
-          this.courses = response.courses;
+        if (response && response.course) {
+          this.courses = response.course;
+          
           // Initialize the selectedCourses object with all topics in the courses
           this.courses.forEach(course => {
             course.topic.forEach(topic => {

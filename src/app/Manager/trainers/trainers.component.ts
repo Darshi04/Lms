@@ -17,14 +17,14 @@ import { TrainerService } from '../../trainer.service';
 })
 export class TrainersComponent implements OnInit {
   // Flags and variables for managing trainers and form states
-  trainers: { name: string, role: string, t_id: number, email: string, ph_no: string }[] = [];
-  newTrainer = { name: '', role: '', t_id: 0, email: '', ph_no: '' };
+  trainers: { trainer_name: string, role: string, trainer_id: string, email: string, ph_no: string }[] = [];
+  newTrainer = { trainer_name: '', role: '', trainer_id: '', email: '', ph_no: '' };
   showForm: boolean = false;
   editMode: boolean = false;
   selectedTrainerIndex: number = -1;
 
   // API URL for trainer operations
-  private apiUrl = 'http://localhost:8081/trainers'; // Replace with your backend API URL
+  private apiUrl = 'http://localhost:8080/addTrainer'; // Replace with your backend API URL
 
   // Sidebar toggle flag
   isSidebarOpen: boolean = true;
@@ -35,20 +35,23 @@ export class TrainersComponent implements OnInit {
   constructor(private http: HttpClient,private trainerService:TrainerService) {}
 
   ngOnInit() {
+    
     this.loadTrainers();  // Load trainers when the component initializes
  
   }
 
    // Fetch trainers from the backend
    loadTrainers() {
-    this.http.get<any[]>(this.apiUrl).subscribe(
+    this.http.get<any[]>(`http://localhost:8080/getAllTrainer`).subscribe(
       (response) => {
         this.trainers = response;
         console.log('Loaded trainers:', this.trainers);
 
         // Extract the trainerIds and pass them to the TrainerService
-        const trainerIds = this.trainers.map(trainer => trainer.t_id);
+        const trainerIds = this.trainers.map(trainer => trainer.trainer_id);
         this.trainerService.setTrainerIds(trainerIds);  // Set the trainerIds in the service
+        console.log("Value Sent",trainerIds);
+        
       },
       (error) => {
         console.error('Error loading trainers:', error);
@@ -71,7 +74,7 @@ export class TrainersComponent implements OnInit {
 
   // Handle form submission for saving or updating the trainer
   submitTrainer() {
-    if (this.newTrainer.name && this.newTrainer.role && this.newTrainer.email && this.newTrainer.ph_no) {
+    if (this.newTrainer.trainer_name && this.newTrainer.role && this.newTrainer.email && this.newTrainer.ph_no) {
       if (this.editMode) {
         this.updateTrainer(this.selectedTrainerIndex, this.newTrainer);
       } else {
@@ -83,7 +86,7 @@ export class TrainersComponent implements OnInit {
   }
 
   // Add a new trainer to the backend (POST operation)
-  saveTrainer(trainer: { name: string, role: string, t_id: number, email: string, ph_no: string }) {
+  saveTrainer(trainer: { trainer_name: string, role: string, trainer_id: string, email: string, ph_no: string }) {
     const randomPassword = this.generateRandomPassword(8);  // Generate a password of length 8
     const data = { ...trainer, password: randomPassword };
 
@@ -102,8 +105,8 @@ export class TrainersComponent implements OnInit {
   }
 
   // Update an existing trainer in the backend (PUT operation)
-  updateTrainer(index: number, trainer: { name: string, role: string, t_id: number, email: string, ph_no: string }) {
-    this.http.put<any>(`${this.apiUrl}/${trainer.t_id}`, trainer).subscribe(
+  updateTrainer(index: number, trainer: { trainer_name: string, role: string, trainer_id: string, email: string, ph_no: string }) {
+    this.http.put<any>(`${this.apiUrl}/${trainer.trainer_id}`, trainer).subscribe(
       (response) => {
         console.log('Trainer updated:', response);
         this.trainers[index] = response;  // Update trainer in list
@@ -119,7 +122,7 @@ export class TrainersComponent implements OnInit {
 
   // Reset the form data after submission
   resetForm() {
-    this.newTrainer = { name: '', role: '', t_id: 0, email: '', ph_no: '' };
+    this.newTrainer = { trainer_name: '', role: '', trainer_id: '', email: '', ph_no: '' };
     this.errorMessage = ''; // Reset any previous error messages
   }
 
@@ -133,9 +136,9 @@ export class TrainersComponent implements OnInit {
 
   // Remove a trainer from the list (also delete from backend if needed)
   removeTrainer(index: number) {
-    const trainerId = this.trainers[index].t_id;
+    const trainerId = this.trainers[index].trainer_id;
 
-    this.http.delete<any>(`${this.apiUrl}/${trainerId}`).subscribe(
+    this.http.delete<any>(`http://localhost:8080/deleteTrainer/${trainerId}`).subscribe(
       (response) => {
         console.log('Trainer removed:', response);
         this.trainers.splice(index, 1);  // Remove trainer from the list
