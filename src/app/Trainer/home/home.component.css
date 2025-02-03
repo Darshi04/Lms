@@ -81,3 +81,14 @@
   transition: margin-left 0.3s ease-in-out;
 }
 
+
+
+
+.cardd:hover{
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Apply shadow on hover */
+  transition: box-shadow 0.3s ease;
+
+
+}
+

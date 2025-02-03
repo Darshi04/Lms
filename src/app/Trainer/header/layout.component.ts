@@ -13,62 +13,46 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 export class LayoutComponent implements AfterViewInit {
   user: any;
   role: any;
-  studentCount:number=0;
-
-  isSidebarOpen: boolean = true; // Initial state: sidebar is open
-
+  studentCount: number = 0;
+  isSidebarOpen: boolean = true;
 
   constructor(private router: Router) {
     const userData = localStorage.getItem('user');
     const role = localStorage.getItem('role');
+
     if (userData) {
-      const parsedUserData = JSON.parse(userData);
-      console.log(parsedUserData); 
-
-      console.log(this.user);
-      this.user = parsedUserData.trainers[0]; 
-      console.log(this.user);
-
-       this.studentCount = this.user.students ? this.user.students.length : 0;
-       console.log('Student Count:', this.studentCount);  
-       localStorage.setItem('studentCount', this.studentCount.toString());
+      try {
+        const parsedUserData = JSON.parse(userData);
+        this.user = parsedUserData.trainers[0] || { name: 'Default User' };
+        this.studentCount = this.user.students ? this.user.students.length : 0;
+        localStorage.setItem('studentCount', this.studentCount.toString());
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+        this.user = { name: 'Default User' };  // Fallback data
       }
-    if (role) {
-      this.role = role;
+    } else {
+      this.user = { name: 'Guest User' }; // Fallback if no user in localStorage
     }
+
+    this.role = role || 'guest';
   }
 
-  
-  // This lifecycle hook ensures that on route change, the sidebar doesn't transition.
   ngAfterViewInit() {
+    // Ensure sidebar state is correctly set on page load
     this.router.events.subscribe(() => {
-      // Reset sidebar state when navigation ends
-      if (this.isSidebarOpen) {
-        // We make sure the sidebar stays open without triggering animation
-        document.querySelector('.sidebar-nav-wrapper')?.classList.add('active');
-      } else {
-        document.querySelector('.sidebar-nav-wrapper')?.classList.remove('active');
-      }
+      document.querySelector('.sidebar-nav-wrapper')?.classList.toggle('active', this.isSidebarOpen);
     });
   }
 
-  // This function toggles the sidebar's open/close state
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
 
   onSignOut(): void {
-    console.log('Sign Out initiated');
-    
-    // Double-check clearing localStorage
     localStorage.removeItem('user');
     localStorage.removeItem('role');
-    // localStorage.clear();
-  
-    this.user = null; // Clear the user data in the component
-  // Remove the student count from localStorage
-  // localStorage.removeItem('studentCount'); 
-    // Redirect to the login page
+    localStorage.removeItem('studentCount'); 
+ 
     this.router.navigate(['/login']);
   }
 }
