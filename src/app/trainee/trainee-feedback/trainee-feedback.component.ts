@@ -46,7 +46,7 @@ export class TraineeFeedbackComponent implements OnInit {
     console.log('Feedback submitted:', data);
 
     // Make the HTTP POST request to the backend server
-    this.http.post("http://localhost:8081/feedback", data).subscribe({
+    this.http.post("http://localhost:8080/feedback", data).subscribe({
       next: (res: any) => {
         console.log(res); // Handle successful response
         localStorage.setItem("status", "1");

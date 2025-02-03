@@ -41,13 +41,13 @@
             <!-- Profile image with rounded shape -->
             <img [src]="" width="70" height="70" class="rounded-circle" *ngIf="">
           </div>
-          <h5 class="mb-2">{{trainer.name}}</h5>
+          <h5 class="mb-2">{{trainer.trainer_name}}</h5>
           <small style="margin-bottom: 10px;">{{trainer.role}}</small>
   
           <div class="contact-info">
             <ul class="list-unstyled">
               <li class="mb-2">
-                <span class="key">T_ID</span>: <span class="value">{{trainer.t_id}}</span>
+                <span class="key">T_ID</span>: <span class="value">{{trainer.trainer_id}}</span>
               </li>
               <li class="mb-2">
                 <span class="key">Phone</span>: <span class="value">{{trainer.ph_no}}</span>
@@ -78,7 +78,7 @@
             <!-- Name Field -->
             <div class="mb-2">
               <label for="name">Name:</label>
-              <input id="name" [(ngModel)]="newTrainer.name" name="name" class="form-control" required>
+              <input id="name" [(ngModel)]="newTrainer.trainer_name" name="name" class="form-control" required>
             </div>
   
             <!-- Role Field -->
@@ -102,7 +102,7 @@
             <!-- T_ID Field -->
             <div class="mb-2">
               <label for="t_id">T_ID:</label>
-              <input id="t_id" [(ngModel)]="newTrainer.t_id" name="t_id" class="form-control" [readonly]="editMode" required>
+              <input id="t_id" [(ngModel)]="newTrainer.trainer_id" name="t_id" class="form-control" [readonly]="editMode" required>
             </div>
   
             <button type="submit" class="btn btn-primary" style="margin-right: 10px;">

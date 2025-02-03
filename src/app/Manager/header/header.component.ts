@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -16,7 +17,7 @@ export class HeaderComponent implements AfterViewInit{
 
   isSidebarOpen: boolean = true; // Initial state: sidebar is closed
  
-    constructor(private router: Router) {
+    constructor(private router: Router,private http:HttpClient) {
       const userData = localStorage.getItem('user');
       const role = localStorage.getItem('role');
 
@@ -64,5 +65,45 @@ export class HeaderComponent implements AfterViewInit{
   
     // Redirect to the login page
     this.router.navigate(['/login']);
+  }
+  message:any[]=[];
+ 
+  ngOnInit(): void {
+    this.getMessage();
+  }
+ 
+  getMessage(){  
+    const apiUrl = 'http://localhost:8080/comments';
+      this.http.get<any[]>(apiUrl).subscribe((data)=>{
+        this.message=data.reverse();
+          // Add time difference logic
+      this.message.forEach(msg => {
+        msg.timeAgo = this.calculateTimeAgo(msg.feedback_date);
+      });
+       
+      })
+  }
+ 
+  calculateTimeAgo(feedbackDate: string): string {
+    const currentTime = new Date();
+    const feedbackTime = new Date(feedbackDate);
+    const timeDifference = currentTime.getTime() - feedbackTime.getTime();
+ 
+    // Calculate time differences
+    const seconds = Math.floor(timeDifference / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+ 
+    // Format output
+    if (days > 0) {
+      return `${days} day${days > 1 ? 's' : ''} ago`;
+    } else if (hours > 0) {
+      return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    } else if (minutes > 0) {
+      return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+    } else {
+      return `${seconds} second${seconds > 1 ? 's' : ''} ago`;
+    }
   }
 }

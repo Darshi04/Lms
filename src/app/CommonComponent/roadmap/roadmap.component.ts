@@ -3,6 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxTimelineModule } from '@frxjs/ngx-timeline';
 import { SharedService } from '../../shared.service';
+import { HeaderComponent } from '../../Manager/header/header.component';
+import { TraineeHeaderComponent } from '../../trainee/trainee-header/trainee-header.component';
+
+
 
 interface Topic {
   completed: boolean;
@@ -44,23 +48,26 @@ enum NgxTimelineEventChangeSide {
   encapsulation: ViewEncapsulation.None
 })
 export class RoadmapComponent implements OnInit{
+ 
+
   NgxTimelineEventChangeSide = NgxTimelineEventChangeSide;
   changeSide = NgxTimelineEventChangeSide.ALL;
-  
-
   events: Event[] = [];  
+  
 
   constructor(private eventService: SharedService) {}
 
   ngOnInit() {
+    
+
     this.eventService.event$.subscribe((events) => {
       this.updateEventStatus(events);  // Update the roadmap with the latest completion status
     });
   
     // Fetch courses and topics with their updated completion status
     this.eventService.getCourses().subscribe((response: any) => {
-      if (response && Array.isArray(response.courses)) {
-        this.events = response.courses.map((course: any) => ({
+      if (response && Array.isArray(response.course)) {
+        this.events = response.course.map((course: any) => ({
           timestamp: new Date(course.start_date),
           title: course.course_title,
           topics: course.topic.map((topic: Topic) => ({
