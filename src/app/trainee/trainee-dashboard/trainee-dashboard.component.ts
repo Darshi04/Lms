@@ -32,6 +32,11 @@ export class TraineeDashboardComponent implements OnInit {
           // Assuming the 'scheduled' array is in the response
           if (response.scheduled) {
             this.scheduledTests = response.scheduled;
+            
+                    // Sort the tests by date in ascending order
+        this.scheduledTests.sort((a, b) => {
+          return new Date(a.date).getTime() - new Date(b.date).getTime();
+        });
           }
         },
         (error) => {

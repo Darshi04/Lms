@@ -1,17 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports:[CommonModule, RouterModule],
+  imports:[CommonModule, RouterModule,HttpClientModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements AfterViewInit{
+export class HeaderComponent implements AfterViewInit,OnInit{
+  
   user:any;
   role: any;
 
@@ -34,7 +35,7 @@ export class HeaderComponent implements AfterViewInit{
     }
     }
   
-  // This lifecycle hook ensures that on route change, the sidebar doesn't transition.
+ // This lifecycle hook ensures that on route change, the sidebar doesn't transition.
  ngAfterViewInit() {
   this.router.events.subscribe(() => {
     // Reset sidebar state when navigation ends
@@ -45,6 +46,7 @@ export class HeaderComponent implements AfterViewInit{
       document.querySelector('.sidebar-nav-wrapper')?.classList.remove('active');
     }
   });
+
 }
 
  
