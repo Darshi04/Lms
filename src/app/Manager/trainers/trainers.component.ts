@@ -119,7 +119,7 @@ export class TrainersComponent implements OnInit {
 
   // Reset the form data after submission
   resetForm() {
-    this.newTrainer = { name: '', role: '', t_id: 0, email: '', ph_no: '' };
+    this.newTrainer = { name: '', role: '', t_id:0, email: '', ph_no: '' };
     this.errorMessage = ''; // Reset any previous error messages
   }
 

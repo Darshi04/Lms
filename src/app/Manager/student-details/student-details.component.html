@@ -1,211 +1,150 @@
 <app-header>
- 
- 
-  <section class="section">
-    <div class="container">
-        <!-- ========== title-wrapper start ========== -->
-        <div class="title-wrapper pt-10">
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <div class="title">
-                <h2>Student Details</h2>
-              </div>
-            </div>
-            <!-- end col -->
-            <div class="col-md-6">
-              <div class="breadcrumb-wrapper">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item" style="color: black;">
-                      Manager
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                     Students
-                    </li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-         
-          </div>
-         
-        </div>
- 
-      <!-- Search Section -->
-      <div class="row mb-4">
-        <div class="col-lg-12 text-center">
-          <div class="row">
-            <div class="col-md-8 offset-md-2">
-              <div class="input-group">
-               
-                <!-- Search Mode Dropdown -->
-                <select class="form-select custom-dropdown" [(ngModel)]="isRNSearch" (ngModelChange)="toggleSearchMode()">
-                  <option [ngValue]="true">RN No</option>
-                  <option [ngValue]="false">Skills</option>
-                </select>
- 
-                <!-- RN Number or Skill Search Input -->
-                <input *ngIf="isRNSearch"
-                  type="text"
-                  class="form-control input-text"
-                  placeholder="Enter RN Number..."
-                  aria-label="RN Number"
-                  [(ngModel)]="empid"
-                  (input)="filterStudents()">
-                 
-                <input *ngIf="!isRNSearch"
-                  type="text"
-                  class="form-control input-text"
-                  placeholder="Enter Skill..."
-                  aria-label="Skill"
-                  [(ngModel)]="skill"
-                  (input)="skillfilters()">
-               
-              </div>
-            </div>
+
+<section class="section">
+  <div class="container">
+    <!-- Title Section -->
+    <div class="title-wrapper pt-10">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="title">
+            <h2>Student Details</h2>
           </div>
         </div>
-      </div>
-   
-      <!-- Table to Display Students -->
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="card-style mb-30">
-            <h6 class="mb-10">Student Info</h6>
-   
-            <div class="table-wrapper table-responsive">
-              <table class="table table-responsive">
-                <thead>
-                  <tr>
-                    <th>Profile</th>
-                    <th>Name</th>
-                    <th>RN Number</th>
-                    <th>Trainer Id</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Skills</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let student of filteredStudents">
-                    <td><img [src]="student.profile || 'path_to_default_image'" alt="Profile Image" class="student-avatar" /></td>
- 
-                    <td>{{ student.name }}</td>
-                    <td>{{ student.rnNumber }}</td>
-                    <td>{{ student.t_id }}</td>
-                    <td>{{ student.email }}</td>
-                    <td>{{ student.role }}</td>
-                    <td>{{ student.skills }}</td>
-                    <td>
-                      <!-- Edit Icon -->
-                      <button (click)="editStudent(student)" class="btn btn-warning btn-sm" aria-label="Edit">
-                        <i class="bi bi-pencil-square"></i> <!-- Bootstrap edit icon -->
-                      </button>
-             
-                      <!-- Delete Icon -->
-                      <button (click)="deleteStudent(student.sno)" class="btn btn-danger btn-sm" aria-label="Delete">
-                        <i class="bi bi-trash"></i> <!-- Bootstrap delete icon -->
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+        <div class="col-md-6">
+          <div class="breadcrumb-wrapper">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item" style="color: black;">Manager</li>
+                <li class="breadcrumb-item active" aria-current="page">Students</li>
+              </ol>
+            </nav>
           </div>
-        </div>
-      </div>
-   
-      <!-- Add New Student Button -->
-      <div class="d-flex justify-content-end">
-        <button class="btn btn-primary" (click)="start()">
-          <i class="bi bi-person-add"></i>
-        </button>
-      </div>
-   
-      <!-- Form for Adding New Student -->
-      <div *ngIf="addingNewStudent" class="form-container">
-        <div class="form-popup">
-          <form>
-            <h3>Add New Student</h3>
-            <div>
-              <input type="file" (change)="onFileChange($event)" />
-            </div>
-            <div>
-              <input type="text" [(ngModel)]="newStudent.name" name="name" placeholder="Name" />
-            </div>
-            <div>
-              <input type="text" [(ngModel)]="newStudent.rnNumber" name="rnNumber" placeholder="RN Number" />
-            </div>
-   
-            <!-- Trainer Id Dropdown -->
-             <!-- Trainer Id Dropdown -->
-      <div>
-        <select type="text" class="form-select" [(ngModel)]="newStudent.t_id" name="t_id" required>
-          <option value="" disabled>Select Trainer</option> <!-- Default option -->
-          <option *ngFor="let trainerId of trainerIds" [value]="trainerId">{{ trainerId }}</option> <!-- Dynamically populate -->
-        </select>
-      </div>    
- 
-            <div>
-              <input type="text" [(ngModel)]="newStudent.email" name="email" placeholder="Email" />
-            </div>
-            <div>
-              <input type="text" [(ngModel)]="newStudent.role" name="role" placeholder="Role" />
-            </div>
-            <div>
-              <input type="text" [(ngModel)]="newStudent.skills" name="skills" placeholder="Skills" />
-            </div>
-            <div class="form-actions">
-              <button type="button" class="btn btn-primary" (click)="saveNewStudent()">Save</button>
-              <button type="button" class="btn btn-secondary" (click)="cancelAddingNewStudent()">Cancel</button>
-            </div>
-          </form>
-        </div>
-      </div>
-   
-      <!-- Form for Editing an Existing Student -->
-      <div *ngIf="isEditing" class="form-container">
-        <div class="form-popup">
-          <form>
-            <h3>Edit Student</h3>
-            <div>
-              <div>
-                <input type="file" (change)="onFileChange($event)" />
-              </div>
-              <input type="text" [(ngModel)]="currentStudent.name" name="name" placeholder="Name" />
-            </div>
-            <div>
-              <input type="text" [(ngModel)]="currentStudent.rnNumber" name="rnNumber" placeholder="RN Number" />
-            </div>
-              <!-- Trainer Id Dropdown -->
-      <div>
-        <select class="form-select" [(ngModel)]="newStudent.t_id" name="t_id" required>
-          <option value="" disabled>Select Trainer</option> <!-- Default option -->
-          <option *ngFor="let trainerId of trainerIds" [value]="trainerId">{{ trainerId }}</option> <!-- Dynamically populate -->
-        </select>
-      </div>  
-            <div>
-              <input type="text" [(ngModel)]="currentStudent.email" name="email" placeholder="email" />
-            </div>
-            <div>
-              <input type="text" [(ngModel)]="currentStudent.role" name="role" placeholder="Role" />
-            </div>
-            <div>
-              <input type="text" [(ngModel)]="currentStudent.skills" name="skills" placeholder="Skills" />
-            </div>
-            <div class="form-actions">
-              <button type="button" class="btn btn-primary" (click)="saveEditedStudent()">Save</button>
-              <button type="button" class="btn btn-secondary" (click)="cancelEditing()">Cancel</button>
-            </div>
-          </form>
         </div>
       </div>
     </div>
- 
- 
-  </section>
- 
-  <app-footer></app-footer>
+
+    <!-- Search Section -->
+    <div class="row mb-4">
+      <div class="col-lg-12 text-center">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <div class="input-group">
+              <!-- Search Mode Dropdown -->
+              <select class="form-select custom-dropdown" [(ngModel)]="isRNSearch" (ngModelChange)="toggleSearchMode()">
+                <option [ngValue]="true">RN No</option>
+                <option [ngValue]="false">Skills</option>
+              </select>
+
+              <!-- RN Number or Skill Search Input -->
+              <input *ngIf="isRNSearch" type="text" class="form-control input-text" placeholder="Enter RN Number..." aria-label="RN Number" [(ngModel)]="empid" (input)="filterStudents()">
+              <input *ngIf="!isRNSearch" type="text" class="form-control input-text" placeholder="Enter Skill..." aria-label="Skill" [(ngModel)]="skill" (input)="skillfilters()">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table to Display Students -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card-style mb-30">
+          <h6 class="mb-10">Student Info</h6>
+          <div class="table-wrapper table-responsive">
+            <table class="table table-responsive">
+              <thead>
+                <tr>
+                  <th>Profile</th>
+                  <th>Name</th>
+                  <th>RN Number</th>
+                  <th>Trainer Id</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Skills</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let student of filteredStudents">
+                  <!-- Display Image -->
+<div *ngIf="studentImageUrl">
+  <img [src]="studentImageUrl" alt="Student Profile" />
+</div>
+                  <td>{{ student.name }}</td>
+                  <td>{{ student.rnNumber }}</td>
+                  <td>{{ student.t_id }}</td>
+                  <td>{{ student.email }}</td>
+                  <td>{{ student.role }}</td>
+                  <td>{{ student.skills }}</td>
+                  <td>
+                    <!-- Edit Icon -->
+                    <button (click)="editStudent(student)" class="btn btn-warning btn-sm" aria-label="Edit">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <!-- Delete Icon -->
+                    <button (click)="deleteStudent(student.sno)" class="btn btn-danger btn-sm" aria-label="Delete">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add New Student Button -->
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-primary" (click)="start()">
+        <i class="bi bi-person-add"></i>
+      </button>
+    </div>
+
+    <!-- Form for Adding New Student -->
+    <div *ngIf="addingNewStudent" class="form-container">
+      <div class="form-popup">
+        <form (ngSubmit)="saveNewStudent()">
+          <h3>Add New Student</h3>
+
+          <!-- Profile Picture Upload -->
+          <div>
+            <label for="image">Choose Profile Image</label>
+            <input type="file" id="image" (change)="onFileChange($event)" />
+          </div>
+
+          <div>
+            <input type="text" [(ngModel)]="newStudent.name" name="name" placeholder="Name" required />
+          </div>
+          <div>
+            <input type="text" [(ngModel)]="newStudent.rnNumber" name="rnNumber" placeholder="RN Number" required />
+          </div>
+            <!-- Trainer Id Dropdown -->
+            <div>
+              <select class="form-select" [(ngModel)]="newStudent.t_id" name="t_id" required>
+                <option value="" disabled>Select Trainer</option>
+                <option *ngFor="let trainerId of trainerIds" [value]="trainerId">{{ trainerId }}</option>
+              </select>
+            </div>
+          <div>
+            <input type="email" [(ngModel)]="newStudent.email" name="email" placeholder="Email" required />
+          </div>
+          <div>
+            <input type="text" [(ngModel)]="newStudent.role" name="role" placeholder="Role" required />
+          </div>
+          <div>
+            <input type="text" [(ngModel)]="newStudent.skills" name="skills" placeholder="Skills" required />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary" (click)="cancelAddingNewStudent()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
 </app-header>
- 
+

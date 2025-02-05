@@ -77,3 +77,100 @@
 
 
  
+
+
+
+
+  /* Style for the message list item */
+.message-item {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border-left: 5px solid #007bff; /* Green color for left border */
+}
+
+.message-item:hover {
+  transform: translateX(10px); /* Move to the right on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+/* Style for the message link */
+.message-link {
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+  color: #333;
+}
+
+/* Style for the avatar */
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+/* Style for the content area */
+.content {
+  flex: 1;
+}
+
+/* Name styling */
+.name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin: 0;
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+/* Hover effect for name */
+.message-item:hover .name {
+  color: #007bff;
+}
+
+/* Comment text styling */
+.comments {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin: 0;
+  padding-bottom: 5px;
+  line-height: 1.5;
+  max-height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Time styling */
+.time {
+  font-size: 12px;
+  color: #95a5a6;
+  text-align: right;
+  display: block;
+  margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .message-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .avatar {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .content {
+    padding-left: 0;
+  }
+}
