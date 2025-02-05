@@ -20,7 +20,7 @@ import { TrainerService } from '../../trainer.service';
 export class StudentDetailsComponent implements OnInit {
   // Flags and variables
   addingNewStudent = false;
-  newStudent = { student_name: '', rn_id: '', t_id: '' as string | null, email: '', role: '', skills: '' };
+  newStudent = { profile: '',student_name: '', rn_id: '', t_id: '' as string | null, email: '', role: '', skills: '' };
   filteredStudents: any[] = [];
   students: any[] = [];
   currentStudent: any = null;
@@ -81,13 +81,13 @@ export class StudentDetailsComponent implements OnInit {
   // Show the form to add a new student
   start() {
     this.addingNewStudent = true;
-    this.newStudent = { student_name: '', rn_id: '', t_id: '', email: '', role: '', skills: '' }; // Reset form
+    this.newStudent = {  profile: '',student_name: '', rn_id: '', t_id: '', email: '', role: '', skills: '' }; // Reset form
   }
   
 
   // Save the new student
   saveNewStudent() {
-    if (this.newStudent.student_name && this.newStudent.rn_id && this.newStudent.email && this.newStudent.role && this.newStudent.skills) {
+    if (this.newStudent.profile && this.newStudent.student_name && this.newStudent.rn_id && this.newStudent.email && this.newStudent.role && this.newStudent.skills) {
       const randomPassword = this.generateRandomPassword(8);
 
       if (this.newStudent.t_id === '') {
@@ -146,6 +146,9 @@ export class StudentDetailsComponent implements OnInit {
       console.log('Saving updated student:', this.currentStudent);
 
 
+      if (this.newStudent.profile) {
+        this.currentStudent.profile = this.newStudent.profile; // Assign the new profile image
+      }
 
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
@@ -248,7 +251,19 @@ export class StudentDetailsComponent implements OnInit {
     }
   }
 
-
+  onFileChange(event:any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        this.newStudent.profile = reader.result as string;  // Base64 data URL
+        
+        
+      };
+      reader.readAsDataURL(file);  // Convert the file to base64
+    }
+  }
+  
 
 
 
