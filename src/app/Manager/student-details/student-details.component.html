@@ -2,9 +2,9 @@
  
  
   <section class="section">
-    <div class="container">
+    <div class="container-fluid">
         <!-- ========== title-wrapper start ========== -->
-        <div class="title-wrapper pt-10">
+        <div class="title-wrapper pt-30">
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="title">
@@ -40,7 +40,7 @@
                
                 <!-- Search Mode Dropdown -->
                 <select class="form-select custom-dropdown" [(ngModel)]="isRNSearch" (ngModelChange)="toggleSearchMode()">
-                  <option [ngValue]="true">RN No</option>
+                  <option [ngValue]="true">RN Id</option>
                   <option [ngValue]="false">Skills</option>
                 </select>
  
@@ -48,7 +48,7 @@
                 <input *ngIf="isRNSearch"
                   type="text"
                   class="form-control input-text"
-                  placeholder="Enter RN Number..."
+                  placeholder="Enter RN Number"
                   aria-label="RN Number"
                   [(ngModel)]="empid"
                   (input)="filterStudents()">
@@ -56,7 +56,7 @@
                 <input *ngIf="!isRNSearch"
                   type="text"
                   class="form-control input-text"
-                  placeholder="Enter Skill..."
+                  placeholder="Enter a Skill"
                   aria-label="Skill"
                   [(ngModel)]="skill"
                   (input)="skillfilters()">
@@ -68,13 +68,13 @@
       </div>
    
       <!-- Table to Display Students -->
+      <div class="tables-wrapper ">
+
       <div class="row">
         <div class="col-lg-12">
-          <div class="card-style mb-30">
-            <h6 class="mb-10">Student Info</h6>
    
             <div class="table-wrapper table-responsive">
-              <table class="table table-responsive">
+              <table class="table">
                 <thead>
                   <tr>
                     <th>Name</th>
@@ -98,13 +98,14 @@
                     <td>{{ student.skills }}</td>
                     <td>
                       <!-- Edit Icon -->
-                      <button (click)="editStudent(student)" class="btn btn-warning btn-sm" aria-label="Edit">
+                      <button (click)="editStudent(student)" class="btn text-warning btn-sm m-0 p-2" aria-label="Edit">
                         <i class="bi bi-pencil-square"></i> <!-- Bootstrap edit icon -->
                       </button>
              
                       <!-- Delete Icon -->
-                      <button (click)="deleteStudent(student.rn_id)" class="btn btn-danger btn-sm" aria-label="Delete">
-                        <i class="bi bi-trash"></i> <!-- Bootstrap delete icon -->
+                      <button (click)="deleteStudent(student.rn_id)" class="btn text-danger btn-sm m-0 paddinged" aria-label="Delete">
+                        <i class="lni lni-trash-can"></i>
+                        <!-- Bootstrap delete icon -->
                       </button>
                     </td>
                   </tr>
@@ -112,9 +113,9 @@
               </table>
             </div>
           </div>
-        </div>
+        
       </div>
-   
+   </div>
       <!-- Add New Student Button -->
       <div class="d-flex justify-content-end">
         <button class="btn btn-primary" (click)="start()">

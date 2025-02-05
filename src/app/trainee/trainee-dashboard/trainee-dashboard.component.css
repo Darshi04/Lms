@@ -84,5 +84,12 @@
   
   .details{
     overflow-y: auto;
+    overflow-x: hidden;
     max-height: 240px;
+  }
+
+  .cardd:hover{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Apply shadow on hover */
+    transition: box-shadow 0.3s ease;
+  
   }

@@ -12,13 +12,11 @@ import { TrainersComponent } from './Manager/trainers/trainers.component';
 import { PublishMarksComponent } from './Manager/publish-marks/publish-marks.component';
 import { InsightsComponent } from './Manager/insights/insights.component';
 import { ForgetPasswordComponent } from './Login/forget-password/forget-password.component';
-import { CardComponent } from './Trainer/card/card.component';
 import { TraineeCourseComponent } from './trainee/trainee-course/trainee-course.component';
 import { TraineeDashboardComponent } from './trainee/trainee-dashboard/trainee-dashboard.component';
 import { TraineeFeedbackComponent } from './trainee/trainee-feedback/trainee-feedback.component';
 import { TraineeResultComponent } from './trainee/trainee-result/trainee-result.component';
 import { TraineeTrackerComponent } from './trainee/trainee-tracker/trainee-tracker.component';
-import { LayoutComponent } from './Trainer/header/layout.component';
 import { TrainermarkComponent } from './Trainer/marks/trainermark.component';
 import { ManagerMarksComponent } from './MARKS/manager-marks/manager-marks.component';
 import { ManagerRoadmapComponent } from './Manager/manager-roadmap/manager-roadmap.component';
@@ -52,7 +50,6 @@ export const routes: Routes = [
     {path:"trainer-publishMarks",component:TrainermarkComponent},
     {path:"trainer-course",component:CourseComponent},
     {path:"trainer-checklist",component:ChecklistComponent},
-    {path:"card",component:CardComponent},
 
     {path:"Manager-marks",component:ManagerMarksComponent},
     {path:"forgetpassword",component:ForgetPasswordComponent},

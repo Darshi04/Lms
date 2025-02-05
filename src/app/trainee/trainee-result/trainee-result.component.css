@@ -1,207 +1,21 @@
-/* .card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-img-top {
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .card-body {
-    height: 130px;
-    padding: 20px;
-  }
-  
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-  
-  .card-text {
-    font-size: 0.9rem;
-    color: #6c757d;
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
 
 
-.sidebar-nav .nav-item .icon i {
-    font-size: 18px; 
-    vertical-align: middle; 
+.cardd {
+  width: 370px;
+  margin-bottom: 20px;
 }
 
-
-
-.sidebar-nav .nav-item {
-    display: flex;
-    align-items: center;
-    padding: 10px 0;
+.progress.progress-md {
+  height: 10px
 }
 
-.sidebar-nav .nav-item a:hover {
-    background-color: #f4f4f4;
-    border-radius: 4px;
-    transition: 0.3s ease;
+.progress {
+  border-radius: 3px;
+  height: 8px
 }
 
-.sidebar-nav .nav-item a:hover .icon i {
-    color: #007bff;
-}
+.card:hover{
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Apply shadow on hover */
+  transition: box-shadow 0.3s ease;
 
-.navbar-logo p i{
-    font-size: 20px;
-    animation-iteration-count: 2;
-
-}
-
-
-
-  
-  .sidebar-nav .nav-item a:hover .icon {
-    transform: scale(1.1);
-  }
-  
-  .sidebar-nav-wrapper {
-    overflow: hidden;
-    width: 250px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    transform: translateX(-250px);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  
-  .sidebar-nav .nav-item .icon {
-    margin-right: 10px;
-    transition: 0.3s ease;
-    
-  }
-  
-  .sidebar-nav .nav-item {
-    display: flex;
-    align-items: center;
-    padding: 10px 0;
-  }
-    .main-wrapper.sidebar-closed {
-    margin-left: 0;  
-    transition: margin 0.3s ease-in-out;
-  }
-  
-  .main-wrapper {
-    margin-left: 250px; 
-    transition: margin 0.3s ease-in-out;
-    transition: margin-left 0.3s ease-in-out;
-  }
-
-  
-  .sidebar-nav-wrapper.active {
-    transform: translateX(0); 
-  }
-  
-  .image-container {
-    width: 100%;
-    height: 200px; 
-    overflow: hidden; 
-  }
-  
-  .card-img-top {
-    width: 100%;
-    object-fit: cover; 
-  }
-  .card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ddd;
-  }
-  
-  .card-body {
-    text-align: center;
-   
-  }
-.container-result{
-  justify-items: auto;
-}
- */
-
-
-
- .card {
-  background-color: #fff;
-  border-radius: 10px;
-  border: none;
-  height: 200px;
-  width: 400px;
-  position: relative;
-  margin-bottom: 30px;
-  box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,0.1), 0 0.9375rem 1.40625rem rgba(90,97,105,0.1), 0 0.25rem 0.53125rem rgba(90,97,105,0.12), 0 0.125rem 0.1875rem rgba(90,97,105,0.1);
-}
-
-.attempt{
-color: white;
-font-weight: 400;
-}
-.l-bg-cherry {
-  background: linear-gradient(to right, #493240, #f09) !important;
-  color: #fff;
-}
-
-.l-bg-blue-dark {
-  background: linear-gradient(to right, #373b44, #4286f4) !important;
-  color: #fff;
-}
-
-.l-bg-green-dark {
-  background: linear-gradient(to right, #0a504a, #38ef7d) !important;
-  color: #fff;
-}
-
-.l-bg-orange-dark {
-  background: linear-gradient(to right, #a86008, #ffba56) !important;
-  color: #fff;
-}
-
-.card .card-statistic-3 .card-icon-large .fas, .card .card-statistic-3 .card-icon-large .far, .card .card-statistic-3 .card-icon-large .fab, .card .card-statistic-3 .card-icon-large .fal {
-  font-size: 110px;
-}
-
-.card .card-statistic-3 .card-icon {
-  text-align: center;
-  line-height: 50px;
-  margin-left: 15px;
-  color: #000;
-  position: absolute;
-  right: -5px;
-  top: 20px;
-  opacity: 0.1;
-}
-
-.l-bg-cyan {
-  background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
-  color: #fff;
-}
-
-.l-bg-green {
-  background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
-  color: #fff;
-}
-
-.l-bg-orange {
-  background: linear-gradient(to right, #f9900e, #ffba56) !important;
-  color: #fff;
-}
-
-.l-bg-cyan {
-  background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
-  color: #fff;
 }

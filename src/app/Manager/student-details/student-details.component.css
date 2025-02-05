@@ -1,66 +1,18 @@
 
+.table th, .table td {
+  vertical-align: middle;
+  padding: 12px; 
+  text-align: left; 
 
-
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+  
 }
 
-.row {
-  display: flex;
-  height: 100%;
-  margin: 0;
+.table th {
+  background-color: #f8f9fae0;
+  color: #495057; 
 }
 
-.col-lg-12 {
-  flex: 1;
-  padding: 0;
-}
 
-.card-style {
-  width: 100%;
-  height: 100%;
-}
-
-.table-responsive {
-  width: 100%;
-  overflow-x: auto;
-}
-
-.table {
-  width: 100%;
-  table-layout: fixed;
- 
- 
-  border-collapse: collapse;
-}
-
-th, td {
-
-  padding: 8px;
-  text-align: left; /* Adjust as needed */
-  word-wrap: break-word; /* Prevents overflow of long text */
-  overflow: hidden;
-}
-
-th {
-  background-color: #f8f9fa; /* Optional: To distinguish header */
-  font-weight: bold;
-}
-
-.col-lg-6 {
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
-
-.mb-3 {
-  margin-top: 20px;
-}
-
-.container {
-  margin-top: 20px;
-}
 
 .btn:hover {
   color: #fff;
@@ -87,93 +39,7 @@ table td button {
 }
 
 td i {
-  font-size: 16px; /* Ensure the icon is not too large */
-}
-
-
-
-
-
-.sidebar-nav-wrapper {
-  overflow: hidden;
-}
-/* General style for sidebar icons */
-.sidebar-nav .nav-item .icon i {
-  font-size: 18px;  /* Adjust this value to match the size of the text */
-  vertical-align: middle;  /* Align icons vertically to middle */
-}
- 
-/* Optional: Add some space between the icon and the text */
-.sidebar-nav .nav-item .icon {
-  margin-right: 10px;
-}
- 
-/* Ensure consistent alignment */
-.sidebar-nav .nav-item {
-  display: flex;
-  align-items: center;
-  padding: 10px 0;
-}
- 
-/* Styling for hover effect */
-.sidebar-nav .nav-item a:hover {
-  background-color: #f4f4f4;
-  border-radius: 4px;
-}
- 
-.sidebar-nav .nav-item a:hover .icon i {
-  color: #007bff;  /* Change icon color on hover */
-}
- 
-.navbar-logo p i{
-  font-size: 20px;
-  animation-iteration-count: 2;
- 
-}
- 
- 
-.sidebar-nav .nav-item a:hover {
-  background-color: #f3f4f6;
-  transition: 0.3s ease;
-}
- 
-.sidebar-nav .nav-item .icon {
-  transition: 0.3s ease;
-}
- 
-.sidebar-nav .nav-item a:hover .icon {
-  transform: scale(1.1);
-}
- 
-/* Sidebar is closed, content takes up full width */
-.main-wrapper.sidebar-closed {
-  margin-left: 0;  /* Remove space for sidebar */
-  transition: margin 0.3s ease-in-out;
-}
- 
-
-
-
-/* Sidebar is open, content has space for sidebar */
-.main-wrapper {
-  margin-left: 250px;  /* Sidebar width */
-  transition: margin 0.3s ease-in-out;
-  transition: margin-left 0.3s ease-in-out;
-}
- 
-/* Sidebar styles */
-.sidebar-nav-wrapper {
-  width: 250px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  transform: translateX(-250px); /* Initially hidden */
-  transition: transform 0.3s ease-in-out;
-}
- 
-.sidebar-nav-wrapper.active {
-  transform: translateX(0); /* Sidebar shown */
+  font-size: 22px; /* Ensure the icon is not too large */
 }
 
 
@@ -242,37 +108,23 @@ drop down */
 /* Dropdown styling with filter icon inside */
 .custom-dropdown {
   position: relative; /* To position the icon inside */
-  width: 7%; /* Width of the dropdown */
   height: 40px; /* Consistent height */
-  padding-left: 30px; /* Space for the icon */
   border-radius: 4px;
   border: 1px solid #365CF5;
-  font-size: 1em;
-  box-sizing: border-box; /* Ensure padding is included */
+  font-size: 0.95em;
   margin-top: 10px; /* Consistent margin-top with input fields */
 }
 
-/* Bootstrap filter icon inside the dropdown */
-.custom-dropdown::before {
-  content: "\f0b0"; /* Bootstrap filter icon unicode */
-  font-family: "Bootstrap Icons"; /* Using Bootstrap Icons */
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%); /* Vertically center the icon */
-  font-size: 18px; /* Icon size */
-  color: #365CF5; /* Icon color */
-  pointer-events: none; /* Disable interaction with the icon */
-}
+
 
 /* Consistent styling for the input fields */
 .form-control.input-text {
-  width: 75%; /* Input box width */
+  width: 83%; /* Input box width */
   height: 40px; /* Match height of the dropdown */
   padding: 10px; /* Padding for input field */
   border-radius: 4px;
   border: 1px solid #365CF5;
-  font-size: 1em;
+  font-size: 0.95em;
   box-sizing: border-box;
   margin-top: 10px; /* Consistent margin-top */
 }
@@ -313,4 +165,9 @@ drop down */
   height: 50px;
   border-radius: 50%; /* To make it round */
   object-fit: cover; /* Ensures image fits in the container */
+}
+
+
+.paddinged{
+  padding-top: 15px;
 }
