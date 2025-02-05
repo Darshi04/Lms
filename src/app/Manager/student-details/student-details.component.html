@@ -129,8 +129,10 @@
       <div *ngIf="addingNewStudent" class="form-container">
         <div class="form-popup">
           <form>
+           
             <h3>Add New Student</h3>
-            <div>
+          
+            <div style="margin-top: 10px;margin-bottom: 8px;">
               <input type="file" (change)="onFileChange($event)" />
             </div>
             <div>
@@ -141,13 +143,13 @@
             </div>
    
             <!-- Trainer Id Dropdown -->
-             <!-- Trainer Id Dropdown -->
-      <div> 
-        <select type="text" class="form-select" [(ngModel)]="newStudent.t_id" name="t_id">
-          <option value="" disabled>Select Trainer</option> <!-- Default option -->
-          <option *ngFor="let trainerId of trainerIds" [value]="trainerId">{{ trainerId }}</option> <!-- Dynamically populate -->
-        </select>
-      </div>    
+           
+            <div>
+              <select type="text" class="form-select" [(ngModel)]="newStudent.t_id" name="t_id">
+                <option value="" disabled>Select Trainer</option> <!-- Default option -->
+                <option *ngFor="let trainerId of trainerIds" [value]="trainerId">{{ trainerId }}</option> <!-- Dynamically populate -->
+              </select>
+            </div>     
  
             <div>
               <input type="text" [(ngModel)]="newStudent.email" name="email" placeholder="Email" />

@@ -7,7 +7,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';  // Import Fo
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../../Trainer/footer/footer.component";
-import { TrainerService } from '../../trainer.service';
+
  
  
 @Component({
@@ -32,21 +32,9 @@ export class StudentDetailsComponent implements OnInit {
 
   trainerIds: String[] = []; // To hold trainer IDs for the dropdown
 
-  constructor(private http: HttpClient, private trainerService: TrainerService) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    
-    // this.trainerService.trainerIds$.subscribe((trainerIds: String[]) => {
-    //   this.trainerIds = trainerIds;
-    //   console.log('Trainer IDs fetched:', this.trainerIds);  // Log trainerIds
-    // });
-
-    this.trainerIds = this.trainerService.getTrainerIds();
-    console.log('Trainer IDs fetched via getTrainerIds():', this.trainerIds);
-
-
-    
-    // Fetch students (already existing code)
     this.loadStudents();
   }
 
@@ -64,6 +52,21 @@ export class StudentDetailsComponent implements OnInit {
         console.error('Error loading students:', error);
       }
     );
+
+
+
+
+
+    //for trainer id
+    this.http.get('http://localhost:8080/getAllTrainer').subscribe(
+      (response: any) => {
+        this.trainerIds = response.map((trainer: any) => trainer.trainer_id); // Get only the trainer IDs
+        console.log('Loaded trainers:', this.trainerIds); // Log the trainers for debugging
+      },(error) => {
+        console.error('Error loading trainers:', error);
+      }
+    );
+  
     
   }
  
