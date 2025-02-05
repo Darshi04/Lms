@@ -36,7 +36,7 @@
   
         <!-- Publish Marks -->
         <li class="nav-item">
-          <a [routerLink]="['/manager-publishMarks']">
+          <a [routerLink]="['/Manager-marks']">
             <span class="icon">
               <i class="fas fa-pencil-alt"></i>
             </span>
@@ -165,7 +165,7 @@
                         <img src="/images/profile/profile-image.png" alt="" />
                       </div>
                       <div>
-                        <h6 class="fw-500" *ngIf="user">{{ user.name || 'User' }}</h6>
+                        <h6 class="fw-500" *ngIf="user">{{ user.manager_name || 'User' }}</h6>
 <p>{{ role || 'No role provided' }}
                       </div>
                     </div>
@@ -184,7 +184,7 @@
                         />
                       </div>
                       <div class="content">
-                        <h4 class="text-sm" *ngIf="user">{{ user.name || 'No name available' }}</h4>
+                        <h4 class="text-sm" *ngIf="user">{{ user.manager_name || 'No name available' }}</h4>
                         <!-- <a class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs" href="#"
                           >{{ user.email || 'No email available' }}</a
                         > -->

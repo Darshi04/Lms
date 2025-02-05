@@ -77,6 +77,7 @@
               <table class="table table-responsive">
                 <thead>
                   <tr>
+                    <th>Profile</th>
                     <th>Name</th>
                     <th>RN Number</th>
                     <th>Trainer Id</th>
@@ -87,9 +88,10 @@
                   </tr>
                 </thead>
                 <tbody>
+                  
                   <tr *ngFor="let student of filteredStudents">
-                    <!-- <td><img [src]="student.profile || 'path_to_default_image'" alt="Profile Image" class="student-avatar" /></td> -->
-
+            
+                    <td><img [src]="student.profile || 'path_to_default_image'" alt="Profile Image" class="student-avatar" /></td>
                     <td>{{ student.student_name }}</td>
                     <td>{{ student.rn_id }}</td>
                     <td>{{ student.t_id }}</td>
@@ -127,9 +129,9 @@
         <div class="form-popup">
           <form>
             <h3>Add New Student</h3>
-            <!-- <div>
+            <div>
               <input type="file" (change)="onFileChange($event)" />
-            </div> -->
+            </div>
             <div>
               <input type="text" [(ngModel)]="newStudent.student_name" name="name" placeholder="Name" />
             </div>
@@ -169,9 +171,9 @@
           <form>
             <h3>Edit Student</h3>
             <div>
-              <!-- <div>
-                <input type="file" (change)="onFileChange($event)" />
-              </div> -->
+              <div>
+                <input type="file" (change)="onFileChange($event)"/>
+              </div>
               <input type="text" [(ngModel)]="currentStudent.student_name" name="name" placeholder="Name" />
             </div>
             <div>
