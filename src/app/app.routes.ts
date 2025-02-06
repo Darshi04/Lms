@@ -21,6 +21,7 @@ import { TrainermarkComponent } from './Trainer/marks/trainermark.component';
 import { ManagerMarksComponent } from './MARKS/manager-marks/manager-marks.component';
 import { ManagerRoadmapComponent } from './Manager/manager-roadmap/manager-roadmap.component';
 import { CourseInfoComponent } from './Manager/course-info/course-info.component';
+import { ProfileComponent } from './trainee/profile/profile.component';
 
 
 
@@ -35,6 +36,7 @@ export const routes: Routes = [
     {path:"trainee-feedback",component:TraineeFeedbackComponent},
     {path:"trainee-result",component:TraineeResultComponent},
     {path:"trainee-tracker",component:TraineeTrackerComponent},
+    {path:"trainee-profile",component:ProfileComponent},
 
     {path:"manager-dashboard",component:ManagerDashboardComponent},
     {path:"manager-studentDetails",component:StudentDetailsComponent},

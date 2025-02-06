@@ -63,7 +63,7 @@
                   </div>
 
                   <!-- Password input -->
-                  <div class="form-outline input-style-1">
+                  <!-- <div class="form-outline input-style-1">
                     <input
                       type="password"
                       id="form3Example4"
@@ -73,7 +73,23 @@
                       placeholder="Password"
                       required
                     />
+                  </div> -->
+                  <div class="form-outline input-style-1">
+                    <input
+                      [type]="passwordVisible ? 'text' : 'password'"
+                      id="form3Example4"
+                      [(ngModel)]="password"
+                      name="password"
+                      class="form-control"
+                      placeholder="Password"
+                      required
+                    />
+                    <!-- Icon to toggle password visibility -->
+                    <button type="button" (click)="togglePasswordVisibility()" class="toggle-password-btn">
+                      <i class="fa" [ngClass]="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
+                    </button>
                   </div>
+                  
 
                   <div
                     class="d-flex justify-content-between align-items-center"

@@ -98,9 +98,9 @@ updateEventStatus(events: { [key: string]: boolean }) {
 
   getTopicIconColor(topic: any) {
     if (topic.completed) {
-      return '#63E6BE'; // Green for completed
+      return '#3FBF96'; // Green for completed
     } else {
-      return '#ccc'; // Gray for not completed
+      return '#888'; // Gray for not completed
     }
   }
 
@@ -108,11 +108,11 @@ updateEventStatus(events: { [key: string]: boolean }) {
     const allCompleted = event.eventInfo.topics.every((topic: any) => topic.completed);
 
     if (allCompleted) {
-      return '#63E6BE'; // Green when all topics are completed
+      return '#3FBF96'; // Green when all topics are completed
     } else if (event.eventInfo.topics.some((topic: any) => topic.completed)) {
-      return '#FFD43B'; // Yellow when some topics are completed
+      return '#E1B200'; // Yellow when some topics are completed
     } else {
-      return '#ccc';
+      return '#888';
       // return '#74C0FC'; // Blue when no topic is completed
     }
   }

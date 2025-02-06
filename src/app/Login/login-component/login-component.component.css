@@ -25,3 +25,17 @@ height: 100%;
 .para{
   font-weight: 550;
 }
+
+.toggle-password-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+input.form-control {
+  padding-right: 30px; /* Ensure there's space for the icon */
+}
