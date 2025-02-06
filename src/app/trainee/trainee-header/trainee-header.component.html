@@ -96,12 +96,7 @@
                   <i class="lni lni-chevron-left me-2"></i> Menu
                 </button>
               </div>
-              <!-- <div class="header-search d-none d-md-flex">
-                <form action="#">
-                  <input type="text" placeholder="Search..." />
-                  <button><i class="lni lni-search-alt"></i></button>
-                </form>
-              </div> -->
+         
             </div>
           </div>
           <div class="col-lg-7 col-md-7 col-6">
@@ -120,11 +115,11 @@
     <div class="profile-info">
       <div class="info">
         <div class="image">
-          <img src="{{user.profile}}" alt="" />
+          <img src="{{user.profile}}" alt="Profile Image" class="student-avatar" />
         </div>
         <div>
           <h6 class="fw-500" *ngIf="user">{{ user.student_name || 'User' }}</h6>
-          <p *ngIf="user">{{ user.email || 'No email provided' }}</p>
+          <p>GET</p>
         </div>
       </div>
     </div>
@@ -132,13 +127,11 @@
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
     <li>
       <div class="author-info flex items-center !p-1">
-        <div class="image">
-          <img src="/images/profile/profile-image.png" alt="image" />
-        </div>
+       
         <div class="content">
-          <h4 class="text-sm" *ngIf="user">{{ user.student_name || 'No name available' }}</h4>
-          <a class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs" href="#"
-            >{{ user.email || 'No email available' }}</a>
+          <p class="textt" *ngIf="user">{{ user.student_name || 'No name available' }}</p>
+          <p *ngIf="user" class="text">{{ user.email || 'No email provided' }}</p>
+
         </div>
       </div>
     </li>

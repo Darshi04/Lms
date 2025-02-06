@@ -12,7 +12,7 @@
       <ul>
         <!-- Dashboard Menu Item -->
         <li class="nav-item">
-          <a [routerLink]="['/manager-dashboard']" routerLinkActive="active">
+          <a routerLink="/manager-dashboard" routerLinkActive="active">
             <span class="icon">
               <!-- Dashboard Icon -->
               <i class="fas fa-columns"></i>
@@ -23,7 +23,7 @@
   
         <!-- Assigned Courses -->
         <li class="nav-item">
-          <a [routerLink]="['/manager-studentDetails']" routerLinkActive="active">
+          <a routerLink="/manager-studentDetails" routerLinkActive="active">
             <span class="icon">
               <i class="fas fa-book"></i>
             </span>
@@ -36,7 +36,7 @@
   
         <!-- Publish Marks -->
         <li class="nav-item">
-          <a [routerLink]="['/Manager-marks']">
+          <a routerLink="/Manager-marks" routerLinkActive="active">
             <span class="icon">
               <i class="fas fa-pencil-alt"></i>
             </span>
@@ -47,7 +47,7 @@
        
         <!-- Track Student Progress -->
         <li class="nav-item">
-          <a [routerLink]="['/manager-trainerDetails']" routerLinkActive="active">
+          <a routerLink="/manager-trainerDetails" routerLinkActive="active">
             <span class="icon">
               <i class="fas fa-chart-bar"></i>
             </span>
@@ -57,7 +57,7 @@
   
         <!-- Course Completion Checklist -->
         <li class="nav-item">
-          <a [routerLink]="['/manager-roadmap']" routerLinkActive="active">
+          <a routerLink="/manager-roadmap" routerLinkActive="active">
             <span class="icon">
               <i class="fas fa-check-circle"></i>
             </span>
@@ -66,7 +66,7 @@
         </li>
 
         <li class="nav-item">
-          <a [routerLink]="['/manager-course']" routerLinkActive="active">
+          <a routerLink="/manager-course" routerLinkActive="active">
             <span class="icon">
               <i class="fas fa-book"></i>
             </span>
@@ -129,22 +129,22 @@
     <span></span>
   </button>
 
-  <!-- The dropdown menu with scrolling -->
-  <ul class="dropdown-menu dropdown-menu-end overflow-auto" aria-labelledby="message" style="max-height: 180px;">
-                  <li *ngFor="let msg of message" class="message-item">
-                    <a href="#0" class="message-link">
-        <div class="image">
-                        <img [src]="msg.avatar" alt="Avatar" class="avatar" />
-        </div>
-        <div class="content">
-                        <h6 class="name">{{ msg.name }}</h6>
-                        <p class="comments">{{ msg.comments }}</p>
-                        <span class="time">{{ msg.timeAgo }}</span>
-        </div>
-      </a>
-    </li>
-                 
-  </ul>
+<!-- The dropdown menu with scrolling and SimpleBar -->
+<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="message" style="max-height: 180px; width: 300px;" data-simplebar>
+  <li *ngFor="let msg of message" class="message-item" data-simplebar>
+    <a href="#0" class="message-link">
+      <div class="image">
+        <img [src]="msg.avatar" alt="Avatar" class="avatar" />
+      </div>
+      <div class="content">
+        <h6 class="name">{{ msg.name }}</h6>
+        <p class="comments">{{ msg.comments }}</p>
+        <span class="time">{{ msg.timeAgo }}</span>
+      </div>
+    </a>
+  </li>
+</ul>
+
 </div>
 <!-- message end -->
 
@@ -184,10 +184,9 @@
                         />
                       </div>
                       <div class="content">
-                        <h4 class="text-sm" *ngIf="user">{{ user.manager_name || 'No name available' }}</h4>
-                        <!-- <a class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs" href="#"
-                          >{{ user.email || 'No email available' }}</a
-                        > -->
+                        <p class="textt" *ngIf="user">{{ user.manager_name || 'No name available' }}</p>
+                        <p *ngIf="user" class="text">{{ user.email || 'No email provided' }}</p>
+              
                       </div>
                     </div>
                   </li>

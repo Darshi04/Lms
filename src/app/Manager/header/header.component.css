@@ -66,3 +66,12 @@
 .nav-item a.active .icon i {
   color: #007bff;
 }
+
+.text{
+  font-size: 14px;
+}
+
+.textt{
+  font-size: 14px;
+  font-weight: 600;
+}
