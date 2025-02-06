@@ -92,9 +92,7 @@
                             <tr *ngFor="let student of marklists">
                               <td>{{ student.stdent_id }}</td>
                               
-                              <!-- Conditional rendering of input or label based on selectedStudentType -->
                               <td>
-                                <!-- If it's a reattempt, display an input field for the mark -->
                                 <ng-container *ngIf="selectedStudentType === 'ReAttempt'">
                                   <input  
                                     [(ngModel)]="student.mark"
@@ -183,9 +181,18 @@
               <div *ngIf="noMarksFound">
                 <h6>No marks found for students.</h6>
               </div>
+              <div style="margin-top: 10px;width: 500px;margin-left: 270px;text-align: center;"
+                      class="alert"
+                      [ngClass]="{
+                        'alert-success': msg
+                      }"
+                    >
+                      {{ msg }}
+                    </div>
             </div>
           </div>
         </div>
+      
       </div>
       <!-- ========== forms-wrapper end ========== -->
     </div>
