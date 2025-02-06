@@ -17,6 +17,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ManagerDashboardComponent {
 
+  
     
     scheduledCount: number = 0;
     completedCount: number = 0;
@@ -24,6 +25,7 @@ export class ManagerDashboardComponent {
     sch: any = "";
   
     count: any;
+    trainer_count:any;
   
     constructor( private http: HttpClient) {
   
@@ -42,9 +44,29 @@ export class ManagerDashboardComponent {
       error: (err) => {
         console.error('Error fetching test count:', err);
       }
+      
     });
-
   
+
+  this.http.get<number>("http://localhost:8080/studentCount").subscribe({
+    next: (response) => {
+      console.log("Total student count:", response);
+      this.count = response; 
+    },
+    error: (err) => {
+      console.error('Error fetching student count:', err);
+    }
+  });
+
+  this.http.get<number>("http://localhost:8080/trainerCount").subscribe({
+    next:(response)=>{
+      console.log("Total Trainer Count:",response);
+      this. trainer_count=response;
+    },error:(err)=>{
+      console.error('Error fetching trainer count:',err);
+    }
+  })
  
 }
+
 }
