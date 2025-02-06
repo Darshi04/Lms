@@ -87,7 +87,7 @@ export class StudentDetailsComponent implements OnInit {
 
   // Save the new student
   saveNewStudent() {
-    if (this.newStudent.profile && this.newStudent.student_name && this.newStudent.rn_id && this.newStudent.email && this.newStudent.role && this.newStudent.skills) {
+    if ( this.newStudent.student_name && this.newStudent.rn_id && this.newStudent.email && this.newStudent.role && this.newStudent.skills) {
       const randomPassword = this.generateRandomPassword(8);
 
       if (this.newStudent.t_id === '') {

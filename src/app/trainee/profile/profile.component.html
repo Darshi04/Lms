@@ -71,8 +71,7 @@
             <div class="profile-image">
               <img [src]="user.profile" alt="Profile Image" />
               <div class="update-image">
-                <input type="file" (change)="onFileChange($event)" /><i class="lni lni-cloud-upload" ></i>
-            
+            <input type="file" (change)="onFileChange($event)"/><i class="lni lni-cloud-upload" ></i>
               </div>
             </div>
             <div class="profile-meta">
@@ -129,7 +128,7 @@
           <div class="col-12">
             <button class="main-btn primary-btn btn-hover" (click)="saveEditedStudent()">Save Updated Profile</button>
           </div>
-          <div style="margin-top: 10px;width: 500px;margin-left: 270px;text-align: center;"
+          <div style="text-align: center;"
                       class="alert"
                       [ngClass]="{
                         'alert-success': msg

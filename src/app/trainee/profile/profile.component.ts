@@ -17,6 +17,7 @@ export class ProfileComponent {
   msg:any;
  
   fields: { label: string, key: string, type: string }[] = [
+    { label: 'Profile', key: 'profile', type: 'input' },
     { label: 'Name', key: 'student_name', type: 'text' },
     { label: 'Employee Id', key: 'rn_id', type: 'text' },
     { label: 'Email', key: 'email', type: 'email' },
@@ -30,13 +31,14 @@ export class ProfileComponent {
       const parsedUserData = JSON.parse(userData);
       this.user = parsedUserData.students[0]; 
     }
+    
   }
 
 
   // Save the updated student data to the backend and localStorage
   saveEditedStudent() {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     // Update student data on the backend
     this.http.put(`http://localhost:8080/updateStudent/${this.user.rn_id}`, this.user, { headers })
       .subscribe(
