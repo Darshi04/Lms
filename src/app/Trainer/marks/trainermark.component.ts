@@ -16,10 +16,11 @@ export class TrainermarkComponent implements OnInit{
   selectedTrainerId: string = '';
   selectedSubject: string = '';
   selectedStudentType: string = ''; 
-  marklists: any[] = []; // Holds the fetched marks
-  marksMap: { [key: string]: number | null } = {}; // Holds marks for new submissions
-  studentIds: string[] = [];  // To store the fetched student IDs
-  noMarksFound: boolean = false; // Flag to indicate if no marks are found for reattempt students
+  marklists: any[] = []; 
+  marksMap: { [key: string]: number | null } = {}; 
+  studentIds: string[] = [];  
+  noMarksFound: boolean = false;
+  msg='';
 
   constructor(private http: HttpClient) {}
 
@@ -32,14 +33,13 @@ export class TrainermarkComponent implements OnInit{
     }
     
     this.selectedSubject = 'Java core';
-    this.selectedStudentType = 'AllStudent'; // Default value
-    this.fetchStudents(); // Fetch students when component initializes
-    this.fetchMarks();  // Fetch marks based on selected parameters
+    this.selectedStudentType = 'AllStudent';
+    this.fetchStudents(); 
+    this.fetchMarks();  
   }
 
   
   
-  // This method fetches the students based on the selected trainer ID
   fetchStudents(): void {
     if (!this.selectedTrainerId) {
       return;
@@ -48,7 +48,7 @@ export class TrainermarkComponent implements OnInit{
     this.http.get<any>(`http://localhost:8080/Trainer/${this.selectedTrainerId}`).subscribe(
       (response) => {
         console.log('Fetched students: ', response.ids);
-        this.studentIds = response.ids;  // Store the fetched student IDs
+        this.studentIds = response.ids;  
       },
       (error) => {
         console.error('Error occurred while fetching students:', error);
@@ -56,7 +56,7 @@ export class TrainermarkComponent implements OnInit{
     );
   }
 
-  initialMarksMap: { [key: string]: number | null } = {};  // Holds initial marks of students
+  initialMarksMap: { [key: string]: number | null } = {};  
 
   fetchMarks(): void {
     if (!this.selectedTrainerId || !this.selectedSubject || !this.selectedStudentType) {
@@ -76,9 +76,8 @@ export class TrainermarkComponent implements OnInit{
       this.http.post<any>('http://localhost:8080/Marks', markRequest).subscribe(
         (marksResponse) => {
           console.log('Fetched marks: ', marksResponse);
-          this.marklists = marksResponse; // Assuming the response contains the mark data
+          this.marklists = marksResponse;
   
-          // Handle case when no reattempt marks are found
           if (this.selectedStudentType === "ReAttempt") {
           this.noMarksFound = this.marklists.length === 0;
           }
@@ -88,68 +87,22 @@ export class TrainermarkComponent implements OnInit{
         },
         (error) => {
           console.error('Error occurred while fetching marks:', error);
-          this.noMarksFound = true; // In case of error, assume no marks are found
+          this.noMarksFound = true; 
         }
       );
-      
-        
-       
-    
 
-    // if (this.selectedStudentType === "ReAttempt") {
-    //   this.http.post<any>('http://localhost:8080/Marks', markRequest).subscribe(
-    //     (marksResponse) => {
-    //       console.log('Fetched marks: ', marksResponse);
-    //       this.marklists = marksResponse; // Assuming the response contains the mark data
-  
-    //       // Handle case when no reattempt marks are found
-    //       this.noMarksFound = this.marklists.length === 0;
-    //     },
-    //     (error) => {
-    //       console.error('Error occurred while fetching marks:', error);
-    //       this.noMarksFound = true; // In case of error, assume no marks are found
-    //     }
-    //   );
-    // } else {
-    //   // Fetch marks for all students
-    //   this.http.post<any>('http://localhost:8080/Marks', markRequest).subscribe(
-    //     (marksResponse) => {
-    //       console.log('Fetched marks: ', marksResponse);
-    //       this.marklists = marksResponse; // Assuming the response contains the mark data
-    //       this.noMarksFound = false; // Marks found, reset the flag
-    //     },
-    //     (error) => {
-    //       console.error('Error occurred while fetching marks:', error);
-    //       this.noMarksFound = true; // In case of error, assume no marks are found
-    //     }
-    //   );
-    // }
   }
   
 
-  // Publish marks for all students
   publishMarks(): void {
-    // const marksList = this.studentIds.map((id) => {
-    //   return {
-    //     stdent_id: id, // Use correct backend field name
-    //     mark: this.marksMap[id] ?? null, // Ensure correct mark value
-    //     subject: this.selectedSubject,
-    //     tran_id: this.selectedTrainerId,
-    //   };
-    // });
-
-    // const markRequest = {
-    //   marklist: marksList,
-    //   trainerId: this.selectedTrainerId,
-    //   subject: this.selectedSubject,
-    // };
-    let marksList; // Declare marksList outside the if-else block
+    
+    let marksList;
 
   if (this.selectedStudentType === "ReAttempt") {
     marksList = this.marklists.map((student) => {
       return {
-        stdent_id: student.stdent_id, // Corrected field name for student ID
-        mark: student.mark ?? null, // Ensures mark value is set to null if undefined
+        stdent_id: student.stdent_id, 
+        mark: student.mark ?? null, 
         subject: this.selectedSubject,
         tran_id: this.selectedTrainerId,
       };
@@ -157,8 +110,8 @@ export class TrainermarkComponent implements OnInit{
   } else {
     marksList = this.studentIds.map((id) => {
       return {
-        stdent_id: id, // Correct field name for student ID
-        mark: this.marksMap[id] ?? null, // Ensures mark value is set to null if undefined
+        stdent_id: id,
+        mark: this.marksMap[id] ?? null,
         subject: this.selectedSubject,
         tran_id: this.selectedTrainerId,
       };
@@ -174,7 +127,7 @@ export class TrainermarkComponent implements OnInit{
     this.http.post('http://localhost:8080/publish_marks', markRequest).subscribe(
       (response) => {
         console.log('Marks published successfully: ', response);
-        alert('Marks published successfully!');
+        this.msg='Marks published successfully!';
       },
       (error) => {
         console.error('Error occurred while publishing:', error);
@@ -183,32 +136,4 @@ export class TrainermarkComponent implements OnInit{
   }
   
 
-  // // Attempt to publish reattempt marks (if needed)
-  // attemptMarks(): void {
-    
-  //   const marksList = this.marklists.map((student) => {
-  //     return {
-  //       stdent_id: student.stdent_id, // Correct usage for student ID
-  //       mark: student.mark ?? null, // Ensure correct mark value
-  //       subject: this.selectedSubject,
-  //       tran_id: this.selectedTrainerId,
-  //     };
-  //   });
-  
-  //   const markRequest = {
-  //     marklist: marksList,
-  //     trainerId: this.selectedTrainerId,
-  //     subject: this.selectedSubject,
-  //   };
-
-  //   this.http.post('http://localhost:8080/publish_marks', markRequest).subscribe(
-  //     (response) => {
-  //       console.log('Marks published successfully: ', response);
-  //       console.log('Marks published successfully!');
-  //     },
-  //     (error) => {
-  //       console.error('Error occurred while publishing:', error);
-  //     }
-  //   );
-  // }
 }
