@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../../Trainer/footer/footer.component";
-import { TrainerService } from '../../trainer.service';
 
 
 @Component({
@@ -32,7 +31,7 @@ export class TrainersComponent implements OnInit {
   // Error flags
   errorMessage: string = '';
 
-  constructor(private http: HttpClient,private trainerService:TrainerService) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
     
@@ -47,10 +46,8 @@ export class TrainersComponent implements OnInit {
         this.trainers = response;
         console.log('Loaded trainers:', this.trainers);
 
-        // Extract the trainerIds and pass them to the TrainerService
-        const trainerIds = this.trainers.map(trainer => trainer.trainer_id);
-        this.trainerService.setTrainerIds(trainerIds);  // Set the trainerIds in the service
-        console.log("Value Sent",trainerIds);
+      
+        
         
       },
       (error) => {

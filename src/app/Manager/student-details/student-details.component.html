@@ -129,6 +129,11 @@
       <div *ngIf="addingNewStudent" class="form-container">
         <div class="form-popup">
           <form>
+           
+            <h3>Add New Student</h3>
+          
+            <div style="margin-top: 10px;margin-bottom: 8px;">
+              <input type="file" (change)="onFileChange($event)" />
             <h4 class="mb-3">Add New Student</h4>
             <div>
               <input class="form-control" type="file" (change)="onFileChange($event)" />
@@ -141,13 +146,13 @@
             </div>
    
             <!-- Trainer Id Dropdown -->
-             <!-- Trainer Id Dropdown -->
-      <div> 
-        <select type="text" class="form-select" [(ngModel)]="newStudent.t_id" name="t_id">
-          <option value="" disabled>Select Trainer</option> <!-- Default option -->
-          <option *ngFor="let trainerId of trainerIds" [value]="trainerId">{{ trainerId }}</option> <!-- Dynamically populate -->
-        </select>
-      </div>    
+           
+            <div>
+              <select type="text" class="form-select" [(ngModel)]="newStudent.t_id" name="t_id">
+                <option value="" disabled>Select Trainer</option> <!-- Default option -->
+                <option *ngFor="let trainerId of trainerIds" [value]="trainerId">{{ trainerId }}</option> <!-- Dynamically populate -->
+              </select>
+            </div>     
  
             <div>
               <input type="text" [(ngModel)]="newStudent.email" name="email" placeholder="Email" />
@@ -162,8 +167,9 @@
               <button type="button" class="btn btn-primary" (click)="saveNewStudent()">Save</button>
               <button type="button" class="btn btn-secondary" (click)="cancelAddingNewStudent()">Cancel</button>
             </div>
-          </form>
+        
         </div>
+          </form>
       </div>
    
       <!-- Form for Editing an Existing Student -->
@@ -205,10 +211,12 @@
         </div>
       </div>
     </div>
- 
- 
+    </div>
   </section>
  
+ 
+ 
   <app-footer></app-footer>
+  
 </app-header>
  
