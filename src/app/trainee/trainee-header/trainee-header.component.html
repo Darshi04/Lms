@@ -1,7 +1,6 @@
 <aside class="sidebar-nav-wrapper" [ngClass]="{'active': isSidebarOpen}">
     <div class="navbar-logo">
       <a href="index.html">
-        <!-- <img src="/images/logo/logo.svg" alt="logo" /> -->
          <h4>WebApp</h4>
       </a>
     </div>
@@ -9,7 +8,7 @@
       <ul>
         <!-- trainee dashboard -->
         <li class="nav-item">
-          <a [routerLink]="['/trainee-dashboard']" class="active">
+          <a routerLink="/trainee-dashboard" routerLinkActive="active">
             <span class="icon">
               <!-- Dashboard Icon -->
               <i class="fas fa-columns"></i>
@@ -20,7 +19,7 @@
   
         <!--  trainee course -->
         <li class="nav-item">
-          <a [routerLink]="['/trainee-course']">
+          <a routerLink="/trainee-course" routerLinkActive="active">
             <span class="icon">
               <i class="fas fa-book"></i>
             </span>
@@ -33,7 +32,7 @@
   
         <!-- trainee result -->
         <li class="nav-item">
-          <a [routerLink]="['/trainee-result']">
+          <a routerLink="/trainee-result" routerLinkActive="active">
             <span class="icon">
               <i class="fas fa-pencil-alt"></i>
             </span>
@@ -46,7 +45,7 @@
   
         <!-- trainee Checklist -->
         <li class="nav-item">
-          <a [routerLink]="['/trainee-tracker']">
+          <a routerLink="/trainee-tracker" routerLinkActive="active">
             <span class="icon">
               <i class="fas fa-check-circle"></i>
             </span>
@@ -56,25 +55,15 @@
 
         <!-- trainee feedback -->
         <li class="nav-item">
-            <a [routerLink]="['/trainee-feedback']">
-              <span class="icon">
+          <a routerLink="/trainee-feedback" routerLinkActive="active">
+            <span class="icon">
                 <i class="fas fa-chart-bar"></i>
               </span>
               <span class="text">FeedBack</span>
             </a>
           </li>
  
-        <!-- Student Communication
-        <li class="nav-item">
-          <a href="#studentCommunicationSection">
-            <span class="icon">
-              <i class="fas fa-comments"></i>
-            </span>
-            <span class="text">Student Communication</span>
-          </a>
-        </li> -->
-  
-       
+
         <span class="divider"><hr /></span>
         <!-- Sign Out Menu Item -->
         <li class="nav-item">

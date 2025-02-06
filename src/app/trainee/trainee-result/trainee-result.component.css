@@ -15,7 +15,24 @@
 }
 
 .card:hover{
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Apply shadow on hover */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Apply shadow on hover */
   transition: box-shadow 0.3s ease;
 
 }
+
+.attempt{
+  font-weight: 550;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.l-bg-blue-dark {
+  background: white;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.09); /* Subtle shadow */
+}
+
+
+
+
+
