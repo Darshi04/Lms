@@ -32,29 +32,28 @@
       <div class="container">
         <div class="row g-2">
           <!-- Displaying Trainers -->
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-6 wt-20px" *ngFor="let trainer of trainers; let i = index">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 mb-4 wt-20px" *ngFor="let trainer of trainers; let i = index">
             <div class="card p-2 py-3 text-center">
               <div class="img mb-2">
                 <!-- Trainer Image Placeholder (if any) -->
               </div>
               <h5 class="mb-2">{{trainer.trainer_name}}</h5>
-          <small style="margin-bottom: 10px;">{{trainer.role}}</small>
-  
-          <div class="contact-info">
-            <ul class="list-unstyled">
-              <li class="mb-2">
-                <span class="key">T_ID</span>: <span class="value">{{trainer.trainer_id}}</span>
-              </li>
-              <li class="mb-2">
-                <span class="key">Phone</span>: <span class="value">{{trainer.ph_no}}</span>
-              </li>
-              <li class="mb-2">
-                <span class="key">Email</span>: <span class="value">{{trainer.email}}</span>
-              </li>
-            </ul>
-          </div>
-
-
+              <small class="d-block mb-2">{{trainer.role}}</small>
+      
+              <div class="contact-info">
+                <ul class="list-unstyled">
+                  <li class="mb-2">
+                    <span class="key">T_ID</span>: <span class="value">{{trainer.trainer_id}}</span>
+                  </li>
+                  <li class="mb-2">
+                    <span class="key">Phone</span>: <span class="value">{{trainer.ph_no}}</span>
+                  </li>
+                  <li class="mb-2">
+                    <span class="key">Email</span>: <span class="value">{{trainer.email}}</span>
+                  </li>
+                </ul>
+              </div>
+      
               <!-- Edit and Remove Buttons -->
               <div class="mt-3">
                 <button (click)="editTrainer(i)" class="btn btn-warning btn-sm" aria-label="Edit" style="margin-right: 10px;">
@@ -66,7 +65,7 @@
               </div>
             </div>
           </div>
-          
+      
           <!-- "+" Card to Open Form (will disappear once clicked) -->
           <div class="d-flex justify-content-end">
             <button class="btn btn-primary" *ngIf="!showForm" (click)="openForm()" id="addTrainerBtn">
@@ -75,6 +74,7 @@
           </div>
         </div>
       </div>
+      
   
       <!-- Modal Form to Add or Edit Trainer -->
       <div class="modal" *ngIf="showForm" (click)="closeForm()">

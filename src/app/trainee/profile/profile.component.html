@@ -1,40 +1,36 @@
-<!-- ======== sidebar-nav start =========== -->
-<app-trainee-header>
-
+<!-- <app-trainee-header>
   <div class="row m-5 d-flex justify-content-center">
     <div class="col-lg-6 col-md-6">
       <div class="card-style settings-card-1 mb-30">
         <div class="title mb-30 d-flex justify-content-between align-items-center">
           <h6>My Profile</h6>
-          <button class="border-0 bg-transparent">
-            <i class="lni lni-pencil-alt"></i>
-          </button>
         </div>
         <div class="profile-info">
           <div class="d-flex align-items-center mb-30">
             <div class="profile-image">
-              <img src="assets/images/profile/profile-1.png" alt="" />
-              <div class="update-image">
-                <input type="file" />
+              <img [src]="user.profile" alt="Profile Image" /><i class="lni lni-pencil-alt" (click)="toggleEdit()"></i>
+              <div class="update-image" *ngIf="isEditing">
+                <input type="file" (change)="onFileChange($event)" />
                 <label for=""><i class="lni lni-cloud-upload"></i></label>
               </div>
             </div>
             <div class="profile-meta">
-              <h5 class="text-bold text-dark mb-10">John Doe</h5>
-              <p class="text-sm text-gray">Graduate Engineer Trainee</p>
+              <h5 class="text-bold text-dark mb-10">{{ user.student_name }}</h5> 
             </div>
           </div>
           <div class="input-style-1">
-            <label>Name</label>
-            <input type="text" placeholder="Pan" value="Pan" />
+            <label>Name</label><i class="lni lni-pencil-alt" (click)="toggleEdit()"></i>
+            <input *ngIf="isEditing" type="text" [(ngModel)]="user.student_name" />
+            <input *ngIf="!isEditing" type="text" [value]="user.student_name" readonly />
           </div>
           <div class="input-style-1">
             <label>Employee Id</label>
-            <input type="text" placeholder="RN12345" value="RN12345" />
+            <input type="text" [value]="user.rn_id" readonly />
           </div>
           <div class="input-style-1">
-            <label>Email</label>
-            <input type="email" placeholder="admin@example.com" value="admin@example.com" />
+            <label>Email</label><i class="lni lni-pencil-alt" (click)="toggleEdit()"></i>
+            <input *ngIf="isEditing" type="email" [(ngModel)]="user.email" />
+            <input *ngIf="!isEditing" type="email" [value]="user.email" readonly />
           </div>
         </div>
       </div>
@@ -43,31 +39,106 @@
     <div class="col-lg-6 col-md-6">
       <div class="card-style settings-card-1 mb-30">
         <div class="profile-info">
-          <!-- Work Address field in second column -->
-      
-            <div class="col-12">
-              <div class="input-style-1">
-                <label>Work Address</label>
-                <textarea placeholder="TP-2/1, Ascendas IT park, MWC Natham Sub P.O. Kancheepuram District Kancheepuram- 603002 India" rows="2"></textarea>
-              </div>
+          <div class="col-12">
+            <div class="input-style-1">
+              <label>Skills</label><i class="lni lni-pencil-alt" (click)="toggleEdit()"></i>
+              <textarea *ngIf="isEditing" placeholder="Type here" rows="6" [(ngModel)]="user.skills"></textarea>
+              <textarea *ngIf="!isEditing" placeholder="Type here" rows="6" [value]="user.skills" readonly></textarea>
             </div>
-            <div class="col-12">
-              <div class="input-style-1">
-                <label>Skills</label>
-                <textarea placeholder="Type here" rows="6"></textarea>
-              </div>
-
-
           </div>
           <div class="col-12">
-            <button class="main-btn primary-btn btn-hover">
-              Update Profile
-            </button>
+            <button *ngIf="isEditing" class="main-btn primary-btn btn-hover" (click)="saveEditedStudent()">Update Profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-trainee-header> -->
+
+
+
+<app-trainee-header>
+  <div class="row m-5 d-flex justify-content-center">
+    <!-- First Column -->
+    <div class="col-lg-6 col-md-6">
+      <div class="card-style settings-card-1 mb-30">
+        <div class="title mb-30 d-flex justify-content-between align-items-center">
+          <h6>My Profile</h6>
+        </div>
+        <div class="profile-info">
+          <!-- Profile Image Section -->
+          <div class="d-flex align-items-center mb-30">
+            <div class="profile-image">
+              <img [src]="user.profile" alt="Profile Image" />
+              <div class="update-image">
+                <input type="file" (change)="onFileChange($event)" /><i class="lni lni-cloud-upload" ></i>
+            
+              </div>
+            </div>
+            <div class="profile-meta">
+              <h5 class="text-bold text-dark mb-10">{{ user.student_name }}</h5>
+              <p class="text-sm text-gray">Graduate Engineer Trainee</p>
+
+            </div>
+          </div>
+          
+          <!-- Name Field -->
+          <div class="input-style-1">
+            <label>Name
+            <i class="lni lni-pencil-alt"></i></label>
+            <input type="text" [value]="user.student_name" [(ngModel)]="user.student_name"/>
+          </div>
+
+          <!-- Employee Id Field -->
+          <div class="input-style-1">
+            <label>Employee Id</label>
+            <input type="text" [value]="user.rn_id" readonly />
+          </div>
+
+          <!-- Email Field -->
+          <div class="input-style-1">
+            <label>Email<i class="lni lni-pencil-alt"></i></label>
+            <input type="email" [value]="user.email" readonly />
           </div>
         </div>
       </div>
     </div>
 
-  </div>
+    
 
+    <!-- Second Column -->
+    <div class="col-lg-6 col-md-6">
+      <div class="card-style settings-card-1 mb-30">
+        <div class="profile-info">
+
+          <div class="col-12">
+            <div class="input-style-1">
+              <label>Work Address</label>
+              <textarea placeholder="TP-2/1, Ascendas IT park, MWC Natham Sub P.O. Kancheepuram District Kancheepuram- 603002 India" rows="2" readonly></textarea>
+            </div>
+          </div>
+
+          <!-- Skills Field -->
+          <div class="input-style-1">
+            <label>Skills
+            <i class="lni lni-pencil-alt"></i></label>
+            <textarea placeholder="Type here" rows="6" [(ngModel)]="user.skills" [value]="user.skills"></textarea>
+          </div>
+
+          <!-- Update Button -->
+          <div class="col-12">
+            <button class="main-btn primary-btn btn-hover" (click)="saveEditedStudent()">Save Updated Profile</button>
+          </div>
+          <div style="margin-top: 10px;width: 500px;margin-left: 270px;text-align: center;"
+                      class="alert"
+                      [ngClass]="{
+                        'alert-success': msg
+                      }"
+                    >
+                      {{ msg }}
+                    </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </app-trainee-header>
