@@ -55,7 +55,7 @@ export const routes: Routes = [
     {path:"trainer-checklist",component:ChecklistComponent, canActivate: [AuthguardService]},
 
     {path:"Manager-marks",component:ManagerMarksComponent, canActivate: [AuthguardService]},
-    {path:"forgetpassword",component:ForgetPasswordComponent, canActivate: [AuthguardService]},
+    {path:"forgetpassword",component:ForgetPasswordComponent},
 
 
 

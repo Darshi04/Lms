@@ -17,10 +17,10 @@ export class LoginComponentComponent {
   password: string = '';
   role: string = 'Student';
   message: string = '';
-  passwordVisible: boolean = false; 
+   
   private apiUrl: string = 'http://localhost:8080'; // Backend URL
 
-
+  passwordVisible: boolean = false;
   togglePasswordVisibility(): void {
     this.passwordVisible = !this.passwordVisible; 
   }
