@@ -74,7 +74,32 @@
           </div>
           <!-- End Completed Tests -->
         </div>
+        <div class="col-xl-3 col-lg-4 col-sm-6">
+          <div data-simplebar class="icon-card cardd details mb-30"> <!-- Added cardd here -->
 
+              <div class="content">
+                <div class="d-flex ">
+                  <div class="icon blue d-flex mb-3">
+                    <i class="fas fa-calendar-check"></i>
+                  </div>
+                  <h6 class="mt-3 text-nowrap">Upcoming Tests</h6>
+                </div>
+                <div *ngIf="scheduledTests.length > 0">
+                  <div *ngFor="let test of scheduledTests" class="mb-4">
+                    <h6 class="mb-2">{{ test.title }}</h6>
+                    <p class="mb-0">
+                      Date:
+                      <span class="text-bold">{{ test.date | date: 'MMMM d, yyyy' }}</span>
+                    </p>
+                  </div>
+                </div>
+                <div *ngIf="scheduledTests.length === 0">
+                  <p>No upcoming tests scheduled.</p>
+                </div>
+              </div>
+            
+          </div>
+        </div>
 
       </div>
       <!-- End Row -->
