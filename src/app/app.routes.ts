@@ -22,6 +22,7 @@ import { ManagerMarksComponent } from './MARKS/manager-marks/manager-marks.compo
 import { ManagerRoadmapComponent } from './Manager/manager-roadmap/manager-roadmap.component';
 import { CourseInfoComponent } from './Manager/course-info/course-info.component';
 import { ProfileComponent } from './trainee/profile/profile.component';
+import { AuthguardService } from './authguard.service';
 
 
 
@@ -29,32 +30,32 @@ export const routes: Routes = [
     {path:"",component:LoginComponentComponent},
     {path:"login",component:LoginComponentComponent},
 
-    {path:"roadmap",component:RoadmapComponent},
+    {path:"roadmap",component:RoadmapComponent, canActivate: [AuthguardService]},
 
-    {path:"trainee-course",component:TraineeCourseComponent},
-    {path:"trainee-dashboard",component:TraineeDashboardComponent},
-    {path:"trainee-feedback",component:TraineeFeedbackComponent},
-    {path:"trainee-result",component:TraineeResultComponent},
-    {path:"trainee-tracker",component:TraineeTrackerComponent},
-    {path:"trainee-profile",component:ProfileComponent},
+    {path:"trainee-course",component:TraineeCourseComponent, canActivate: [AuthguardService]},
+    {path:"trainee-dashboard",component:TraineeDashboardComponent, canActivate: [AuthguardService]},
+    {path:"trainee-feedback",component:TraineeFeedbackComponent, canActivate: [AuthguardService]},
+    {path:"trainee-result",component:TraineeResultComponent, canActivate: [AuthguardService]},
+    {path:"trainee-tracker",component:TraineeTrackerComponent, canActivate: [AuthguardService]},
+    {path:"trainee-profile",component:ProfileComponent, canActivate: [AuthguardService]},
 
-    {path:"manager-dashboard",component:ManagerDashboardComponent},
-    {path:"manager-studentDetails",component:StudentDetailsComponent},
-    {path:"manager-course",component:CourseInfoComponent},
-    {path:"manager-trainerDetails",component:TrainersComponent},
+    {path:"manager-dashboard",component:ManagerDashboardComponent, canActivate: [AuthguardService]},
+    {path:"manager-studentDetails",component:StudentDetailsComponent, canActivate: [AuthguardService]},
+    {path:"manager-course",component:CourseInfoComponent, canActivate: [AuthguardService]},
+    {path:"manager-trainerDetails",component:TrainersComponent, canActivate: [AuthguardService]},
     {path:"manager-publishMarks",component:PublishMarksComponent},
-    {path:"manager-insights",component:InsightsComponent},
-    {path:"manager-roadmap",component:ManagerRoadmapComponent},
-    {path:"manager-calendar",component:AsideComponent},
+    {path:"manager-insights",component:InsightsComponent, canActivate: [AuthguardService]},
+    {path:"manager-roadmap",component:ManagerRoadmapComponent, canActivate: [AuthguardService]},
+    {path:"manager-calendar",component:AsideComponent, canActivate: [AuthguardService]},
 
     
-    {path:"trainer-dashboard",component:HomeComponent},
-    {path:"trainer-publishMarks",component:TrainermarkComponent},
-    {path:"trainer-course",component:CourseComponent},
-    {path:"trainer-checklist",component:ChecklistComponent},
+    {path:"trainer-dashboard",component:HomeComponent, canActivate: [AuthguardService]},
+    {path:"trainer-publishMarks",component:TrainermarkComponent, canActivate: [AuthguardService]},
+    {path:"trainer-course",component:CourseComponent, canActivate: [AuthguardService]},
+    {path:"trainer-checklist",component:ChecklistComponent, canActivate: [AuthguardService]},
 
-    {path:"Manager-marks",component:ManagerMarksComponent},
-    {path:"forgetpassword",component:ForgetPasswordComponent},
+    {path:"Manager-marks",component:ManagerMarksComponent, canActivate: [AuthguardService]},
+    {path:"forgetpassword",component:ForgetPasswordComponent, canActivate: [AuthguardService]},
 
 
 
