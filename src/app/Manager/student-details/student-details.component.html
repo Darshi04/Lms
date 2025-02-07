@@ -82,7 +82,7 @@
                     <th>RN Number</th>
                     <th>Trainer Id</th>
                     <th>Email</th>
-                    <th>Role</th>
+                    <!-- <th>Role</th> -->
                     <th>Skills</th>
                     <th>Action</th>
                   </tr>
@@ -96,7 +96,7 @@
                     <td>{{ student.rn_id }}</td>
                     <td>{{ student.t_id }}</td>
                     <td>{{ student.email }}</td>
-                    <td>{{ student.role }}</td>
+                    <!-- <td>{{ student.role }}</td> -->
                     <td>{{ student.skills }}</td>
                     <td>
                       <!-- Edit Icon -->
@@ -131,7 +131,7 @@
           <form>
             <h4 class="mb-3">Add New Student</h4>
             <div>
-              <input class="form-control" type="file" (change)="onFileChange($event)" />
+              <input class="form-control" type="file" (change)="onFileChange($event)"/>
             </div>
             <div>
               <input type="text" [(ngModel)]="newStudent.student_name" name="name" placeholder="Name" />
@@ -152,12 +152,12 @@
             <div>
               <input type="text" [(ngModel)]="newStudent.email" name="email" placeholder="Email" />
             </div>
-            <div>
+            <!-- <div>
               <input type="text" [(ngModel)]="newStudent.role" name="role" placeholder="Role" />
             </div>
             <div>
               <input type="text" [(ngModel)]="newStudent.skills" name="skills" placeholder="Skills" />
-            </div>
+            </div> -->
             <div class="form-actions">
               <button type="button" class="btn btn-primary" (click)="saveNewStudent()">Save</button>
               <button type="button" class="btn btn-secondary" (click)="cancelAddingNewStudent()">Cancel</button>
@@ -172,7 +172,7 @@
           <form class="modal-body">
             <h4 class="mb-3">Edit Student</h4>
              <div>
-                <input class="mb-3 form-control" type="file" (change)="onFileChange($event)"/>
+                <input  class="mb-3 form-control" type="file" (change)="onFileChange($event)"/>
               </div>
             <div>
            
@@ -191,12 +191,12 @@
             <div>
               <input type="text" class="mb-3 form-control" [(ngModel)]="currentStudent.email" name="email" placeholder="email" />
             </div>
-            <div>
+            <!-- <div>
               <input type="text" class="mb-3 form-control" [(ngModel)]="currentStudent.role" name="role" placeholder="Role" />
             </div>
             <div>
               <input type="text" class="mb-3 form-control" [(ngModel)]="currentStudent.skills" name="skills" placeholder="Skills" />
-            </div>
+            </div> -->
             <div class="form-actions">
               <button type="button" class="btn btn-primary" (click)="saveEditedStudent()">Save</button>
               <button type="button" class="btn btn-secondary" (click)="cancelEditing()">Cancel</button>
