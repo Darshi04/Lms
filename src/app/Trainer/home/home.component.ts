@@ -21,6 +21,8 @@ Chart.register(...registerables);
 })
 
 export class HomeComponent implements OnInit {
+  scheduledTests: any[] = []; // Array to store the scheduled tests
+
   studentCount: number = 0;  // Variable to hold the student count
   
   scheduledCount: number = 0;
@@ -42,6 +44,8 @@ if (trainersData) {
  
 }
 
+
+  
 
 
 
@@ -65,7 +69,23 @@ if (trainersData) {
         
 
     
-
+ // Fetch scheduled tests from the backend API
+ this.http.get<any>('http://localhost:8080/scheduled').subscribe(
+  (response) => {
+    // Assuming the 'scheduled' array is in the response
+    if (response.scheduled) {
+      this.scheduledTests = response.scheduled;
+      
+              // Sort the tests by date in ascending order
+  this.scheduledTests.sort((a, b) => {
+    return new Date(a.date).getTime() - new Date(b.date).getTime();
+  });
+    }
+  },
+  (error) => {
+    console.error('Error fetching scheduled tests', error);
+  }
+);
 
     
 
