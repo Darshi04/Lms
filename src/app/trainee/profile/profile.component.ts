@@ -45,7 +45,10 @@ export class ProfileComponent {
         (response: any) => {
           console.log('Student updated:', response);
           localStorage.setItem('user', JSON.stringify({ students: [this.user] }));
-          this.msg='Updated Suceesfuuly'
+          this.msg='Updated Suceesfully';
+          setTimeout(() => {
+            this.msg = '';  // Clear the error message
+          }, 2000);
         },
         (error) => {
           console.error('Error updating student:', error);
