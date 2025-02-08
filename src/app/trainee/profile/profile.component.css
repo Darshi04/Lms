@@ -1,0 +1,17 @@
+.student-avatar {
+    width: 55px; /* Adjust size as needed */
+    height: 80px;
+    border-radius: 50%; /* To make it round */
+    object-fit: cover; /* Ensures image fits in the container */
+  }
+  /* alert.component.css */
+.alert-top {
+    position: fixed;
+    top: 13px;
+    left: 55%;
+    transform: translateX(-50%);
+    width: 300px;
+    z-index: 9999;
+  }
+  
+  

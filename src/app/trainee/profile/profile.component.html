@@ -1,62 +1,3 @@
-<!-- <app-trainee-header>
-  <div class="row m-5 d-flex justify-content-center">
-    <div class="col-lg-6 col-md-6">
-      <div class="card-style settings-card-1 mb-30">
-        <div class="title mb-30 d-flex justify-content-between align-items-center">
-          <h6>My Profile</h6>
-        </div>
-        <div class="profile-info">
-          <div class="d-flex align-items-center mb-30">
-            <div class="profile-image">
-              <img [src]="user.profile" alt="Profile Image" /><i class="lni lni-pencil-alt" (click)="toggleEdit()"></i>
-              <div class="update-image" *ngIf="isEditing">
-                <input type="file" (change)="onFileChange($event)" />
-                <label for=""><i class="lni lni-cloud-upload"></i></label>
-              </div>
-            </div>
-            <div class="profile-meta">
-              <h5 class="text-bold text-dark mb-10">{{ user.student_name }}</h5> 
-            </div>
-          </div>
-          <div class="input-style-1">
-            <label>Name</label><i class="lni lni-pencil-alt" (click)="toggleEdit()"></i>
-            <input *ngIf="isEditing" type="text" [(ngModel)]="user.student_name" />
-            <input *ngIf="!isEditing" type="text" [value]="user.student_name" readonly />
-          </div>
-          <div class="input-style-1">
-            <label>Employee Id</label>
-            <input type="text" [value]="user.rn_id" readonly />
-          </div>
-          <div class="input-style-1">
-            <label>Email</label><i class="lni lni-pencil-alt" (click)="toggleEdit()"></i>
-            <input *ngIf="isEditing" type="email" [(ngModel)]="user.email" />
-            <input *ngIf="!isEditing" type="email" [value]="user.email" readonly />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-6 col-md-6">
-      <div class="card-style settings-card-1 mb-30">
-        <div class="profile-info">
-          <div class="col-12">
-            <div class="input-style-1">
-              <label>Skills</label><i class="lni lni-pencil-alt" (click)="toggleEdit()"></i>
-              <textarea *ngIf="isEditing" placeholder="Type here" rows="6" [(ngModel)]="user.skills"></textarea>
-              <textarea *ngIf="!isEditing" placeholder="Type here" rows="6" [value]="user.skills" readonly></textarea>
-            </div>
-          </div>
-          <div class="col-12">
-            <button *ngIf="isEditing" class="main-btn primary-btn btn-hover" (click)="saveEditedStudent()">Update Profile</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</app-trainee-header> -->
-
-
-
 <app-trainee-header>
   <div class="row m-5 d-flex justify-content-center">
     <!-- First Column -->
@@ -69,7 +10,7 @@
           <!-- Profile Image Section -->
           <div class="d-flex align-items-center mb-30">
             <div class="profile-image">
-              <img [src]="user.profile" alt="Profile Image" />
+              <img [src]="user.profile" alt="Profile Image" class="student-avatar"yy />
               <div class="update-image">
             <input type="file" (change)="onFileChange($event)"/><i class="lni lni-cloud-upload" ></i>
               </div>
@@ -96,7 +37,7 @@
 
           <!-- Email Field -->
           <div class="input-style-1">
-            <label>Email<i class="lni lni-pencil-alt"></i></label>
+            <label>Email</label>
             <input type="email" [value]="user.email" readonly />
           </div>
         </div>
@@ -128,14 +69,25 @@
           <div class="col-12">
             <button class="main-btn primary-btn btn-hover" (click)="saveEditedStudent()">Save Updated Profile</button>
           </div>
-          <!-- <div style="text-align: center;"
-                      class="alert"
-                      [ngClass]="{
-                        'alert-success': msg
-                      }"
-                    >
-                      {{ msg }}
-                    </div> -->
+          <div
+          *ngIf="msg"
+          class="alert alert-success d-flex align-items-center alert-top"
+          [ngClass]="{ 'alert-success': msg }"
+          role="alert"
+        >
+          <!-- Icon inside the alert box -->
+          <i
+            class="fa-solid fa-circle-check"
+            style="margin-right: 10px"
+            width="24"
+            height="24"
+            role="img"
+            aria-label="Success:"
+          ></i>
+          <div>
+            {{ msg }}
+          </div>
+        </div>
         </div>
       </div>
     </div>
