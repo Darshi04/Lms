@@ -47,7 +47,7 @@ selectRole(selectedRole: string): void {
   // Submit the email and request verification code
   onEmailSubmit() {
     if (!this.email) {
-      this.message = 'Please enter a valid email address.';
+      this.message = 'Please enter a valid ${this.role} email address.';
       return;
     }
     

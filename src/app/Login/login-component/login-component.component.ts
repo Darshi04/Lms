@@ -78,7 +78,7 @@ export class LoginComponentComponent {
           },
           error: (error) => {
             console.error('Login failed', error);
-            this.message = 'Invalid email or password or role';
+            this.message = `Invalid ${this.role} email or password`;
           }
         });
     } else {

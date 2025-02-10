@@ -9,7 +9,6 @@ import { ManagerDashboardComponent } from './Manager/manager-dashboard/manager-d
 import { StudentDetailsComponent } from './Manager/student-details/student-details.component';
 
 import { TrainersComponent } from './Manager/trainers/trainers.component';
-import { PublishMarksComponent } from './Manager/publish-marks/publish-marks.component';
 import { InsightsComponent } from './Manager/insights/insights.component';
 import { ForgetPasswordComponent } from './Login/forget-password/forget-password.component';
 import { TraineeCourseComponent } from './trainee/trainee-course/trainee-course.component';
@@ -18,7 +17,7 @@ import { TraineeFeedbackComponent } from './trainee/trainee-feedback/trainee-fee
 import { TraineeResultComponent } from './trainee/trainee-result/trainee-result.component';
 import { TraineeTrackerComponent } from './trainee/trainee-tracker/trainee-tracker.component';
 import { TrainermarkComponent } from './Trainer/marks/trainermark.component';
-import { ManagerMarksComponent } from './MARKS/manager-marks/manager-marks.component';
+import { ManagerMarksComponent } from './Manager/manager-marks/manager-marks.component';
 import { ManagerRoadmapComponent } from './Manager/manager-roadmap/manager-roadmap.component';
 import { CourseInfoComponent } from './Manager/course-info/course-info.component';
 import { ProfileComponent } from './trainee/profile/profile.component';
@@ -43,7 +42,6 @@ export const routes: Routes = [
     {path:"manager-studentDetails",component:StudentDetailsComponent, canActivate: [AuthguardService]},
     {path:"manager-course",component:CourseInfoComponent, canActivate: [AuthguardService]},
     {path:"manager-trainerDetails",component:TrainersComponent, canActivate: [AuthguardService]},
-    {path:"manager-publishMarks",component:PublishMarksComponent},
     {path:"manager-insights",component:InsightsComponent, canActivate: [AuthguardService]},
     {path:"manager-roadmap",component:ManagerRoadmapComponent, canActivate: [AuthguardService]},
     {path:"manager-calendar",component:AsideComponent, canActivate: [AuthguardService]},

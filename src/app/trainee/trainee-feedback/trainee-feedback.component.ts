@@ -81,8 +81,9 @@ export class TraineeFeedbackComponent implements OnInit {
     });
   }
   resetForm(){
-   
-    this.feedbackForm.reset();
+    this.feedbackForm.controls['comments'].reset();
+
+    // this.feedbackForm.reset();
        // Reset any previous error messages
     
   }
