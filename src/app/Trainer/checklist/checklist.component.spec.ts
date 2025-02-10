@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing'; // <-- Import this
+import { RouterTestingModule } from '@angular/router/testing';
 import { ChecklistComponent } from './checklist.component';
 
 describe('ChecklistComponent', () => {
@@ -8,7 +9,7 @@ describe('ChecklistComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChecklistComponent]
+      imports: [ChecklistComponent,HttpClientTestingModule,RouterTestingModule]
     })
     .compileComponents();
 

@@ -128,6 +128,10 @@ export class TrainermarkComponent implements OnInit{
       (response) => {
         console.log('Marks published successfully: ', response);
         this.msg='Marks published successfully!';
+              // Set timeout to clear the message after 5 seconds (5000 milliseconds)
+      setTimeout(() => {
+        this.msg = '';  // Clear the error message
+      }, 2000);
       },
       (error) => {
         console.error('Error occurred while publishing:', error);

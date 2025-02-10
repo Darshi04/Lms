@@ -91,7 +91,15 @@ export class StudentDetailsComponent implements OnInit {
   // Save the new student
   saveNewStudent() {
     if ( this.newStudent.student_name && this.newStudent.rn_id && this.newStudent.email) {
-      const randomPassword = this.generateRandomPassword(8);
+
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    if (!emailRegex.test(this.newStudent.email)) {
+      console.error('Email must be a Gmail address');
+      alert('Email must be a Gmail address'); // You can replace this with a better UI message
+      return; // Stop the function if the email is not valid
+    }
+    
+      const randomPassword = this.generateRandomPassword(10);
 
       if (this.newStudent.t_id === '') {
         this.newStudent.t_id = null;
@@ -152,6 +160,12 @@ export class StudentDetailsComponent implements OnInit {
       if (this.newStudent.profile) {
         this.currentStudent.profile = this.newStudent.profile; // Assign the new profile image
       }
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    if (!emailRegex.test(this.currentStudent.email)) {
+      console.error('Email must be a Gmail address');
+      alert('Email must be a Gmail address'); // You can replace this with a better UI message
+      return; // Stop the function if the email is not valid
+    }
 
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 

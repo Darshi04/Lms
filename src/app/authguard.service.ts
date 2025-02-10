@@ -20,24 +20,24 @@ export class AuthguardService implements CanActivate {
     console.log("Attempting to navigate to: ", currentRoute);
 
     // Check if the current route is allowed based on the user's role
-    if (role === 'student') {
-      const allowedRoutes = ['/dashboard', '/check', '/login'];
+    if (role === 'Student') {
+      const allowedRoutes = ['/trainee-course', '/trainee-dashboard', '/login','/trainee-feedback','/trainee-result','/trainee-tracker','/trainee-profile','/roadmap','/forgetpassword'];
       if (allowedRoutes.includes(currentRoute)) {
         console.log('Allowed for student: ', currentRoute);
         return true;
       }
     }
 
-    if (role === 'manager') {
-      const allowedRoutes = ['/manager', '/course', '/login'];
+    if (role === 'Manager') {
+      const allowedRoutes = ['/forgetpassword', '/manager-dashboard', '/login','/manager-studentDetails','/manager-course','/manager-trainerDetails','/Manager-marks','/manager-insights','/manager-roadmap','/manager-calendar'];
       if (allowedRoutes.includes(currentRoute)) {
         console.log('Allowed for manager: ', currentRoute);
         return true;
       }
     }
 
-    if (role === 'trainer') {
-      const allowedRoutes = ['/home', '/marks', '/login'];
+    if (role === 'Trainer') {
+      const allowedRoutes = ['/forgetpassword', '/roadmap', '/login','/trainer-dashboard','/trainer-publishMarks','/trainer-course','/trainer-checklist'];
       if (allowedRoutes.includes(currentRoute)) {
         console.log('Allowed for trainer: ', currentRoute);
         return true;

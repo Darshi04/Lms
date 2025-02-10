@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 export class ForgetPasswordComponent {
   email: string = '';
   role: string = 'student';
+  password:string='';
   newPassword: string = '';
   confirmPassword: string = '';
   verificationCode: string = '';
@@ -23,6 +24,18 @@ export class ForgetPasswordComponent {
   codeVerified = false;
   message: string = '';
   roles = ['student', 'manager', 'trainer'];
+
+  passwordVisible: boolean = false; // For new password visibility
+  confirmPasswordVisible: boolean = false; // For confirm password visibility
+
+  togglePasswordVisibility(type: string) {
+
+    if (type === 'new') {
+      this.passwordVisible = !this.passwordVisible; // Toggle new password visibility
+    } else if (type === 'confirm') {
+      this.confirmPasswordVisible = !this.confirmPasswordVisible; // Toggle confirm password visibility
+    }
+  }
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -34,7 +47,7 @@ selectRole(selectedRole: string): void {
   // Submit the email and request verification code
   onEmailSubmit() {
     if (!this.email) {
-      this.message = 'Please enter a valid email address.';
+      this.message = 'Please enter a valid ${this.role} email address.';
       return;
     }
     
@@ -42,8 +55,10 @@ selectRole(selectedRole: string): void {
     let endpoint = 'http://localhost:8080/request';
     this.http.post(endpoint, { email: this.email, role: this.role }).subscribe(
       (response: any) => {
+        this.password=response.password;
         this.message = 'Verification code sent. Check your email.';
         this.verificationCodeSent = true;
+        
       },
       error => {
         this.message = error?.error?.msg || 'Error occurred while sending verification code.';
@@ -77,6 +92,21 @@ selectRole(selectedRole: string): void {
   onSetPasswordSubmit() {
     if (this.newPassword !== this.confirmPassword) {
       this.message = 'Passwords do not match.';
+      return;
+    }
+  
+    // Password validation conditions
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
+  
+    // Check if the password meets the required conditions
+    if (!passwordRegex.test(this.newPassword)) {
+      this.message = 'Please re-check your password';
+      return;
+    }
+  
+    // Ensure the new password is not the same as the old password
+    if (this.newPassword === this.password) {
+      this.message = 'New password cannot be the same as the old password.';
       return;
     }
 
