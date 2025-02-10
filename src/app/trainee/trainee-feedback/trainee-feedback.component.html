@@ -1,9 +1,8 @@
-<!-- ======== sidebar-nav start =========== -->
 <app-trainee-header>
-
+ 
   <!-- Feedback Form Section -->
   <section class="section">
-    
+   
     <div class="container-fluid">
       <div class="title-wrapper pt-30">
         <div class="row align-items-center">
@@ -32,41 +31,41 @@
         <!-- end row -->
         </div>
     </div>
-
+ 
     <div class="container-feedback">
       <!-- Reactive Form -->
       <form [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()">
         <label for="name" style="padding-bottom: 10px;">Name</label>
-        <input 
+        <input
           id="name"
-          formControlName="name" 
-          required
+          formControlName="name"
+          readonly
         />
-        <div *ngIf="feedbackForm.controls['name'].invalid && feedbackForm.controls['name'].touched" class="error-message">
+        <!-- <div *ngIf="feedbackForm.controls['name'].invalid && feedbackForm.controls['name'].touched" class="error-message">
           Name is required.
-        </div>
-
+        </div> -->
+ 
         <label for="email" style="padding: 10px 0px 10px 0px;">Email</label>
-        <input 
+        <input
           id="email"
-          formControlName="email" 
-          required 
+          formControlName="email"
+           readonly
           type="email"
         />
-        <div *ngIf="feedbackForm.controls['email'].invalid && feedbackForm.controls['email'].touched" class="error-message">
+        <!-- <div *ngIf="feedbackForm.controls['email'].invalid && feedbackForm.controls['email'].touched" class="error-message">
           Valid email is required.
-        </div>
-
+        </div> -->
+ 
         <label for="comments" style="padding: 10px 0px 10px 0px;">Comments</label>
-        <input 
+        <input
           id="comments"
-          formControlName="comments" 
+          formControlName="comments"
           required
         />
         <div *ngIf="feedbackForm.controls['comments'].invalid && feedbackForm.controls['comments'].touched" class="error-message">
           Comments are required.
         </div>
-
+ 
         <button type="submit" class="submit-btn" [disabled]="feedbackForm.invalid">
           Submit
         </button>
