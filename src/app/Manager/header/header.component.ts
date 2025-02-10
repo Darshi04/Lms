@@ -77,6 +77,8 @@ export class HeaderComponent implements AfterViewInit,OnInit{
   getMessage(){  
     const apiUrl = 'http://localhost:8080/comments';
       this.http.get<any[]>(apiUrl).subscribe((data)=>{
+        console.log(data);
+        
         this.message=data.reverse();
           // Add time difference logic
       this.message.forEach(msg => {

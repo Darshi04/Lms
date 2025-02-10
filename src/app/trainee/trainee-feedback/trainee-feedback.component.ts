@@ -16,17 +16,29 @@ export class TraineeFeedbackComponent implements OnInit {
   isSidebarOpen: boolean = true;
   feedbackForm!: FormGroup;  // FormGroup to manage the form
   serverMsg = 'error';
+  user:any;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {}
+  constructor(private fb: FormBuilder, private http: HttpClient) {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const parsedUserData = JSON.parse(userData);
+      console.log(this.user);
+      this.user = parsedUserData.students[0]; // Access the first student in the array
+      console.log(this.user);
+      
+    }
+  }
 
   ngOnInit(): void {
     // Initialize the form with validators
     this.feedbackForm = this.fb.group({
-      name: ['', [Validators.required]], // Required field
-      email: ['', [Validators.required, Validators.email]], // Required field with email validation
-      comments: ['', [Validators.required]], // Required field
+      name: this.user.student_name,
+      email: this.user.email, 
+      comments: ['', [Validators.required]], 
     });
   }
+
+  
 
   // Method to toggle sidebar visibility
   toggleSidebar() {
@@ -35,12 +47,20 @@ export class TraineeFeedbackComponent implements OnInit {
 
   // Submit the feedback form
   submitFeedback() {
+    console.log("fdsdfsdf");
     if (this.feedbackForm.invalid) {
+      
+      
       return; // Stop submission if any field is invalid
     }
 
     // Prepare the data to send
-    const data = this.feedbackForm.value;
+    const data = {
+      name: this.user.student_name, // Use user.student_name
+      email: this.user.email, // Use user.email
+      comments: this.feedbackForm.value.comments, // Get comments from the form
+      profile: this.user.profile // Include user.profile
+    };
 
     // Log feedback to the console for testing
     console.log('Feedback submitted:', data);

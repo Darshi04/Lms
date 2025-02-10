@@ -40,22 +40,22 @@
         <input 
           id="name"
           formControlName="name" 
-          required
+          
         />
-        <div *ngIf="feedbackForm.controls['name'].invalid && feedbackForm.controls['name'].touched" class="error-message">
+        <!-- <div *ngIf="feedbackForm.controls['name'].invalid && feedbackForm.controls['name'].touched" class="error-message">
           Name is required.
-        </div>
+        </div> -->
 
         <label for="email" style="padding: 10px 0px 10px 0px;">Email</label>
         <input 
           id="email"
           formControlName="email" 
-          required 
+           
           type="email"
         />
-        <div *ngIf="feedbackForm.controls['email'].invalid && feedbackForm.controls['email'].touched" class="error-message">
+        <!-- <div *ngIf="feedbackForm.controls['email'].invalid && feedbackForm.controls['email'].touched" class="error-message">
           Valid email is required.
-        </div>
+        </div> -->
 
         <label for="comments" style="padding: 10px 0px 10px 0px;">Comments</label>
         <input 
