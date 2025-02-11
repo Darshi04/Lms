@@ -31,6 +31,9 @@ export class ProfileComponent {
       const parsedUserData = JSON.parse(userData);
       this.user = parsedUserData.students[0]; 
     }
+    else {
+      this.user = {};  // Ensure user is initialized as an empty object
+    }
     
   }
 
