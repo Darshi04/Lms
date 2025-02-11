@@ -32,8 +32,8 @@ export class TraineeFeedbackComponent implements OnInit {
   ngOnInit(): void {
     // Initialize the form with validators
     this.feedbackForm = this.fb.group({
-      name: this.user.student_name,
-      email: this.user.email, 
+      name: this.user?.student_name,
+      email: this.user?.email, 
       comments: ['', [Validators.required]], 
     });
   }

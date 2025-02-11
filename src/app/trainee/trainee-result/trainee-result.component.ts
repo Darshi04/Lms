@@ -55,7 +55,7 @@ export class TraineeResultComponent {
     const subjects: any[] = [];
     const marks = this.user.marks;
 
-    marks.forEach((mark: {
+   marks && marks.forEach((mark: {
       mark: null; subject: string 
 }) => {
       let subject = subjects.find(s => s.name === mark.subject);
