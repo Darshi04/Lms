@@ -35,10 +35,13 @@
     color: #007bff;
   }
   
-  .navbar-logo p i {
-    font-size: 20px;
-    animation-iteration-count: 2;
-  }
+ .navbar{
+  margin-top: 0;
+  margin-left: 38px;
+  margin-bottom: 2px;
+ }
+
+ 
   
   .sidebar-nav .nav-item a:hover .icon {
     transform: scale(1.1);

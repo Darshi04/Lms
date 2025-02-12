@@ -75,3 +75,16 @@
   font-size: 14px;
   font-weight: 600;
 }
+
+.navbar{
+  margin-top: 0;
+  margin-left: 38px;
+  margin-bottom: 2px;
+ }
+
+ .avatar {
+  width: 55px; /* Adjust size as needed */
+  height: 40px;
+  border-radius: 50%; /* To make it round */
+  object-fit: cover; /* Ensures image fits in the container */
+}

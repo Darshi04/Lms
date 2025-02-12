@@ -172,9 +172,11 @@
         <div class="form-popup p-4">
           <form class="modal-body">
             <h4 class="mb-3">Edit Student</h4>
-             <div>
-                <input  class="mb-3 form-control" type="file" (change)="onFileChange($event)"/>
-              </div>
+            <div>
+  <!-- Custom label for the file input -->
+  <input id="fileInput" class="mb-3 form-control" type="file" accept="image/*"  (change)="onFileChange($event)" />
+</div>
+
             <div>
            
               <input class="mb-3 form-control" type="text" [(ngModel)]="currentStudent.student_name" name="name" placeholder="Name" />

@@ -12,14 +12,12 @@
   
   }
 
-  .quote{
-    margin-top: 40px;
-    margin-left: 730px;
-    text-align: right;
-    width: 500px;
-  }
+
 
   .quotet{
-    font-weight: 520;
     font-style: italic;
+  }
+
+  .author{
+    font-weight: 650;
   }

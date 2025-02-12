@@ -34,8 +34,14 @@
         <!-- end row -->
       </div>
       <!-- ========== title-wrapper end ========== -->
-      
-    
+      <div class="row mb-4">
+      <div *ngIf="quote && author"> 
+        <blockquote class="quotet">
+          {{ quote }}
+        </blockquote>
+        <p class="author">- {{ author }}</p>
+      </div>
+    </div>
       <div class="row">
         <div class="col-xl-3 col-lg-4 col-sm-6">
           <div class="icon-card cardd mb-30">
@@ -107,12 +113,7 @@
           </div>
         </div>
 
-        <div *ngIf="quote && author" class="quote"> 
-          <blockquote class="quotet">
-            {{ quote }}
-          </blockquote>
-          <p><b>-{{ author }}</b></p>
-        </div>
+
         <!-- End Col -->
       </div>
 

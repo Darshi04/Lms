@@ -1,208 +1,212 @@
-
- 
 <!-- ======== sidebar-nav start =========== -->
-<aside class="sidebar-nav-wrapper" [ngClass]="{'active': isSidebarOpen}">
-    <div class="navbar-logo">
-      <a href="index.html">
-        <!-- <img src="/images/logo/logo.svg" alt="logo" /> -->
-         <h4>BlueEd</h4>
-      </a>
-    </div>
-    <nav class="sidebar-nav">
-      <ul>
-        <!-- Dashboard Menu Item -->
-        <li class="nav-item">
-          <a routerLink="/manager-dashboard" routerLinkActive="active">
-            <span class="icon">
-              <!-- Dashboard Icon -->
-              <i class="fas fa-columns"></i>
-            </span>
-            <span class="text">Dashboard</span>
-          </a>
-        </li>
-  
-        <!-- Assigned Courses -->
-        <li class="nav-item">
-          <a routerLink="/manager-studentDetails" routerLinkActive="active">
-            <span class="icon">
-              <i class="fas fa-book"></i>
-            </span>
-            <span class="text">Student Details</span>
-          </a>
-        </li>
-
-        
-        
-  
-        <!-- Publish Marks -->
-        <li class="nav-item">
-          <a routerLink="/Manager-marks" routerLinkActive="active">
-            <span class="icon">
-              <i class="fas fa-pencil-alt"></i>
-            </span>
-            <span class="text">Publish Marks</span>
-          </a>
-        </li>
-       
-       
-        <!-- Track Student Progress -->
-        <li class="nav-item">
-          <a routerLink="/manager-trainerDetails" routerLinkActive="active">
-            <span class="icon">
-              <i class="fas fa-chart-bar"></i>
-            </span>
-            <span class="text">Trainers</span>
-          </a>
-        </li>
-  
-        <!-- Course Completion Checklist -->
-        <li class="nav-item">
-          <a routerLink="/manager-roadmap" routerLinkActive="active">
-            <span class="icon">
-              <i class="fas fa-check-circle"></i>
-            </span>
-            <span class="text">Progress Tracker</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a routerLink="/manager-course" routerLinkActive="active">
-            <span class="icon">
-              <i class="fas fa-book"></i>
-            </span>
-            <span class="text">Course-Details</span>
-          </a>
-        </li>
- 
-    
-  
-       
-        <span class="divider"><hr /></span>
-        <!-- Sign Out Menu Item -->
-        <li class="nav-item">
-          <a href="javascript:void(0);" (click)="onSignOut()"> 
-            <span class="icon">
-              <i class="fas fa-sign-out-alt"></i>
-              <!-- Font Awesome Sign Out Icon -->
-            </span>
-            <span class="text">Sign Out</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </aside>
-  <!-- ======== sidebar-nav end =========== -->
-  
-  <div class="overlay"></div>
-  <!-- ======== sidebar-nav end =========== -->
-  
-  <!-- ======== main-wrapper start =========== -->
-  <main class="main-wrapper" [ngClass]="{'sidebar-closed': !isSidebarOpen}">
-    <!-- ========== header start ========== -->
-    <header class="header">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-5 col-md-5 col-6">
-            <div class="header-left d-flex align-items-center">
-              <div class="menu-toggle-btn mr-15">
-                <button id="menu-toggle" class="main-btn primary-btn btn-hover" (click)="toggleSidebar()">
-                  <i class="lni lni-chevron-left me-2"></i> Menu
-                </button>
-              </div>
-
-            </div>
-          </div>
-          <div class="col-lg-7 col-md-7 col-6">
-            <div class="header-right">
-              
-          <!-- message start -->
-<div class="header-message-box ml-15 d-none d-md-flex">
-  <button
-    class="dropdown-toggle"
-    type="button"
-    id="message"
-    data-bs-toggle="dropdown"
-    aria-expanded="false"
-  >
-    <!-- Message icon using Bootstrap Icons -->
-    <i class="bi bi-chat-dots" style="font-size: 22px;"></i>
-    <span></span>
-  </button>
-
-<!-- The dropdown menu with scrolling and SimpleBar -->
-<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="message" style="max-height: 180px; width: 300px;" data-simplebar>
-  <li *ngFor="let msg of message" class="message-item" data-simplebar>
-    <a href="#0" class="message-link">
-      <div class="image">
-        <img [src]=[msg.profile] alt="Avatar" class="avatar" />
-      </div>
-      <div class="content">
-        
-        <h6 class="name">{{ msg.name }}</h6>
-        <p class="comments">{{ msg.comments }}</p>
-        <span class="time">{{ msg.timeAgo }}</span>
-      </div>
+<aside class="sidebar-nav-wrapper" [ngClass]="{ active: isSidebarOpen }">
+  <div class="navbar">
+    <a href="index.html" >
+      <img src="images/logoo.png" width="100px" alt="logo" />
     </a>
-  </li>
-</ul>
+  </div>
+  <nav class="sidebar-nav">
+    <ul>
+      <!-- Dashboard Menu Item -->
+      <li class="nav-item">
+        <a routerLink="/manager-dashboard" routerLinkActive="active">
+          <span class="icon">
+            <!-- Dashboard Icon -->
+            <i class="fas fa-columns"></i>
+          </span>
+          <span class="text">Dashboard</span>
+        </a>
+      </li>
 
-</div>
-<!-- message end -->
+      <!-- Assigned Courses -->
+      <li class="nav-item">
+        <a routerLink="/manager-studentDetails" routerLinkActive="active">
+          <span class="icon">
+            <i class="fas fa-book"></i>
+          </span>
+          <span class="text">Student Details</span>
+        </a>
+      </li>
 
+      <!-- Publish Marks -->
+      <li class="nav-item">
+        <a routerLink="/Manager-marks" routerLinkActive="active">
+          <span class="icon">
+            <i class="fas fa-pencil-alt"></i>
+          </span>
+          <span class="text">Publish Marks</span>
+        </a>
+      </li>
 
+      <!-- Track Student Progress -->
+      <li class="nav-item">
+        <a routerLink="/manager-trainerDetails" routerLinkActive="active">
+          <span class="icon">
+            <i class="fas fa-chart-bar"></i>
+          </span>
+          <span class="text">Trainers</span>
+        </a>
+      </li>
 
-              <!-- profile start -->
-              <div class="profile-box ml-10">
-                <button
-                  class="dropdown-toggle bg-transparent border-0"
-                  type="button"
-                  id="profile"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <div class="profile-info">
-                    <div class="info">
-                      <div class="image">
-                        <img src="/images/profile/profile-image.png" alt="" />
-                      </div>
-                      <div>
-                        <h6 class="fw-500" *ngIf="user">{{ user.manager_name || 'User' }}</h6>
-<p>{{ role || 'No role provided' }}
-                      </div>
-                    </div>
-                  </div>
-                </button>
-                <ul
-                  class="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="profile"
-                >
-                  <li>
-                    <div class="author-info flex items-center !p-1">
-                      <div class="image">
-                        <img
-                          src="/images/profile/profile-image.png"
-                          alt="image"
-                        />
-                      </div>
-                      <div class="content">
-                        <p class="textt" *ngIf="user">{{ user.manager_name || 'No name available' }}</p>
-                        <p *ngIf="user" class="text">{{ user.email || 'No email provided' }}</p>
-              
-                      </div>
-                    </div>
-                  </li>
-                  <li class="divider"></li>
-            
-                  <li>
-                    <a href="javascript:void(0);" (click)="onSignOut()"> <i class="lni lni-exit"></i> Sign Out</a>                  </li>
-                </ul>
-              </div>
-              <!-- profile end -->
+      <!-- Course Completion Checklist -->
+      <li class="nav-item">
+        <a routerLink="/manager-roadmap" routerLinkActive="active">
+          <span class="icon">
+            <i class="fas fa-check-circle"></i>
+          </span>
+          <span class="text">Progress Tracker</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a routerLink="/manager-course" routerLinkActive="active">
+          <span class="icon">
+            <i class="fas fa-book"></i>
+          </span>
+          <span class="text">Course-Details</span>
+        </a>
+      </li>
+
+      <span class="divider"><hr /></span>
+      <!-- Sign Out Menu Item -->
+      <li class="nav-item">
+        <a href="javascript:void(0);" (click)="onSignOut()">
+          <span class="icon">
+            <i class="fas fa-sign-out-alt"></i>
+            <!-- Font Awesome Sign Out Icon -->
+          </span>
+          <span class="text">Sign Out</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<!-- ======== sidebar-nav end =========== -->
+
+<div class="overlay"></div>
+<!-- ======== sidebar-nav end =========== -->
+
+<!-- ======== main-wrapper start =========== -->
+<main class="main-wrapper" [ngClass]="{ 'sidebar-closed': !isSidebarOpen }">
+  <!-- ========== header start ========== -->
+  <header class="header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-5 col-md-5 col-6">
+          <div class="header-left d-flex align-items-center">
+            <div class="menu-toggle-btn mr-15">
+              <button
+                id="menu-toggle"
+                class="main-btn primary-btn btn-hover"
+                (click)="toggleSidebar()"
+              >
+                <i class="lni lni-chevron-left me-2"></i> Menu
+              </button>
             </div>
           </div>
         </div>
-      </div>
-    </header>
-    <ng-content></ng-content>
+        <div class="col-lg-7 col-md-7 col-6">
+          <div class="header-right">
+            <!-- message start -->
+            <div class="header-message-box ml-15 d-none d-md-flex">
+              <button
+                class="dropdown-toggle"
+                type="button"
+                id="message"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <!-- Message icon using Bootstrap Icons -->
+                <i class="bi bi-chat-dots" style="font-size: 22px"></i>
+                <span></span>
+              </button>
 
+              <!-- The dropdown menu with scrolling and SimpleBar -->
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="message"
+                style="max-height: 180px; width: 300px"
+                data-simplebar
+              >
+                <li
+                  *ngFor="let msg of message"
+                  class="message-item"
+                  data-simplebar
+                >
+                  <a href="#0" class="message-link">
+                    <div class="image">
+                      <img [src]="[msg.profile]" alt="Avatar" class="avatar" />
+                    </div>
+                    <div class="content">
+                      <h6 class="name">{{ msg.name }}</h6>
+                      <p class="comments">{{ msg.comments }}</p>
+                      <span class="time">{{ msg.timeAgo }}</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <!-- message end -->
+
+            <!-- profile start -->
+            <div class="profile-box ml-10">
+              <button
+                class="dropdown-toggle bg-transparent border-0"
+                type="button"
+                id="profile"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <div class="profile-info">
+                  <div class="info">
+                    <div class="image">
+                      <img src="/images/profile/profile-image.png" alt="" />
+                    </div>
+                    <div>
+                      <h6 class="fw-500" *ngIf="user">
+                        {{ user.manager_name || "User" }}
+                      </h6>
+                      <p>{{ role || "No role provided" }}</p>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="profile"
+              >
+                <li>
+                  <div class="author-info flex items-center !p-1">
+                    <div class="image">
+                      <img
+                        src="/images/profile/profile-image.png"
+                        alt="image"
+                      />
+                    </div>
+                    <div class="content">
+                      <p class="textt" *ngIf="user">
+                        {{ user.manager_name || "No name available" }}
+                      </p>
+                      <p *ngIf="user" class="text">
+                        {{ user.email || "No email provided" }}
+                      </p>
+                    </div>
+                  </div>
+                </li>
+                <li class="divider"></li>
+
+                <li>
+                  <a href="javascript:void(0);" (click)="onSignOut()">
+                    <i class="lni lni-exit"></i> Sign Out</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!-- profile end -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <ng-content></ng-content>
 </main>
