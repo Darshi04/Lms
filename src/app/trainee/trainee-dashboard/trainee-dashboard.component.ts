@@ -15,7 +15,11 @@ import { HttpClient } from '@angular/common/http';
 export class TraineeDashboardComponent implements OnInit {
   isSidebarOpen: boolean = true; // Initial state: sidebar is closed
  
- 
+     
+  scheduledCount: number = 0;
+  completedCount: number = 0;
+
+  sch: any = "";
  
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen; // Toggle the sidebar state
@@ -43,5 +47,19 @@ export class TraineeDashboardComponent implements OnInit {
           console.error('Error fetching scheduled tests', error);
         }
       );
+      this.http.get("http://localhost:8080/Count").subscribe({
+        next: (response) => {
+          this.sch = response;
+          console.log(response);
+          
+          this.scheduledCount = this.sch.scheduled || 0;
+          this.completedCount = this.sch.completed || 0;
+        },
+        error: (err) => {
+          console.error('Error fetching test count:', err);
+        }
+        
+      });
     }
+    
 }

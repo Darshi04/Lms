@@ -6,3 +6,14 @@
 
 }
 
+.details{
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 240px;
+}
+
+@media (min-width: 1440px) {
+  .roww {
+    height: 200px; /* Adjust height for larger screens */
+  }
+}

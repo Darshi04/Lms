@@ -38,7 +38,7 @@
         <div class="col-xl-3 col-lg-4 col-sm-6">
           <div class="icon-card cardd mb-30">
             <div class="icon purple">
-              <i class="fas fa-users"></i>
+              <i class="fas fa-book"></i>
               <!-- Updated icon for Student Details -->
             </div>
             <div class="content">
@@ -49,33 +49,33 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-lg-4 col-sm-6">
-          <div class="icon-card cardd mb-30">
-            <div class="icon">
-              <i
-                class="fas fa-clipboard-check"
-                style="color: rgb(90, 131, 28)"
-              ></i
-              ><!-- Updated icon for Student Details -->
-            </div>
-            <div class="content">
-              <h6 class="mb-10">Exam Passed</h6>
-              <h3 class="text-bold mb-10">4</h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-4 col-sm-6">
-          <div class="icon-card cardd mb-30">
+         <!-- Scheduled Tests -->
+         <div class="col-xl-3 col-lg-4 col-sm-6">
+          <div class="icon-card mb-30 cardd">
             <div class="icon purple">
-              <i class="fas fa-history" style="color: red"></i
-              ><!-- Updated icon for Student Details -->
+              <i class="lni lni-calendar"></i>
             </div>
             <div class="content">
-              <h6 class="mb-10">Attempts</h6>
-              <h3 class="text-bold mb-10">4</h3>
+              <h6 class="mb-10">Scheduled Tests</h6>
+              <h3 class="text-bold mb-10">{{ scheduledCount }}</h3>
             </div>
           </div>
+          <!-- End Scheduled Tests -->
         </div>
+
+   <!-- Completed Tests -->
+   <div class="col-xl-3 col-lg-4 col-sm-6">
+    <div class="icon-card cardd mb-30">
+      <div class="icon success">
+        <i class="fas fa-trophy"></i> <!-- Font Awesome trophy icon -->
+      </div>
+      <div class="content">
+        <h6 class="mb-10">Completed Tests</h6>
+        <h3 class="text-bold mb-10">{{ completedCount }}</h3>
+      </div>
+    </div>
+  </div>
+  
         <div class="col-xl-3 col-lg-4 col-sm-6">
           <div data-simplebar class="icon-card cardd details mb-30"> <!-- Added cardd here -->
 
