@@ -61,10 +61,9 @@ export class RoadmapComponent implements OnInit{
     
 
     this.eventService.event$.subscribe((events) => {
-      this.updateEventStatus(events);  // Update the roadmap with the latest completion status
+      this.updateEventStatus(events); 
     });
   
-    // Fetch courses and topics with their updated completion status
     this.eventService.getCourses().subscribe((response: any) => {
       if (response && Array.isArray(response.course)) {
         this.events = response.course.map((course: any) => ({
@@ -72,7 +71,7 @@ export class RoadmapComponent implements OnInit{
           title: course.course_title,
           topics: course.topic.map((topic: Topic) => ({
             topic_name: topic.topics_topic,
-            completed: topic.topic_completed  // Ensuring the latest 'completed' status from the backend
+            completed: topic.topic_completed  
           }))
         }));
   
@@ -89,7 +88,7 @@ updateEventStatus(events: { [key: string]: boolean }) {
     this.events.forEach((event: Event) => { 
         event.topics.forEach((t: Topic) => {
             if (events.hasOwnProperty(t.topics_topic)) {
-                t.completed = events[t.topics_topic];  // Update status for each topic
+                t.completed = events[t.topics_topic];
             }
         });
     });
@@ -98,9 +97,9 @@ updateEventStatus(events: { [key: string]: boolean }) {
 
   getTopicIconColor(topic: any) {
     if (topic.completed) {
-      return '#3FBF96'; // Green for completed
+      return '#3FBF96'; 
     } else {
-      return '#888'; // Gray for not completed
+      return '#888'; 
     }
   }
 
@@ -108,12 +107,11 @@ updateEventStatus(events: { [key: string]: boolean }) {
     const allCompleted = event.eventInfo.topics.every((topic: any) => topic.completed);
 
     if (allCompleted) {
-      return '#3FBF96'; // Green when all topics are completed
+      return '#3FBF96'; 
     } else if (event.eventInfo.topics.some((topic: any) => topic.completed)) {
-      return '#E1B200'; // Yellow when some topics are completed
+      return '#E1B200'; 
     } else {
       return '#888';
-      // return '#74C0FC'; // Blue when no topic is completed
     }
   }
 

@@ -25,24 +25,21 @@ export class ProfileComponent {
   ];
 
   constructor(private http: HttpClient) {
-    // Initialize user data
     const userData = localStorage.getItem('user');
     if (userData) {
       const parsedUserData = JSON.parse(userData);
       this.user = parsedUserData.students[0]; 
     }
     else {
-      this.user = {};  // Ensure user is initialized as an empty object
+      this.user = {}; 
     }
     
   }
 
 
-  // Save the updated student data to the backend and localStorage
   saveEditedStudent() {
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    // Update student data on the backend
     this.http.put(`http://localhost:8080/updateStudent/${this.user.rn_id}`, this.user, { headers })
       .subscribe(
         (response: any) => {
@@ -59,15 +56,14 @@ export class ProfileComponent {
       );
   }
 
-  // Handle profile image change (base64 encoding)
   onFileChange(event: any) {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        this.user.profile = reader.result as string;  // Base64 image string
+        this.user.profile = reader.result as string; 
       };
-      reader.readAsDataURL(file);  // Convert file to base64 string
+      reader.readAsDataURL(file);  
     }
   }
 }

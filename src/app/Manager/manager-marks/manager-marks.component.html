@@ -57,7 +57,6 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- Loop through each student and create a row for them -->
                 <tr *ngFor="let student of students">
                   <td
                     [attr.rowspan]="studentMarks[student.id]?.length || 1"
@@ -69,7 +68,6 @@
                     {{ student.student_name }}
                   </td>
 
-                  <!-- Loop through subjects and show marks -->
                   <ng-container *ngFor="let subject of subjects">
                     <ng-container
                       *ngIf="
@@ -78,7 +76,6 @@
                         else noMarks
                       "
                     >
-                      <!-- Display all marks, but only trigger modal for reattempted marks -->
                       <td
                         class="tablefont"
                         [ngClass]="
@@ -95,11 +92,9 @@
                           studentMarks[student.rn_id][subject]?.isReattempt
                         "
                       >
-                        <!-- Modal will only show for reattempt marks -->
                         {{ studentMarks[student.rn_id][subject]?.mark }}
                       </td>
 
-                      <!-- If it's not a reattempt, just show the mark without triggering the modal -->
                       <td
                         class="tablefont"
                         [ngClass]="
@@ -117,7 +112,7 @@
                       </td>
                     </ng-container>
 
-                    <!-- Display 0 if no marks exist for the subject -->
+         
                     <ng-template #noMarks> <td>-</td></ng-template>
                   </ng-container>
                 </tr>
@@ -128,7 +123,7 @@
       </div>
     </div>
   </section>
-  <!-- Modal for Showing Mark History -->
+
   <div
     class="modal fade"
     id="modal1"
@@ -150,7 +145,6 @@
           ></button>
         </div>
         <div class="modal-body">
-          <!-- Display Mark History only if there is more than one attempt -->
           <p
             *ngIf="selectedMarkHistory && selectedMarkHistory.length > 1"
             class="mb-2"
@@ -163,7 +157,6 @@
             >
           </p>
 
-          <!-- Display Mark History Table -->
           <div class="table-wrapper table-responsive">
           <table class="table">
             <thead>
@@ -180,7 +173,6 @@
             </tbody>
           </table>
 </div>
-          <!-- Display message if there is no reattempts -->
           <p *ngIf="selectedMarkHistory && selectedMarkHistory.length === 1">
             No reattempts for this subject.
           </p>
