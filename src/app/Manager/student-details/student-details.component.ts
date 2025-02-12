@@ -259,7 +259,6 @@ export class StudentDetailsComponent implements OnInit {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
  
-  // Toggle between RN Number search and Skills search
   toggleSearchMode(): void {
     if (this.isRNSearch) {
       this.empid = '';
@@ -275,17 +274,17 @@ export class StudentDetailsComponent implements OnInit {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        this.newStudent.profile = reader.result as string;  // Base64 data URL
+        this.newStudent.profile = reader.result as string; 
         
         
       };
-      reader.readAsDataURL(file);  // Convert the file to base64
+      reader.readAsDataURL(file); 
     }
   }
   
   clearMessage() {
     if (this.msg) {
-      this.msg = '';  // Clear the message when the user starts typing
+      this.msg = '';  
     }
   }
 

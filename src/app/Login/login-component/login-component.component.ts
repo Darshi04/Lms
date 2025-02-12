@@ -18,7 +18,7 @@ export class LoginComponentComponent {
   role: string = 'Student';
   message: string = '';
    
-  private apiUrl: string = 'http://localhost:8080'; // Backend URL
+  private apiUrl: string = 'http://localhost:8080'; 
 
   passwordVisible: boolean = false;
   togglePasswordVisibility(): void {
@@ -59,10 +59,7 @@ export class LoginComponentComponent {
             console.log('Login successful', response);
 
             localStorage.setItem('user', JSON.stringify(response));
-            // Store role in localStorage
             localStorage.setItem('role', this.role);
-
-            // Log and navigate based on role
             if (this.role === 'Student') {
               console.log('Navigating to dashboard');
               this.router.navigate(['/trainee-dashboard']);

@@ -11,15 +11,12 @@ export class AuthguardService implements CanActivate {
   constructor(private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    // Get the user role from localStorage
     const role = localStorage.getItem('role');
     console.log("Role from localStorage: ", role);
 
-    // Get the current URL we are trying to navigate to from RouterStateSnapshot
     const currentRoute = state.url;
     console.log("Attempting to navigate to: ", currentRoute);
 
-    // Check if the current route is allowed based on the user's role
     if (role === 'Student') {
       const allowedRoutes = ['/trainee-course', '/trainee-dashboard', '/login','/trainee-feedback','/trainee-result','/trainee-tracker','/trainee-profile','/roadmap','/forgetpassword'];
       if (allowedRoutes.includes(currentRoute)) {
@@ -44,7 +41,6 @@ export class AuthguardService implements CanActivate {
       }
     }
 
-    // If the current route is not allowed, redirect to login
     console.log('Navigation blocked. Redirecting to login.');
     this.router.navigate(['/login']);
     return false;

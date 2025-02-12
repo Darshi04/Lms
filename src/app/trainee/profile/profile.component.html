@@ -22,20 +22,17 @@
             </div>
           </div>
           
-          <!-- Name Field -->
           <div class="input-style-1">
             <label>Name
             <i class="lni lni-pencil-alt"></i></label>
             <input type="text" [value]="user?.student_name" [(ngModel)]="user.student_name"/>
           </div>
 
-          <!-- Employee Id Field -->
           <div class="input-style-1">
             <label>Employee Id</label>
             <input type="text" [value]="user?.rn_id" readonly />
           </div>
 
-          <!-- Email Field -->
           <div class="input-style-1">
             <label>Email</label>
             <input type="email" [value]="user?.email" readonly />
@@ -46,7 +43,6 @@
 
     
 
-    <!-- Second Column -->
     <div class="col-lg-6 col-md-6">
       <div class="card-style settings-card-1 mb-30">
         <div class="profile-info">
@@ -58,14 +54,12 @@
             </div>
           </div>
 
-          <!-- Skills Field -->
           <div class="input-style-1">
             <label>Skills
             <i class="lni lni-pencil-alt"></i></label>
             <textarea placeholder="Type here" rows="6" [(ngModel)]="user.skills" [value]="user?.skills"></textarea>
           </div>
 
-          <!-- Update Button -->
           <div class="col-12">
             <button class="main-btn primary-btn btn-hover" (click)="saveEditedStudent()">Save Updated Profile</button>
           </div>
@@ -75,7 +69,6 @@
           [ngClass]="{ 'alert-success': msg }"
           role="alert"
         >
-          <!-- Icon inside the alert box -->
           <i
             class="fa-solid fa-circle-check"
             style="margin-right: 10px"
