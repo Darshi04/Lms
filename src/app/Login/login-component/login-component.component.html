@@ -62,18 +62,6 @@
                     />
                   </div>
 
-                  <!-- Password input -->
-                  <!-- <div class="form-outline input-style-1">
-                    <input
-                      type="password"
-                      id="form3Example4"
-                      [(ngModel)]="password"
-                      name="password"
-                      class="form-control"
-                      placeholder="Password"
-                      required
-                    />
-                  </div> -->
                   <div class="form-outline input-style-1">
                     <input
                       [type]="passwordVisible ? 'text' : 'password'"
@@ -84,7 +72,7 @@
                       placeholder="Password"
                       required
                     />
-                    <!-- Icon to toggle password visibility -->
+
                     <button type="button" (click)="togglePasswordVisibility()" class="toggle-password-btn">
                       <i class="fa" [ngClass]="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
                     </button>
@@ -113,7 +101,6 @@
                     </button>
                   </div>
 
-                  <!-- Display feedback message -->
                   <div *ngIf="message" class="mt-3 text-center">
                     <div
                       class="alert"
@@ -137,4 +124,3 @@
   </div>
 </section>
 
-<!-- While login i am getting the details of the person who login, From that details i have id which should be used to send with the http get to get other things related  to them when navigate to specific page.........For example a student is login in , their name should be displayed in dashborad and when they navigate to MarksComponent, their marks should be get from backend using their id and when signout their details should be deleted from the angular ................Explain how will i implement that? -->

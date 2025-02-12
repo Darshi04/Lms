@@ -25,15 +25,15 @@ export class ForgetPasswordComponent {
   message: string = '';
   roles = ['student', 'manager', 'trainer'];
 
-  passwordVisible: boolean = false; // For new password visibility
-  confirmPasswordVisible: boolean = false; // For confirm password visibility
+  passwordVisible: boolean = false; 
+  confirmPasswordVisible: boolean = false;
 
   togglePasswordVisibility(type: string) {
 
     if (type === 'new') {
-      this.passwordVisible = !this.passwordVisible; // Toggle new password visibility
+      this.passwordVisible = !this.passwordVisible; 
     } else if (type === 'confirm') {
-      this.confirmPasswordVisible = !this.confirmPasswordVisible; // Toggle confirm password visibility
+      this.confirmPasswordVisible = !this.confirmPasswordVisible;
     }
   }
 
@@ -44,7 +44,6 @@ selectRole(selectedRole: string): void {
     this.message = ''; 
   }
 
-  // Submit the email and request verification code
   onEmailSubmit() {
     if (!this.email) {
       this.message = 'Please enter a valid ${this.role} email address.';
@@ -66,8 +65,6 @@ selectRole(selectedRole: string): void {
     );
   }
 
-
-  // Submit and verify the verification code
   onCodeSubmit() {
     if (!this.verificationCode) {
       this.message = 'Please enter the verification code.';
@@ -88,30 +85,26 @@ selectRole(selectedRole: string): void {
     );
   }
 
-  // Submit new password
+ 
   onSetPasswordSubmit() {
     if (this.newPassword !== this.confirmPassword) {
       this.message = 'Passwords do not match.';
       return;
     }
   
-    // Password validation conditions
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
   
-    // Check if the password meets the required conditions
     if (!passwordRegex.test(this.newPassword)) {
       this.message = 'Please re-check your password to satisfy the criteria';
       return;
     }
   
-    // Ensure the new password is not the same as the old password
     if (this.newPassword === this.password) {
       this.message = 'New password cannot be the same as the old password.';
       return;
     }
 
     let endpoint = '';
-    // Set role-based endpoint for password update
     if (this.role === 'student') {
       endpoint = 'http://localhost:8080/update_student_password';
     } else if (this.role === 'manager') {
