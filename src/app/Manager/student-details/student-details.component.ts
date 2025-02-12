@@ -29,6 +29,7 @@ export class StudentDetailsComponent implements OnInit {
   empid: string = '';
   skill: string = '';
   isSidebarOpen: boolean = true;
+  msg='';
 
   trainerIds: String[] = []; // To hold trainer IDs for the dropdown
 
@@ -95,7 +96,7 @@ export class StudentDetailsComponent implements OnInit {
       const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
     if (!emailRegex.test(this.newStudent.email)) {
       console.error('Email must be a Gmail address');
-      alert('Email must be a Gmail address'); // You can replace this with a better UI message
+      this.msg="Email must be a Gmail address"
       return; // Stop the function if the email is not valid
     }
     
@@ -163,8 +164,8 @@ export class StudentDetailsComponent implements OnInit {
       const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
     if (!emailRegex.test(this.currentStudent.email)) {
       console.error('Email must be a Gmail address');
-      alert('Email must be a Gmail address'); // You can replace this with a better UI message
-      return; // Stop the function if the email is not valid
+      this.msg="Email must be a Gmail address"
+      return; 
     }
 
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -191,6 +192,7 @@ export class StudentDetailsComponent implements OnInit {
     } else {
       console.error('No student selected for editing or invalid data');
     }
+    
   }
  
   // Cancel editing mode
@@ -281,7 +283,11 @@ export class StudentDetailsComponent implements OnInit {
     }
   }
   
-
+  clearMessage() {
+    if (this.msg) {
+      this.msg = '';  // Clear the message when the user starts typing
+    }
+  }
 
 
 }

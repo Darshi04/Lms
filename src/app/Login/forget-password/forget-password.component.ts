@@ -100,7 +100,7 @@ selectRole(selectedRole: string): void {
   
     // Check if the password meets the required conditions
     if (!passwordRegex.test(this.newPassword)) {
-      this.message = 'Please re-check your password';
+      this.message = 'Please re-check your password to satisfy the criteria';
       return;
     }
   

@@ -150,7 +150,8 @@
       </div>    
  
             <div>
-              <input type="text" [(ngModel)]="newStudent.email" name="email" placeholder="Email" />
+              <input type="text" [(ngModel)]="newStudent.email" name="email" placeholder="Email" (input)="clearMessage()"/>
+              <p *ngIf="msg" style="color: red;">{{msg}}</p>
             </div>
             <!-- <div>
               <input type="text" [(ngModel)]="newStudent.role" name="role" placeholder="Role" />
@@ -189,7 +190,8 @@
         </select>
       </div>  
             <div>
-              <input type="text" class="mb-3 form-control" [(ngModel)]="currentStudent.email" name="email" placeholder="email" />
+              <input type="text" class="mb-3 form-control" [(ngModel)]="currentStudent.email" name="email" placeholder="email" (input)="clearMessage()"/>
+              <p *ngIf="msg" style="color: red;">{{msg}}</p>
             </div>
             <!-- <div>
               <input type="text" class="mb-3 form-control" [(ngModel)]="currentStudent.role" name="role" placeholder="Role" />

@@ -11,7 +11,7 @@
         <div class="row align-items-center">
           <div class="col-md-6">
             <div class="title">
-              <h2>Trainee Dashboard</h2>
+              <h2>{{greeting }}</h2>
             </div>
           </div>
           <!-- end col -->
@@ -34,6 +34,8 @@
         <!-- end row -->
       </div>
       <!-- ========== title-wrapper end ========== -->
+      
+    
       <div class="row">
         <div class="col-xl-3 col-lg-4 col-sm-6">
           <div class="icon-card cardd mb-30">
@@ -41,6 +43,7 @@
               <i class="fas fa-users"></i>
               <!-- Updated icon for Student Details -->
             </div>
+            
             <div class="content">
               <h6 class="mb-10">
                 <a href="" [routerLink]="['/trainee-course']">Courses</a>
@@ -100,9 +103,16 @@
                 </div>
               </div>
             
+              
           </div>
         </div>
 
+        <div *ngIf="quote && author" class="quote"> 
+          <blockquote class="quotet">
+            {{ quote }}
+          </blockquote>
+          <p><b>-{{ author }}</b></p>
+        </div>
         <!-- End Col -->
       </div>
 

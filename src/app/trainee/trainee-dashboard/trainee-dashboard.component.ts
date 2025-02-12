@@ -14,7 +14,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TraineeDashboardComponent implements OnInit {
   isSidebarOpen: boolean = true; // Initial state: sidebar is closed
- 
+   
+  quote:any = '';
+  author: any = '';
+  greeting: string = '';
  
  
   toggleSidebar() {
@@ -26,6 +29,18 @@ export class TraineeDashboardComponent implements OnInit {
     constructor(private http: HttpClient) {}
   
     ngOnInit(): void {
+
+      this.http.get<any>('https://dummyjson.com/quotes').subscribe(
+        (response) => {
+          const randomIndex = Math.floor(Math.random() * response.quotes.length);
+          const randomQuote = response.quotes[randomIndex]; 
+          this.quote = randomQuote.quote;
+          this.author = randomQuote.author;
+        },
+        (error) => {
+          console.error('Error fetching quote:', error);
+        }
+      );
       // Fetch scheduled tests from the backend API
       this.http.get<any>('http://localhost:8080/scheduled').subscribe(
         (response) => {
@@ -43,5 +58,22 @@ export class TraineeDashboardComponent implements OnInit {
           console.error('Error fetching scheduled tests', error);
         }
       );
+
+      this.greeting = this.getGreeting();
+      
+      
     }
-}
+
+    getGreeting(): string {
+      const hours = new Date().getHours();
+      if (hours < 12) {
+        return 'Good Morning';
+      } else if (hours < 18) {
+        return 'Good Afternoon';
+      } else {
+        return 'Good Evening';
+      }
+    }
+    
+  }
+  
