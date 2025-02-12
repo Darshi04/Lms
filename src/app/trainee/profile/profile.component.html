@@ -10,13 +10,13 @@
           <!-- Profile Image Section -->
           <div class="d-flex align-items-center mb-30">
             <div class="profile-image">
-              <img [src]="user.profile" alt="Profile Image" class="student-avatar"yy />
+              <img [src]="user?.profile" alt="Profile Image" class="student-avatar"yy />
               <div class="update-image">
             <input type="file" (change)="onFileChange($event)"/><i class="lni lni-cloud-upload" ></i>
               </div>
             </div>
             <div class="profile-meta">
-              <h5 class="text-bold text-dark mb-10">{{ user.student_name }}</h5>
+              <h5 class="text-bold text-dark mb-10">{{ user?.student_name }}</h5>
               <p class="text-sm text-gray">Graduate Engineer Trainee</p>
 
             </div>
@@ -26,19 +26,19 @@
           <div class="input-style-1">
             <label>Name
             <i class="lni lni-pencil-alt"></i></label>
-            <input type="text" [value]="user.student_name" [(ngModel)]="user.student_name"/>
+            <input type="text" [value]="user?.student_name" [(ngModel)]="user.student_name"/>
           </div>
 
           <!-- Employee Id Field -->
           <div class="input-style-1">
             <label>Employee Id</label>
-            <input type="text" [value]="user.rn_id" readonly />
+            <input type="text" [value]="user?.rn_id" readonly />
           </div>
 
           <!-- Email Field -->
           <div class="input-style-1">
             <label>Email</label>
-            <input type="email" [value]="user.email" readonly />
+            <input type="email" [value]="user?.email" readonly />
           </div>
         </div>
       </div>
@@ -62,7 +62,7 @@
           <div class="input-style-1">
             <label>Skills
             <i class="lni lni-pencil-alt"></i></label>
-            <textarea placeholder="Type here" rows="6" [(ngModel)]="user.skills" [value]="user.skills"></textarea>
+            <textarea placeholder="Type here" rows="6" [(ngModel)]="user.skills" [value]="user?.skills"></textarea>
           </div>
 
           <!-- Update Button -->
